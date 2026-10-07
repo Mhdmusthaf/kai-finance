@@ -1,0 +1,25 @@
+:root {
+  --kai-forest: #0B3D2E;
+  --kai-mint: #3ED1A0;
+  --kai-cream: #FFF8F1;
+  --kai-leaf: #22A06B;
+  --kai-deep-mint: #17805A;
+  --kai-lavender: #C7B6FF;
+  --kai-peach: #FFB89A;
+  --kai-sage: #94B3A1;
+  --kai-soft-green: #D8F3E5;
+  --kai-soft-purple: #E9E3FF;
+  --kai-charcoal: #1A1A1A;
+  --kai-dark-green: #06241B;
+  --kai-gray: #5F6E67;
+  --kai-light-gray: #F2F4F3;
+  --kai-off-white: #FCFBF8;
+  --kai-success-text: #126B4B;
+  --kai-success-bg: #D8F3E5;
+  --kai-warning-text: #9A5B00;
+  --kai-warning-bg: #FFF1DC;
+  --kai-error-text: #A8361F;
+  --kai-error-bg: #FFE8E0;
+  --kai-info-text: #5B40C9;
+  --kai-info-bg: #E9E3FF;
+}

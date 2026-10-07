@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Money owed</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 6px"><a href="MyMoney.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a><h1 style="flex: 1; margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">{{title}}</h1><a href="Obj-Add-States.dc.html" aria-label="Add" style="width: 44px; height: 44px; border-radius: 14px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="plus" size="22" color="#3ED1A0" hint-size="22px,22px"></dc-import></a></div>
+
+    <sc-if value="{{s_list}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px"><div style="background: #D8F3E5; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 2px; border: 2px solid #17805A"><span style="font-size: 12.5px; font-weight: 700; color: #126B4B">Owed to you</span><b style="font-size: 24px">₹4,500</b><span style="font-size: 12px; color: #126B4B">2 people</span></div><div style="background: #FFFFFF; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 2px; border: 2px solid transparent"><span style="font-size: 12.5px; font-weight: 700; color: #A8361F">You owe</span><b style="font-size: 24px">₹1,200</b><span style="font-size: 12px; color: #5F6E67">1 person</span></div></div>
+        <sc-for list="{{people}}" as="p" hint-placeholder-count="4">
+          <a href="Owed-Docs-Flow.dc.html" style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 12px 14px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)"><span style="{{p.av}}">{{p.ini}}</span><span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 15px">{{p.n}}</b><span style="font-size: 12px; color: #5F6E67">{{p.d}}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><b style="{{p.vs}}">{{p.v}}</b><span style="{{p.tagS}}">{{p.tag}}</span></span></a>
+        </sc-for>
+        <span style="display: flex; gap: 8px; align-items: center; background: #F2F4F3; border-radius: 14px; padding: 12px; font-size: 13px; color: #3D4B45"><dc-import name="Icon" icon="mic" size="16" color="#17805A" hint-size="16px,16px"></dc-import>Say “Priya paid me 1,500” and KAI settles it.</span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s_person}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center"><span style="width: 72px; height: 72px; border-radius: 50%; background: #E9E3FF; color: #5B40C9; display: flex; align-items: center; justify-content: center; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">KS</span><b style="font-size: 18px">Kunal Shah</b><span style="font-size: 13px; color: #5F6E67">owes you</span><b style="font-size: 36px; letter-spacing: -0.02em; color: #17805A">₹3,000</b></div>
+        <div style="background: #FFFFFF; border-radius: 20px; padding: 4px 16px"><sc-for list="{{facts}}" as="f" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #F2EFE8; font-size: 14px"><span style="color: #5F6E67">{{f.k}}</span><b>{{f.v}}</b></div></sc-for></div>
+        <b style="font-family: Nunito, sans-serif; font-size: 17px">History with Kunal</b>
+        <sc-for list="{{hist}}" as="h" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; font-size: 14px; padding: 4px 0"><span style="display: flex; flex-direction: column"><b>{{h.t}}</b><span style="font-size: 12px; color: #5F6E67">{{h.d}}</span></span><b style="font-variant-numeric: tabular-nums">{{h.v}}</b></div></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s_empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 30px">
+        <dc-import name="Scene" scene="relaxing" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <b style="font-family: Nunito, sans-serif; font-size: 22px">All square</b>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 300px">Nobody owes you and you don’t owe anyone. When you split a bill or lend money, just tell KAI.</span>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{s_person}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 20px; right: 20px; bottom: 34px; display: flex; gap: 10px"><span style="flex: 1; height: 54px; border-radius: 999px; border: 1.5px solid #E2DCCF; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700">Send reminder</span><a href="Owed-Docs-Flow.dc.html" style="flex: 1.3; height: 54px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">Mark as paid</a></div></sc-if>
+
+  <sc-if value="{{s_settle}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; inset: 0; z-index: 10; background: rgba(6,36,27,0.42)"></div>
+    <div role="dialog" aria-label="Settled" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 11; background: #FCFBF8; border-radius: 28px 28px 0 0; padding: 10px 20px 34px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px">
+      <span style="width: 40px; height: 5px; border-radius: 3px; background: #DCD8CF"></span>
+      <dc-import name="Scene" scene="success" w="240" h="180" hint-size="240px,180px"></dc-import>
+      <b style="font-family: Nunito, sans-serif; font-size: 22px">Kunal is settled</b>
+      <span style="font-size: 14px; line-height: 1.5; color: #3D4B45; max-width: 310px">₹3,000 received into HDFC Savings. It’s recorded as a repayment, not income.</span>
+      <span style="align-self: stretch; margin-top: 8px; height: 52px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">Done</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["list","person","settle","empty"],"default":"list"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'list';
+    const P = (ini, n, d, v, kind, tag, bg, col) => ({ ini, n, d, v, tag,
+      av: 'width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; background: ' + bg + '; color: ' + col + ';',
+      vs: 'font-size: 15px; color: ' + (kind === 'in' ? '#17805A' : kind === 'out' ? '#A8361F' : '#94A39C') + ';',
+      tagS: 'font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; ' + (kind === 'done' ? 'color: #5F6E67; background: #F2F4F3;' : kind === 'out' ? 'color: #A8361F; background: #FFE8E0;' : 'color: #126B4B; background: #D8F3E5;') });
+    return {
+      title: st === 'person' || st === 'settle' ? 'Kunal' : 'Money owed',
+      s_list: st === 'list', s_person: st === 'person' || st === 'settle', s_settle: st === 'settle', s_empty: st === 'empty',
+      people: [P('KS', 'Kunal Shah', 'Goa flights share · 20 Sep', '+₹3,000', 'in', 'Owes you', '#E9E3FF', '#5B40C9'), P('PN', 'Priya Nair', 'Dinner split · 27 Sep', '+₹1,500', 'in', 'Owes you', '#FFE6DA', '#A8361F'), P('AK', 'Ananya K', 'Cab to airport · 1 Oct', '−₹1,200', 'out', 'You owe', '#D8F3E5', '#126B4B'), P('RM', 'Rahul Mehta', 'Concert tickets · settled 3 Oct', '₹3,000', 'done', 'Settled', '#F2F4F3', '#5F6E67')],
+      facts: [{ k: 'For', v: 'Goa flights share' }, { k: 'Since', v: 'Sun 20 Sep · 14 days' }, { k: 'Reminder', v: 'Mon 5 Oct' }, { k: 'Added by', v: 'Voice' }],
+      hist: [{ t: 'Lent for flights', d: 'Sun 20 Sep', v: '₹3,000' }, { t: 'Paid you back · lunch', d: 'Sat 8 Aug · settled', v: '₹850' }, { t: 'Lent for lunch', d: 'Mon 3 Aug', v: '₹850' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

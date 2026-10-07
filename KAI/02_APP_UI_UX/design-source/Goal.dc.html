@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Goal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <sc-if value="{{m_complete}}" hint-placeholder-val="{{false}}"><div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="mint" hint-size="100%,100%"></dc-import></div></sc-if>
+  <div style="position: relative; z-index: 1; padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Goals.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="{{backIcon}}" size="22" hint-size="22px,22px"></dc-import></a>
+      <b style="font-family: Nunito, sans-serif; font-size: 17px">{{title}}</b>
+      <span style="width: 34px"></span>
+    </div>
+
+    <sc-if value="{{m_detail}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 40px -26px rgba(6,36,27,0.45)">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="creamMint" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; padding: 18px; display: flex; align-items: center; gap: 8px">
+            <div style="position: relative; width: 136px; height: 136px; flex-shrink: 0">
+              <svg viewBox="0 0 120 120" width="136" height="136" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#FFFFFF" stroke-width="12"></circle><circle cx="60" cy="60" r="50" fill="none" stroke="#17805A" stroke-width="12" stroke-linecap="round" stroke-dasharray="257 314" transform="rotate(-90 60 60)"></circle></svg>
+              <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><b style="font-size: 28px">82%</b><span style="font-size: 11px; color: #3D4B45">saved</span></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="display: flex; align-items: center; gap: 6px; font-weight: 800"><dc-import name="Icon" icon="plane" size="18" color="#17805A" hint-size="18px,18px"></dc-import>Goa trip</span><b style="font-size: 26px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">₹41,000</b><span style="font-size: 13px; color: #3D4B45">of ₹50,000 · ₹9,000 to go</span><span style="font-size: 12.5px; font-weight: 800; color: #126B4B">On track for 1 Dec</span></div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; border-radius: 16px; padding: 10px"><sc-for list="{{chain}}" as="c" hint-placeholder-count="5"><span style="{{c.s}}">{{c.t}}</span></sc-for></div>
+        <div style="background: #FFFFFF; border-radius: 20px; padding: 4px 16px"><sc-for list="{{facts}}" as="f" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #F2EFE8; font-size: 14px"><span style="color: #5F6E67">{{f.k}}</span><b>{{f.v}}</b></div></sc-for></div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-family: Nunito, sans-serif; font-size: 17px; padding-bottom: 4px">Contributions</b><sc-for list="{{contrib}}" as="c" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px"><span>{{c.d}}</span><b style="color: #17805A; font-variant-numeric: tabular-nums">{{c.v}}</b></div></sc-for></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{m_create}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 8px; margin-right: -20px; overflow: hidden"><sc-for list="{{icons}}" as="ic" hint-placeholder-count="7"><span style="{{ic.s}}"><dc-import name="Icon" icon="{{ic.i}}" size="22" color="{{ic.c}}" hint-size="22px,22px"></dc-import></span></sc-for></div>
+        <sc-for list="{{form}}" as="f" hint-placeholder-count="4"><label style="display: flex; flex-direction: column; gap: 4px; background: #FFFFFF; border-radius: 16px; padding: 10px 14px; border: {{f.b}}"><span style="font-size: 12px; font-weight: 700; color: #5F6E67">{{f.k}}</span><input type="text" value="{{f.v}}" style="border: none; outline: none; background: transparent; font-family: inherit; font-size: 17px; font-weight: 800; color: #0B3D2E; font-variant-numeric: tabular-nums"></label></sc-for>
+        <div style="display: flex; align-items: center; gap: 10px; background: #0B3D2E; color: #FFF8F1; border-radius: 20px; padding: 14px 16px">
+          <div style="width: 56px; height: 56px; flex-shrink: 0"><dc-import name="Mascot" expr="insight" shadow="{{false}}" glow="{{true}}" hint-size="56px,56px"></dc-import></div>
+          <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #94B3A1">KAI’s plan · calculation</span><b style="font-size: 15px; line-height: 1.4">Save ₹4,500 a month from HDFC Savings and you’ll be there by 1 Dec.</b></span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border-radius: 16px; padding: 14px 16px"><span style="display: flex; flex-direction: column"><b style="font-size: 14.5px">Monthly nudge</b><span style="font-size: 12px; color: #5F6E67">On the 2nd, right after salary</span></span><span style="width: 48px; height: 30px; border-radius: 999px; background: #17805A; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{m_complete}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 6px">
+        <dc-import name="Scene" scene="celebrating" w="330" h="264" hint-size="330px,264px"></dc-import>
+        <span style="font-size: 14px; font-weight: 800; color: #126B4B; letter-spacing: 0.08em; text-transform: uppercase">Goal complete</span>
+        <b style="font-family: Nunito, sans-serif; font-size: 30px; line-height: 1.1">You reached ₹50,000!</b>
+        <span style="font-size: 15px; line-height: 1.5; color: #0B3D2E; max-width: 300px">Your Goa trip is fully funded — two weeks early. That’s 14 contributions over 9 months.</span>
+        <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.8); border-radius: 18px; padding: 10px 14px; margin-top: 6px"><span style="width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFEBD9, #D9895A); display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="star" size="18" color="#FFFFFF" hint-size="18px,18px"></dc-import></span><span style="text-align: left; display: flex; flex-direction: column"><b style="font-size: 14px">Achievement unlocked</b><span style="font-size: 12px; color: #3D4B45">Finisher · first goal completed on time</span></span></div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 34px; z-index: 2; display: flex; gap: 10px">
+    <a href="{{secHref}}" style="flex: 1; height: 56px; border-radius: 999px; border: 1.5px solid #E2DCCF; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700"><sc-if value="{{m_complete}}" hint-placeholder-val="{{false}}"><dc-import name="Icon" icon="share" size="18" hint-size="18px,18px"></dc-import></sc-if>{{secondary}}</a>
+    <a href="{{priHref}}" style="flex: 1.4; height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">{{primary}}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["detail","create","complete"],"default":"detail"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const m = this.props.mode ?? 'detail';
+    const C = (arr, cur) => arr.map((t, i) => ({ t, s: 'flex: 1; text-align: center; padding: 6px 2px; border-radius: 10px; font-size: 11px; font-weight: 800; ' + (i === cur ? 'background: #0B3D2E; color: #FFF8F1;' : i < cur ? 'color: #17805A;' : 'color: #94A39C;') }));
+    const F = (k, v, focus) => ({ k, v, b: focus ? '2px solid #17805A' : '1.5px solid #EEEAE1' });
+    const ui = { detail: ['Goal', 'Edit', 'Add money', 'Goal-Flow.dc.html', 'Tx-Add-States.dc.html'], create: ['New goal', 'Cancel', 'Create goal', 'Goals.dc.html', 'Goal-Flow.dc.html'], complete: ['', 'Share', 'Start next goal', 'Goal-Flow.dc.html', 'Goal-Flow.dc.html'] }[m];
+    return {
+      m_detail: m === 'detail', m_create: m === 'create', m_complete: m === 'complete',
+      title: ui[0], secondary: ui[1], primary: ui[2], secHref: ui[3], priHref: ui[4], backIcon: m === 'complete' ? 'close' : 'back',
+      chain: C(['Goal', 'Target', 'Saving', 'Progress', 'Done'], 3),
+      facts: [{ k: 'Target', v: '₹50,000 by 15 Dec' }, { k: 'Monthly step', v: '₹4,500' }, { k: 'Saved in', v: 'HDFC Savings' }, { k: 'Started', v: 'Jan 2026' }],
+      contrib: [{ d: 'Fri 2 Oct · monthly', v: '+₹4,500' }, { d: 'Wed 2 Sep · monthly', v: '+₹4,500' }, { d: 'Sat 15 Aug · birthday money', v: '+₹6,000' }],
+      icons: [['plane', 1], ['shield', 0], ['laptop', 0], ['car', 0], ['home', 0], ['education', 0], ['gift', 0]].map(([i, on]) => ({ i, c: on ? '#FFF8F1' : '#17805A', s: 'flex-shrink: 0; width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; ' + (on ? 'background: #0B3D2E;' : 'background: #FFFFFF; border: 1px solid #E6E1D6;') })),
+      form: [F('Goal name', 'Goa trip', true), F('Target amount', '₹50,000'), F('By when', 'Tue 15 Dec 2026'), F('Already saved (optional)', '₹41,000')]
+    };
+  }
+}
+</script>
+</body>
+</html>

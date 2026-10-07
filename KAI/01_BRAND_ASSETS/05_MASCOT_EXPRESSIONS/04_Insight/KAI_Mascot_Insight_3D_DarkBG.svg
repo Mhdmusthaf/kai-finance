@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -12 220 220" width="1024" height="1024"><title>KAI Mascot — Insight (3D, dark BG)</title><defs>
+<clipPath id="kc"><path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" /></clipPath>
+<filter id="kf2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" /></filter>
+<filter id="kf4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" /></filter>
+<filter id="kf8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8" /></filter>
+<filter id="kf16" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="16" /></filter>
+<radialGradient id="kb3" cx="0.62" cy="0.3" r="0.82" fx="0.66" fy="0.24">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="0.42" stop-color="#FCF9F2" />
+<stop offset="0.76" stop-color="#EDE8DB" />
+<stop offset="1" stop-color="#D3D7C8" />
+</radialGradient>
+<linearGradient id="kbn" x1="0" y1="0.4" x2="1" y2="0.56">
+<stop offset="0" stop-color="#4FC48C" stop-opacity="0.5" />
+<stop offset="0.16" stop-color="#7FD6A8" stop-opacity="0.18" />
+<stop offset="0.36" stop-color="#9FE0BE" stop-opacity="0" />
+</linearGradient>
+<radialGradient id="kao" cx="0.5" cy="1.04" r="0.56">
+<stop offset="0" stop-color="#1B4636" stop-opacity="0.32" />
+<stop offset="1" stop-color="#1B4636" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="kar" cx="0.38" cy="0.28" r="0.9">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="1" stop-color="#D7DACB" />
+</radialGradient>
+<radialGradient id="kal" cx="0.6" cy="0.3" r="0.9">
+<stop offset="0" stop-color="#C9EAD6" />
+<stop offset="1" stop-color="#7FCDA4" />
+</radialGradient>
+<linearGradient id="kft" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F7F3EA" />
+<stop offset="1" stop-color="#C9CEBF" />
+</linearGradient>
+<linearGradient id="kl3" x1="0" y1="1" x2="1" y2="0">
+<stop offset="0" stop-color="#127048" />
+<stop offset="0.45" stop-color="#22A06B" />
+<stop offset="1" stop-color="#63E2B2" />
+</linearGradient>
+<radialGradient id="ksh" cx="0.55" cy="0.3" r="0.55">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.5" />
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="key" cx="0.4" cy="0.32" r="0.78">
+<stop offset="0" stop-color="#21493A" />
+<stop offset="0.55" stop-color="#0B231B" />
+<stop offset="1" stop-color="#030A07" />
+</radialGradient>
+<radialGradient id="kir" cx="0.5" cy="0.85" r="0.62">
+<stop offset="0" stop-color="#4BE0AE" stop-opacity="0.95" />
+<stop offset="0.55" stop-color="#22A06B" stop-opacity="0.55" />
+<stop offset="1" stop-color="#22A06B" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="kbl" cx="0.35" cy="0.3" r="0.8">
+<stop offset="0" stop-color="#FFE3C2" />
+<stop offset="0.55" stop-color="#F7B57A" />
+<stop offset="1" stop-color="#D98A4E" />
+</radialGradient>
+<radialGradient id="kbf" cx="0.62" cy="0.36" r="0.72">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="0.7" stop-color="#FFFFFF" />
+<stop offset="1" stop-color="#E3EBE5" />
+</radialGradient>
+<linearGradient id="ksf" x1="0" y1="0.3" x2="1" y2="0.6">
+<stop offset="0" stop-color="#8ED8B4" stop-opacity="0.85" />
+<stop offset="0.26" stop-color="#8ED8B4" stop-opacity="0.25" />
+<stop offset="0.44" stop-color="#8ED8B4" stop-opacity="0" />
+</linearGradient>
+</defs>
+
+<g>
+<ellipse cx="100" cy="122" rx="70" ry="66" fill="#3ED1A0" opacity="0.22" filter="url(#kf16)" />
+<ellipse cx="100" cy="190" rx="60" ry="9" fill="#0B2A20" opacity="0.18" filter="url(#kf8)" />
+<ellipse cx="100" cy="186" rx="42" ry="5" fill="#0B2A20" opacity="0.26" filter="url(#kf4)" />
+<ellipse cx="38" cy="140" rx="9.5" ry="14" transform="rotate(28 38 140)" fill="url(#kal)" />
+<ellipse cx="80" cy="181" rx="15" ry="8.5" fill="url(#kft)" />
+<ellipse cx="122" cy="181" rx="15" ry="8.5" fill="url(#kft)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kb3)" />
+<g clip-path="url(#kc)">
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kbn)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kao)" />
+<ellipse cx="104" cy="62" rx="18" ry="7" fill="#0B3D2E" opacity="0.2" filter="url(#kf4)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="none" stroke="#6FF0C2" stroke-width="5" opacity="0.9" filter="url(#kf2)" />
+</g>
+<ellipse cx="134" cy="86" rx="21" ry="11" transform="rotate(-28 134 86)" fill="#FFFFFF" opacity="0.8" filter="url(#kf4)" />
+<ellipse cx="163" cy="142" rx="9.5" ry="13.5" transform="rotate(-24 163 142)" fill="url(#kar)" />
+<path d="M101 62 C99 54 100 48 103 43" fill="none" stroke="#167A50" stroke-width="4.5" stroke-linecap="round" />
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#kl3)" />
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#ksh)" />
+<path d="M106 44 C120 34 134 22 150 12" fill="none" stroke="#0E5E3D" stroke-width="2" stroke-linecap="round" opacity="0.35" />
+<path d="M107 42 C121 32 134 21 149 11" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+</g>
+
+<g>
+<g transform="translate(0 0)">
+<g opacity="0.22">
+<ellipse cx="86" cy="118.5" rx="13.5" ry="15.5" fill="#6C7F72" filter="url(#kf2)" />
+<ellipse cx="128" cy="116.5" rx="13.5" ry="15.5" fill="#6C7F72" filter="url(#kf2)" />
+</g>
+<ellipse cx="86" cy="116" rx="12" ry="14" fill="url(#key)" />
+<ellipse cx="128" cy="114" rx="12" ry="14" fill="url(#key)" />
+<ellipse cx="87" cy="121" rx="9" ry="7.5" fill="url(#kir)" opacity="1" />
+<ellipse cx="129" cy="119" rx="9" ry="7.5" fill="url(#kir)" opacity="1" />
+<ellipse cx="81.5" cy="109.5" rx="4.6" ry="3.8" transform="rotate(-30 81.5 109.5)" fill="#FFFFFF" />
+<ellipse cx="123.5" cy="107.5" rx="4.6" ry="3.8" transform="rotate(-30 123.5 107.5)" fill="#FFFFFF" />
+<circle cx="90.5" cy="122" r="1.6" fill="#FFFFFF" opacity="0.9" />
+<circle cx="132.5" cy="120" r="1.6" fill="#FFFFFF" opacity="0.9" />
+<path d="M78 106 Q86 100 94 106" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.25" />
+<path d="M120 104 Q128 98 136 104" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.25" />
+</g>
+<path d="M100 131 Q107 142 114 131 Z" fill="#0B2A20" stroke="#0B2A20" stroke-width="2" stroke-linejoin="round" />
+<ellipse cx="107" cy="136.2" rx="3.2" ry="1.7" fill="#E9806F" />
+<path d="M174 30 Q176 42 188 44 Q176 46 174 58 Q172 46 160 44 Q172 42 174 30 Z" fill="url(#kbl)" />
+</g>
+
+</svg>

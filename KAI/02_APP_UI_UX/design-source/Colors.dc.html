@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Colour Palette</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1400px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">07 — Colour Palette</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Forest, Mint and Cream</h1>
+    </div>
+    <span style="max-width: 520px; font-size: 16px; line-height: 1.55; color: #5F6E67">The reference palette, kept and systemised. Two functional greens are added — Leaf (the mascot’s leaf) and Deep Mint (the only green allowed for text and buttons on light grounds).</span>
+  </div>
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #5F6E67">{{g.title}}</span>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+        <sc-for list="{{g.items}}" as="c" hint-placeholder-count="5">
+          <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column">
+            <div style="{{c.sw}}">
+              <span style="{{c.badge}}">{{c.status}}</span>
+            </div>
+            <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; line-height: 1.45; color: #3D4B45; font-variant-numeric: tabular-nums">
+              <span style="font-family: Nunito, sans-serif; font-size: 17px; font-weight: 800; color: #0B3D2E">{{c.name}}</span>
+              <span><b style="color: #0B3D2E">{{c.hex}}</b> · RGB {{c.rgb}}</span>
+              <span>HSL {{c.hsl}} · CMYK {{c.cmyk}}</span>
+              <span style="color: #5F6E67; margin-top: 4px">{{c.use}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #5F6E67">Semantic tokens · WCAG contrast checked</span>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+      <sc-for list="{{tokens}}" as="t" hint-placeholder-count="8">
+        <div style="{{t.box}}">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8">{{t.role}}</span>
+          <span style="font-family: Nunito, sans-serif; font-size: 20px; font-weight: 800">{{t.sample}}</span>
+          <span style="font-size: 12.5px; opacity: 0.85">{{t.spec}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = ['#0B3D2E', '#17805A', '#22A06B', '#1A1A1A', '#06241B', '#5F6E67'];
+    const c = (name, hex, rgb, hsl, cmyk, use, status) => ({
+      name, hex, rgb, hsl, cmyk, use, status,
+      sw: 'height: 110px; padding: 12px; box-sizing: border-box; display: flex; align-items: flex-start; justify-content: flex-end; background: ' + hex + ';' + (hex === '#FFF8F1' || hex === '#FCFBF8' || hex === '#F2F4F3' ? ' border-bottom: 1px solid #ECE7DC;' : ''),
+      badge: 'font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; ' + (dark.indexOf(hex) !== -1 ? 'background: rgba(255,255,255,0.16); color: #FFFFFF;' : 'background: rgba(11,61,46,0.08); color: #0B3D2E;')
+    });
+    const groups = [
+      { title: 'Primary', items: [
+        c('Forest Green', '#0B3D2E', '11 61 46', '162 69% 14%', '82 0 25 76', 'Wordmark, headlines, dark surfaces, primary buttons.', 'Primary'),
+        c('KAI Mint', '#3ED1A0', '62 209 160', '160 62% 53%', '70 0 23 18', 'Signature accent on dark. Never for text on light.', 'Primary'),
+        c('Cream', '#FFF8F1', '255 248 241', '30 100% 97%', '0 3 5 0', 'Default brand canvas. Text on Forest.', 'Primary'),
+        c('Leaf', '#22A06B', '34 160 107', '155 65% 38%', '79 0 33 37', 'Mascot leaf, icons, charts, large graphics.', 'Functional'),
+        c('Deep Mint', '#17805A', '23 128 90', '158 70% 30%', '82 0 30 50', 'CTA fill, links, success text. 4.9:1 on white.', 'Functional')
+      ] },
+      { title: 'Secondary', items: [
+        c('Lavender', '#C7B6FF', '199 182 255', '254 100% 86%', '22 29 0 0', 'AI & insight moments, illustration accents.', 'Secondary'),
+        c('Peach', '#FFB89A', '255 184 154', '18 100% 80%', '0 28 40 0', 'Reminders, warmth, celebration confetti.', 'Secondary'),
+        c('Sage', '#94B3A1', '148 179 161', '145 17% 64%', '17 0 10 30', 'Muted text on Forest, dividers on dark.', 'Secondary'),
+        c('Soft Green', '#D8F3E5', '216 243 229', '149 53% 90%', '11 0 6 5', 'Success backgrounds, chips, highlights.', 'Secondary'),
+        c('Soft Purple', '#E9E3FF', '233 227 255', '253 100% 95%', '9 11 0 0', 'Insight cards, info backgrounds.', 'Secondary')
+      ] },
+      { title: 'Neutrals', items: [
+        c('Charcoal', '#1A1A1A', '26 26 26', '0 0% 10%', '0 0 0 90', 'Black logo, print body text.', 'Neutral'),
+        c('Dark Green', '#06241B', '6 36 27', '162 71% 8%', '83 0 25 86', 'Dark-mode canvas, gradient base.', 'Neutral'),
+        c('Gray', '#5F6E67', '95 110 103', '152 7% 40%', '14 0 6 57', 'Secondary text, taglines. 5.4:1 on white.', 'Neutral'),
+        c('Light Gray', '#F2F4F3', '242 244 243', '150 8% 95%', '1 0 0 4', 'Input fields, disabled, table rows.', 'Neutral'),
+        c('Off White', '#FCFBF8', '252 251 248', '45 40% 98%', '0 0 2 1', 'App surface, document pages.', 'Neutral')
+      ] }
+    ];
+    const t = (role, sample, spec, bg, fg) => ({ role, sample, spec, box: 'border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; background: ' + bg + '; color: ' + fg + ';' + (bg === '#FFFFFF' ? ' border: 1px solid #ECE7DC;' : '') });
+    return { groups, tokens: [
+      t('Background', 'Cream / Off White / Dark Green', 'bg.brand #FFF8F1 · bg.app #FCFBF8 · bg.dark #06241B', '#FFFFFF', '#0B3D2E'),
+      t('Text', 'Forest on light · Cream on dark', 'text.primary 12.2:1 · text.secondary Gray 5.4:1', '#FFFFFF', '#0B3D2E'),
+      t('Accent', 'Mint on dark only', 'accent #3ED1A0 · 6.3:1 on Forest', '#0B3D2E', '#3ED1A0'),
+      t('CTA', 'Continue', 'cta.bg Forest or Deep Mint · white label 4.9–12.2:1', '#17805A', '#FFFFFF'),
+      t('Success', '₹500 added to Food', 'text #126B4B on #D8F3E5 · 5.5:1', '#D8F3E5', '#126B4B'),
+      t('Warning', 'Bill due in 3 days', 'text #9A5B00 on #FFF1DC · 4.9:1', '#FFF1DC', '#9A5B00'),
+      t('Error', 'Payment didn’t go through', 'text #A8361F on #FFE8E0 · 5.6:1', '#FFE8E0', '#A8361F'),
+      t('Information', 'New insight ready', 'text #5B40C9 on #E9E3FF · 5.6:1', '#E9E3FF', '#5B40C9')
+    ] };
+  }
+}
+</script>
+</body>
+</html>

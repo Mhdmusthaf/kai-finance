@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI Mascot — master component</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 200 200" width="100%" height="100%" overflow="visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KAI mascot">
+<defs>
+<clipPath id="{{gClip}}"><path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z"></path></clipPath>
+<filter id="{{fB2}}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"></feGaussianBlur></filter>
+<filter id="{{fB4}}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+<filter id="{{fB8}}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"></feGaussianBlur></filter>
+<filter id="{{fB16}}" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="16"></feGaussianBlur></filter>
+<radialGradient id="{{gBody3}}" cx="0.62" cy="0.3" r="0.82" fx="0.66" fy="0.24">
+<stop offset="0" stop-color="#FFFFFF"></stop>
+<stop offset="0.42" stop-color="#FCF9F2"></stop>
+<stop offset="0.76" stop-color="#EDE8DB"></stop>
+<stop offset="1" stop-color="#D3D7C8"></stop>
+</radialGradient>
+<linearGradient id="{{gBounce}}" x1="0" y1="0.4" x2="1" y2="0.56">
+<stop offset="0" stop-color="#4FC48C" stop-opacity="0.5"></stop>
+<stop offset="0.16" stop-color="#7FD6A8" stop-opacity="0.18"></stop>
+<stop offset="0.36" stop-color="#9FE0BE" stop-opacity="0"></stop>
+</linearGradient>
+<radialGradient id="{{gAO}}" cx="0.5" cy="1.04" r="0.56">
+<stop offset="0" stop-color="#1B4636" stop-opacity="0.32"></stop>
+<stop offset="1" stop-color="#1B4636" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="{{gArm}}" cx="0.38" cy="0.28" r="0.9">
+<stop offset="0" stop-color="#FFFFFF"></stop>
+<stop offset="1" stop-color="#D7DACB"></stop>
+</radialGradient>
+<radialGradient id="{{gArmL}}" cx="0.6" cy="0.3" r="0.9">
+<stop offset="0" stop-color="#C9EAD6"></stop>
+<stop offset="1" stop-color="#7FCDA4"></stop>
+</radialGradient>
+<linearGradient id="{{gFoot}}" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F7F3EA"></stop>
+<stop offset="1" stop-color="#C9CEBF"></stop>
+</linearGradient>
+<linearGradient id="{{gLeaf3}}" x1="0" y1="1" x2="1" y2="0">
+<stop offset="0" stop-color="#127048"></stop>
+<stop offset="0.45" stop-color="#22A06B"></stop>
+<stop offset="1" stop-color="#63E2B2"></stop>
+</linearGradient>
+<radialGradient id="{{gSheen}}" cx="0.55" cy="0.3" r="0.55">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.5"></stop>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="{{gEye}}" cx="0.4" cy="0.32" r="0.78">
+<stop offset="0" stop-color="#21493A"></stop>
+<stop offset="0.55" stop-color="#0B231B"></stop>
+<stop offset="1" stop-color="#030A07"></stop>
+</radialGradient>
+<radialGradient id="{{gIris}}" cx="0.5" cy="0.85" r="0.62">
+<stop offset="0" stop-color="#4BE0AE" stop-opacity="0.95"></stop>
+<stop offset="0.55" stop-color="#22A06B" stop-opacity="0.55"></stop>
+<stop offset="1" stop-color="#22A06B" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="{{gBell}}" cx="0.35" cy="0.3" r="0.8">
+<stop offset="0" stop-color="#FFE3C2"></stop>
+<stop offset="0.55" stop-color="#F7B57A"></stop>
+<stop offset="1" stop-color="#D98A4E"></stop>
+</radialGradient>
+<radialGradient id="{{gBodyF}}" cx="0.62" cy="0.36" r="0.72">
+<stop offset="0" stop-color="{{body}}"></stop>
+<stop offset="0.7" stop-color="{{body}}"></stop>
+<stop offset="1" stop-color="{{edge}}"></stop>
+</radialGradient>
+<linearGradient id="{{gShadeF}}" x1="0" y1="0.3" x2="1" y2="0.6">
+<stop offset="0" stop-color="{{shade}}" stop-opacity="0.85"></stop>
+<stop offset="0.26" stop-color="{{shade}}" stop-opacity="0.25"></stop>
+<stop offset="0.44" stop-color="{{shade}}" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+
+<g display="{{show3d}}">
+<ellipse display="{{showGlow}}" cx="100" cy="122" rx="70" ry="66" fill="#3ED1A0" opacity="0.22" filter="url(#{{fB16}})"></ellipse>
+<ellipse display="{{showShadow}}" cx="100" cy="190" rx="60" ry="9" fill="#0B2A20" opacity="0.18" filter="url(#{{fB8}})"></ellipse>
+<ellipse display="{{showShadow}}" cx="100" cy="186" rx="42" ry="5" fill="#0B2A20" opacity="0.26" filter="url(#{{fB4}})"></ellipse>
+<ellipse display="{{armLeftDown}}" cx="38" cy="140" rx="9.5" ry="14" transform="rotate(28 38 140)" fill="url(#{{gArmL}})"></ellipse>
+<ellipse display="{{armLeftUp}}" cx="36" cy="100" rx="9.5" ry="15" transform="rotate(-32 36 100)" fill="url(#{{gArmL}})"></ellipse>
+<ellipse cx="80" cy="181" rx="15" ry="8.5" fill="url(#{{gFoot}})"></ellipse>
+<ellipse cx="122" cy="181" rx="15" ry="8.5" fill="url(#{{gFoot}})"></ellipse>
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#{{gBody3}})"></path>
+<g clip-path="url(#{{gClip}})">
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#{{gBounce}})"></path>
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#{{gAO}})"></path>
+<ellipse cx="104" cy="62" rx="18" ry="7" fill="#0B3D2E" opacity="0.2" filter="url(#{{fB4}})"></ellipse>
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="none" stroke="{{rimColor}}" stroke-width="5" opacity="{{rimOp}}" filter="url(#{{fB2}})"></path>
+</g>
+<ellipse cx="134" cy="86" rx="21" ry="11" transform="rotate(-28 134 86)" fill="#FFFFFF" opacity="0.8" filter="url(#{{fB4}})"></ellipse>
+<ellipse display="{{armRightDown}}" cx="163" cy="142" rx="9.5" ry="13.5" transform="rotate(-24 163 142)" fill="url(#{{gArm}})"></ellipse>
+<ellipse display="{{armRightUp}}" cx="167" cy="102" rx="9.5" ry="15" transform="rotate(32 167 102)" fill="url(#{{gArm}})"></ellipse>
+<path d="M101 62 C99 54 100 48 103 43" fill="none" stroke="#167A50" stroke-width="4.5" stroke-linecap="round"></path>
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#{{gLeaf3}})"></path>
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#{{gSheen}})"></path>
+<path d="M106 44 C120 34 134 22 150 12" fill="none" stroke="#0E5E3D" stroke-width="2" stroke-linecap="round" opacity="0.35"></path>
+<path d="M107 42 C121 32 134 21 149 11" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.4"></path>
+</g>
+
+<g display="{{showFlat}}">
+<ellipse display="{{showShadow}}" cx="100" cy="189" rx="54" ry="6" fill="{{ink}}" opacity="0.1"></ellipse>
+<ellipse cx="80" cy="181" rx="15" ry="8" fill="{{edge}}"></ellipse>
+<ellipse cx="122" cy="181" rx="15" ry="8" fill="{{edge}}"></ellipse>
+<ellipse display="{{armLeftDown}}" cx="38" cy="140" rx="9" ry="14" transform="rotate(28 38 140)" fill="{{shade}}"></ellipse>
+<ellipse display="{{armLeftUp}}" cx="36" cy="100" rx="9" ry="15" transform="rotate(-32 36 100)" fill="{{shade}}"></ellipse>
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#{{gBodyF}})"></path>
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#{{gShadeF}})"></path>
+<ellipse display="{{armRightDown}}" cx="163" cy="142" rx="9" ry="13" transform="rotate(-24 163 142)" fill="{{body}}" stroke="{{edge}}" stroke-width="2"></ellipse>
+<ellipse display="{{armRightUp}}" cx="167" cy="102" rx="9" ry="15" transform="rotate(32 167 102)" fill="{{body}}" stroke="{{edge}}" stroke-width="2"></ellipse>
+<path d="M101 62 C99 54 100 48 103 43" fill="none" stroke="{{leaf}}" stroke-width="4" stroke-linecap="round"></path>
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="{{leaf}}"></path>
+<path d="M106 44 C120 34 134 22 150 12" fill="none" stroke="{{body}}" stroke-width="2" stroke-linecap="round" opacity="0.45"></path>
+</g>
+
+<g display="{{showFace}}">
+<g display="{{eyesOpen}}" transform="translate({{eyeX}} {{eyeY}})">
+<g display="{{show3d}}" opacity="0.22">
+<ellipse cx="86" cy="118.5" rx="13.5" ry="15.5" fill="#6C7F72" filter="url(#{{fB2}})"></ellipse>
+<ellipse cx="128" cy="116.5" rx="13.5" ry="15.5" fill="#6C7F72" filter="url(#{{fB2}})"></ellipse>
+</g>
+<ellipse cx="86" cy="116" rx="12" ry="14" fill="{{eyeFill}}"></ellipse>
+<ellipse cx="128" cy="114" rx="12" ry="14" fill="{{eyeFill}}"></ellipse>
+<ellipse cx="87" cy="121" rx="9" ry="7.5" fill="{{irisFill}}" opacity="{{irisOp}}"></ellipse>
+<ellipse cx="129" cy="119" rx="9" ry="7.5" fill="{{irisFill}}" opacity="{{irisOp}}"></ellipse>
+<ellipse cx="81.5" cy="109.5" rx="4.6" ry="3.8" transform="rotate(-30 81.5 109.5)" fill="#FFFFFF"></ellipse>
+<ellipse cx="123.5" cy="107.5" rx="4.6" ry="3.8" transform="rotate(-30 123.5 107.5)" fill="#FFFFFF"></ellipse>
+<circle cx="90.5" cy="122" r="1.6" fill="#FFFFFF" opacity="0.9"></circle>
+<circle cx="132.5" cy="120" r="1.6" fill="#FFFFFF" opacity="0.9"></circle>
+<path display="{{show3d}}" d="M78 106 Q86 100 94 106" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.25"></path>
+<path display="{{show3d}}" d="M120 104 Q128 98 136 104" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.25"></path>
+</g>
+<g display="{{eyesHappy}}" fill="none" stroke="{{ink}}" stroke-width="5" stroke-linecap="round">
+<path d="M76 119 Q86 105 96 119"></path>
+<path d="M118 117 Q128 103 138 117"></path>
+</g>
+<g display="{{eyesClosed}}" fill="none" stroke="{{ink}}" stroke-width="4.5" stroke-linecap="round">
+<path d="M76 114 Q86 123 96 114"></path>
+<path d="M118 112 Q128 121 138 112"></path>
+</g>
+<g display="{{brows}}" fill="none" stroke="{{ink}}" stroke-width="3.5" stroke-linecap="round">
+<path d="M76 99 L94 94"></path>
+<path d="M120 93 L138 97"></path>
+</g>
+<path display="{{mouthOpen}}" d="M100 131 Q107 142 114 131 Z" fill="{{ink}}" stroke="{{ink}}" stroke-width="2" stroke-linejoin="round"></path>
+<ellipse display="{{mouthOpen}}" cx="107" cy="136.2" rx="3.2" ry="1.7" fill="#E9806F"></ellipse>
+<path display="{{mouthBig}}" d="M97 129 Q107 147 117 129 Z" fill="{{ink}}" stroke="{{ink}}" stroke-width="2" stroke-linejoin="round"></path>
+<ellipse display="{{mouthBig}}" cx="107" cy="137" rx="4.5" ry="2.6" fill="#E9806F"></ellipse>
+<path display="{{mouthSmile}}" d="M101 132 Q107 138 113 132" fill="none" stroke="{{ink}}" stroke-width="3.5" stroke-linecap="round"></path>
+<ellipse display="{{mouthO}}" cx="107" cy="135" rx="3.8" ry="4.4" fill="{{ink}}"></ellipse>
+<path display="{{mouthWorry}}" d="M99 137 Q103 132 107 135.5 Q111 139 115 134" fill="none" stroke="{{ink}}" stroke-width="3.5" stroke-linecap="round"></path>
+
+<g display="{{waves}}" fill="none" stroke="#3ED1A0" stroke-linecap="round">
+<path d="M176 102 Q183 114 176 126" stroke-width="4"></path>
+<path d="M186 94 Q197 114 186 134" stroke-width="4" opacity="0.6"></path>
+<path display="{{show3d}}" d="M186 94 Q197 114 186 134" stroke-width="8" opacity="0.25" filter="url(#{{fB4}})"></path>
+</g>
+<g display="{{dots}}">
+<circle cx="158" cy="74" r="3" fill="url(#{{gArmL}})"></circle>
+<circle cx="169" cy="62" r="4" fill="url(#{{gArmL}})"></circle>
+<circle cx="182" cy="48" r="5.5" fill="url(#{{gArmL}})"></circle>
+</g>
+<path display="{{spark}}" d="M174 30 Q176 42 188 44 Q176 46 174 58 Q172 46 160 44 Q172 42 174 30 Z" fill="url(#{{gBell}})"></path>
+<g display="{{bell}}">
+<path d="M161 74 Q161 52 172 50 Q183 52 183 74 L187 79 L157 79 Z" fill="url(#{{gBell}})"></path>
+<ellipse cx="167" cy="62" rx="2.4" ry="6" fill="#FFFFFF" opacity="0.55"></ellipse>
+<circle cx="172" cy="83" r="3.5" fill="#D98A4E"></circle>
+<circle cx="172" cy="48" r="2.5" fill="#D98A4E"></circle>
+</g>
+<g display="{{confetti}}">
+<circle cx="40" cy="44" r="4.5" fill="#C7B6FF"></circle>
+<rect x="60" y="22" width="10" height="5.5" rx="2.75" transform="rotate(-30 64 24)" fill="#FFB89A"></rect>
+<circle cx="150" cy="30" r="4" fill="#3ED1A0"></circle>
+<rect x="172" y="60" width="10" height="5.5" rx="2.75" transform="rotate(35 176 62)" fill="#C7B6FF"></rect>
+<circle cx="24" cy="76" r="3.5" fill="#3ED1A0"></circle>
+<rect x="134" y="8" width="9" height="5.5" rx="2.75" transform="rotate(20 138 10)" fill="#FFB89A"></rect>
+<circle cx="39" cy="43" r="1.4" fill="#FFFFFF" opacity="0.7"></circle>
+<circle cx="149" cy="29" r="1.2" fill="#FFFFFF" opacity="0.7"></circle>
+</g>
+<g display="{{zz}}" fill="#22A06B" font-family="Nunito, 'Nunito Sans', sans-serif" font-weight="800">
+<text x="156" y="70" font-size="20">z</text>
+<text x="174" y="50" font-size="14">z</text>
+</g>
+</g>
+
+<g display="{{showMono}}" fill="{{monoColor}}">
+<path fill-rule="evenodd" d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z M74 116 a12 14 0 1 0 24 0 a12 14 0 1 0 -24 0 Z M116 114 a12 14 0 1 0 24 0 a12 14 0 1 0 -24 0 Z M100 131 Q107 142 114 131 Z"></path>
+<circle cx="83" cy="110" r="4"></circle>
+<circle cx="125" cy="108" r="4"></circle>
+<path d="M101 62 C99 54 100 48 103 43" fill="none" stroke="{{monoColor}}" stroke-width="4" stroke-linecap="round"></path>
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z"></path>
+</g>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"expr":{"editor":"enum","options":["default","listening","thinking","insight","happy","celebrating","reminder","concerned","sleeping","waving"],"default":"default"},"render":{"editor":"enum","options":["3d","flat","mono"],"default":"3d"},"glow":{"editor":"boolean","default":false},"shadow":{"editor":"boolean","default":true},"mono":{"editor":null,"default":false},"monoColor":{"editor":"color","default":"#0B3D2E","options":["#0B3D2E","#FFFFFF","#1A1A1A","#17805A"]},"flat":{"editor":null,"default":false},"body":{"editor":null,"default":"#FFFFFF"},"edge":{"editor":null,"default":"#E3EBE5"},"shade":{"editor":null,"default":"#8ED8B4"},"leaf":{"editor":null,"default":"#22A06B"},"ink":{"editor":null,"default":"#0B2A20"},"$preview":{"width":400,"height":400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    if (!this._id) this._id = 'k' + Math.random().toString(36).slice(2, 9);
+    const p = this.props;
+    const id = this._id;
+    const e = p.expr ?? 'default';
+    let mode = p.render ?? '3d';
+    if (p.mono) mode = 'mono';
+    else if (p.flat) mode = 'flat';
+    const is3d = mode === '3d';
+    const on = (b) => (b ? 'inline' : 'none');
+    const is = (...l) => l.indexOf(e) !== -1;
+    const ink = p.ink ?? '#0B2A20';
+    return {
+      gClip: id + 'c', fB2: id + 'f2', fB4: id + 'f4', fB8: id + 'f8', fB16: id + 'f16',
+      gBody3: id + 'b3', gBounce: id + 'bn', gAO: id + 'ao', gArm: id + 'ar', gArmL: id + 'al', gFoot: id + 'ft',
+      gLeaf3: id + 'l3', gSheen: id + 'sh', gEye: id + 'ey', gIris: id + 'ir', gBell: id + 'bl', gBodyF: id + 'bf', gShadeF: id + 'sf',
+      body: p.body ?? '#FFFFFF', edge: p.edge ?? '#E3EBE5', shade: p.shade ?? '#8ED8B4', leaf: p.leaf ?? '#22A06B', ink,
+      monoColor: p.monoColor ?? '#0B3D2E',
+      show3d: on(is3d), showFlat: on(mode === 'flat'), showMono: on(mode === 'mono'), showFace: on(mode !== 'mono'),
+      showShadow: on(p.shadow ?? true), showGlow: on(is3d && !!p.glow),
+      rimColor: p.glow ? '#6FF0C2' : '#FFFFFF', rimOp: p.glow ? 0.9 : 0.35,
+      eyeFill: is3d ? 'url(#' + id + 'ey)' : ink,
+      irisFill: is3d ? 'url(#' + id + 'ir)' : (p.leaf ?? '#22A06B'), irisOp: is3d ? 1 : 0.7,
+      eyesOpen: on(is('default', 'thinking', 'insight', 'reminder', 'concerned', 'waving')),
+      eyeX: is('thinking') ? 3 : 0, eyeY: is('thinking') ? -3 : 0,
+      eyesHappy: on(is('happy', 'celebrating')),
+      eyesClosed: on(is('listening', 'sleeping')),
+      brows: on(is('concerned')),
+      mouthOpen: on(is('default', 'insight', 'waving')),
+      mouthBig: on(is('happy', 'celebrating')),
+      mouthSmile: on(is('listening', 'sleeping')),
+      mouthO: on(is('thinking', 'reminder')),
+      mouthWorry: on(is('concerned')),
+      waves: on(is('listening')), dots: on(is('thinking')), spark: on(is('insight', 'waving')),
+      bell: on(is('reminder')), confetti: on(is('celebrating')), zz: on(is('sleeping')),
+      armRightUp: on(is('waving', 'celebrating')), armRightDown: on(!is('waving', 'celebrating')),
+      armLeftUp: on(is('celebrating')), armLeftDown: on(!is('celebrating'))
+    };
+  }
+}
+</script>
+</body>
+</html>

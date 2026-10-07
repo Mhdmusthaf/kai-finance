@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI App — Components and motion</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1500px; box-sizing: border-box; padding: 56px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">KAI App · Component system</span><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">One kit, every screen</h1></div>
+    <span style="max-width: 560px; font-size: 16px; line-height: 1.55; color: #5F6E67">4-pt spacing, 20 px side margins, 44 px minimum touch targets, radii 12 · 16 · 20 · 28, soft shadows only on raised cards. 3D lives in Scenes; the UI stays flat and fast.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <b style="font-size: 15px">Buttons</b>
+      <span style="height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">Primary · 56</span>
+      <span style="height: 52px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; justify-content: center; font-weight: 700">Secondary · 52</span>
+      <div style="display: flex; gap: 10px"><span style="flex: 1; height: 46px; border-radius: 999px; background: #3ED1A0; color: #0B3D2E; display: flex; align-items: center; justify-content: center; font-weight: 800">On dark</span><span style="flex: 1; height: 46px; border-radius: 999px; background: #A8361F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800">Destructive</span><span style="flex: 1; height: 46px; border-radius: 999px; background: #DCD8CF; color: #8A9690; display: flex; align-items: center; justify-content: center; font-weight: 800">Disabled</span></div>
+      <span style="font-size: 12.5px; color: #5F6E67">Press: scale 0.97 + shadow drops, 90 ms. Haptic: light on primary actions, success on saves.</span>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <b style="font-size: 15px">Selection</b>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="padding: 9px 14px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; font-size: 13.5px; font-weight: 700">Selected chip</span><span style="padding: 9px 14px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E6E1D6; font-size: 13.5px; font-weight: 700">Chip</span><span style="padding: 5px 10px; border-radius: 999px; background: #FFE8E0; color: #A8361F; font-size: 11.5px; font-weight: 800">Due in 3 days</span><span style="padding: 5px 10px; border-radius: 999px; background: #D8F3E5; color: #126B4B; font-size: 11.5px; font-weight: 800">Paid</span></div>
+      <div style="display: flex; background: #F2F4F3; border-radius: 14px; padding: 4px"><span style="flex: 1; height: 36px; border-radius: 11px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13.5px; font-weight: 700; box-shadow: 0 4px 10px -6px rgba(6,36,27,0.35)">Month</span><span style="flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 13.5px; font-weight: 700; color: #5F6E67">Week</span><span style="flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 13.5px; font-weight: 700; color: #5F6E67">Year</span></div>
+      <div style="display: flex; align-items: center; gap: 14px"><span style="width: 52px; height: 32px; border-radius: 999px; background: #17805A; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF"></span></span><span style="width: 52px; height: 32px; border-radius: 999px; background: #DCD8CF; position: relative"><span style="position: absolute; left: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF"></span></span><span style="width: 22px; height: 22px; border-radius: 50%; border: 7px solid #17805A; box-sizing: border-box"></span><span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #CFC9BC; box-sizing: border-box"></span></div>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <b style="font-size: 15px">Fields</b>
+      <span style="display: flex; align-items: center; height: 64px; border-radius: 16px; border: 2px solid #17805A; padding: 0 16px; gap: 4px"><span style="font-size: 22px; font-weight: 700; color: #94B3A1">₹</span><b style="font-size: 28px; font-variant-numeric: tabular-nums">2,48,000</b></span>
+      <span style="display: flex; flex-direction: column; gap: 2px; border-radius: 16px; border: 1.5px solid #EEEAE1; padding: 10px 14px"><span style="font-size: 12px; font-weight: 700; color: #5F6E67">Account</span><b>HDFC Savings ▾</b></span>
+      <span style="display: flex; flex-direction: column; gap: 2px; border-radius: 16px; border: 1.5px solid #E2643F; background: #FFF6F2; padding: 10px 14px"><span style="font-size: 12px; font-weight: 700; color: #A8361F">Amount · needed to save</span><b style="color: #C9B9B2">₹0</b></span>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <b style="font-size: 15px">Rows &amp; cards</b>
+      <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 14px; background: #FFE6DA; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="food" size="20" color="#A8361F" hint-size="20px,20px"></dc-import></span><span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 14.5px">Dinner · Truffles</b><span style="font-size: 12px; color: #5F6E67">Food &amp; Dining · SBI card</span></span><b>−₹500</b></div>
+      <span style="font-size: 12px; color: #5F6E67">Hierarchy: amount → meaning → status → date → account → details.</span>
+      <div style="display: flex; gap: 10px"><div style="flex: 1; border-radius: 18px; background: #0B3D2E; color: #FFF8F1; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; color: #94B3A1">Account card</span><b>₹82,300</b></div><div style="flex: 1; border-radius: 18px; background: linear-gradient(120deg, #F3EFFF, #E9E3FF); padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; color: #5B40C9; font-weight: 800">Insight card</span><b style="font-size: 13px; color: #2E1F73">Dining +18%</b></div></div>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <b style="font-size: 15px">Feedback</b>
+      <div style="display: flex; align-items: center; gap: 10px; background: #0B3D2E; color: #FFF8F1; border-radius: 18px; padding: 8px 8px 8px 6px"><div style="width: 40px; height: 40px"><dc-import name="Mascot" expr="happy" glow="{{true}}" shadow="{{false}}" hint-size="40px,40px"></dc-import></div><span style="flex: 1; font-size: 13.5px; font-weight: 700">₹500 Dinner added ✓</span><span style="height: 34px; padding: 0 12px; border-radius: 999px; background: rgba(62,209,160,0.16); color: #3ED1A0; display: flex; align-items: center; font-size: 13px; font-weight: 800">Undo</span></div>
+      <div style="display: flex; align-items: center; gap: 8px; background: #FFF1DC; color: #7A4A00; border-radius: 14px; padding: 10px 12px; font-size: 13px; font-weight: 600"><dc-import name="Icon" icon="wifioff" size="16" color="#9A5B00" hint-size="16px,16px"></dc-import>Offline banner · entries queue and sync</div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 12px; width: 70%; border-radius: 6px; background: #EFEBE3"></div><div style="height: 10px; width: 45%; border-radius: 6px; background: #F3F0EA"></div><span style="font-size: 12px; color: #5F6E67">Skeletons match the final layout; shimmer 1.2 s.</span></div>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+      <b style="font-size: 15px">Bottom sheet</b>
+      <div style="position: relative; height: 170px; border-radius: 18px; background: rgba(6,36,27,0.42); overflow: hidden"><div style="position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: #FCFBF8; border-radius: 22px 22px 0 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 8px"><span style="width: 40px; height: 5px; border-radius: 3px; background: #DCD8CF"></span><span style="height: 10px; width: 60%; border-radius: 5px; background: #E6E1D6"></span><span style="height: 40px; width: 86%; border-radius: 999px; background: #0B3D2E; margin-top: auto; margin-bottom: 14px"></span></div></div>
+      <span style="font-size: 12px; color: #5F6E67">Quick choices &amp; confirmations. Drag handle, scrim 42%, primary action in thumb reach.</span>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+    <div style="background: #0B3D2E; color: #FFF8F1; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <b style="font-family: Nunito, sans-serif; font-size: 22px">Motion</b>
+      <sc-for list="{{motion}}" as="m" hint-placeholder-count="7"><div style="display: grid; grid-template-columns: 170px 110px minmax(0, 1fr); gap: 12px; font-size: 13.5px; border-top: 1px solid rgba(255,248,241,0.1); padding-top: 8px"><b>{{m.t}}</b><span style="color: #3ED1A0; font-variant-numeric: tabular-nums">{{m.d}}</span><span style="color: #D8F3E5">{{m.n}}</span></div></sc-for>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <b style="font-family: Nunito, sans-serif; font-size: 22px">Platform &amp; accessibility</b>
+      <sc-for list="{{rules}}" as="r" hint-placeholder-count="7"><span style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45"><dc-import name="Icon" icon="check" size="16" color="#17805A" hint-size="16px,16px"></dc-import>{{r}}</span></sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      motion: [
+        { t: 'Button press', d: '90 ms', n: 'Scale 0.97, ease-out; release springs back' },
+        { t: 'Bottom sheet', d: '280 ms', n: 'Spring (damping 0.85); scrim fades 200 ms' },
+        { t: 'Card expand', d: '240 ms', n: 'Shared-element height + fade of new content' },
+        { t: 'Voice listening', d: 'live', n: 'Waveform follows input level; mascot sways ±2°' },
+        { t: 'Success', d: '600 ms', n: 'Check draws, mascot hops once, light haptic' },
+        { t: 'Goal complete', d: '1.4 s', n: 'Confetti once, ring fills, never loops' },
+        { t: 'Charts', d: '400 ms', n: 'Bars grow from baseline, 30 ms stagger; tap to inspect' }
+      ],
+      rules: [
+        'iOS: large titles, swipe-back, haptics; Android: predictive back, Material ripples on rows.',
+        'Safe areas respected top and bottom; tab bar sits above the home indicator.',
+        'Dynamic Type / font scaling up to 200%: rows wrap, amounts never truncate.',
+        'Contrast ≥ 4.5:1 for text; status never shown by colour alone (labels + icons).',
+        'Every icon-only button has a label for VoiceOver / TalkBack.',
+        'Reduce Motion: confetti and sways replaced by fades.',
+        'Amounts can be hidden from the app switcher and screenshots in Security.'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

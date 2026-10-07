@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — KAI Pro</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+</style>
+</helmet>
+<div style="{{root}}">
+  <sc-if value="{{m_paywall}}" hint-placeholder-val="{{true}}">
+    <div style="position: relative; height: 280px">
+      <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" hint-size="100%,100%"></dc-import></div>
+      <div style="position: relative; z-index: 1; padding: 54px 20px 0; color: #FFF8F1; display: flex; flex-direction: column; align-items: center; text-align: center">
+        <a href="Me.dc.html" aria-label="Close" style="position: absolute; left: 14px; top: 50px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="close" size="22" color="#D8F3E5" hint-size="22px,22px"></dc-import></a>
+        <dc-import name="Scene" scene="celebrating" w="200" h="150" dark="{{true}}" hint-size="200px,150px"></dc-import>
+        <b style="font-family: Nunito, sans-serif; font-size: 28px; letter-spacing: -0.02em">KAI Pro</b>
+        <span style="font-size: 14.5px; color: #D8F3E5">Your whole Money OS, with no limits.</span>
+      </div>
+    </div>
+    <div style="padding: 16px 20px 0; display: flex; flex-direction: column; gap: 12px; color: #0B3D2E">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div style="position: relative; border-radius: 18px; padding: 12px 14px; background: #D8F3E5; border: 2px solid #17805A; display: flex; flex-direction: column; gap: 2px"><span style="position: absolute; top: -10px; right: 10px; background: #17805A; color: #FFFFFF; font-size: 10.5px; font-weight: 800; border-radius: 999px; padding: 3px 8px">BEST VALUE</span><b style="font-size: 15px">Yearly</b><b style="font-size: 18px">₹[price]/yr</b><span style="font-size: 11.5px; color: #126B4B">[x] months free</span></div>
+        <div style="border-radius: 18px; padding: 12px 14px; background: #FFFFFF; border: 2px solid #ECE7DC; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">Monthly</b><b style="font-size: 18px">₹[price]/mo</b><span style="font-size: 11.5px; color: #5F6E67">Cancel anytime</span></div>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 18px; padding: 4px 14px">
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) 54px 54px; padding: 8px 0; font-size: 11.5px; font-weight: 800; color: #5F6E67; text-transform: uppercase; letter-spacing: 0.05em"><span>Feature</span><span style="text-align: center">Free</span><span style="text-align: center; color: #17805A">Pro</span></div>
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="8"><div style="display: grid; grid-template-columns: minmax(0, 1fr) 54px 54px; align-items: center; padding: 6px 0; border-top: 1px solid #F2EFE8; font-size: 13px"><span style="font-weight: 600">{{r.t}}</span><span style="text-align: center; color: #5F6E67; font-size: 12px">{{r.f}}</span><span style="text-align: center; color: #17805A; font-weight: 800; font-size: 12px">{{r.p}}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="position: absolute; left: 20px; right: 20px; bottom: 30px; display: flex; flex-direction: column; gap: 6px; align-items: center">
+      <a href="Pro-Flow.dc.html" style="align-self: stretch; height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; box-shadow: 0 16px 30px -16px rgba(6,36,27,0.6)">Start free trial</a>
+      <span style="font-size: 11.5px; color: #5F6E67; text-align: center">[n] days free, then ₹[price]/year. Cancel anytime in your store settings.</span>
+      <span style="display: flex; gap: 16px; font-size: 12.5px; font-weight: 700"><a href="Pro-Flow.dc.html" style="color: #17805A">Restore purchase</a><a href="#" style="color: #5F6E67">Terms</a></span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{m_sheet}}" hint-placeholder-val="{{false}}">
+    <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px; opacity: 0.35"><b style="font-family: Nunito, sans-serif; font-size: 26px; color: #0B3D2E">KAI Pro</b><div style="height: 140px; border-radius: 22px; background: #FFFFFF"></div><div style="height: 280px; border-radius: 22px; background: #FFFFFF"></div></div>
+    <div style="position: absolute; inset: 0; background: rgba(6,36,27,0.42)"></div>
+    <div role="dialog" aria-label="{{sTitle}}" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FCFBF8; border-radius: 28px 28px 0 0; padding: 10px 20px 34px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; color: #0B3D2E">
+      <span style="width: 40px; height: 5px; border-radius: 3px; background: #DCD8CF"></span>
+      <dc-import name="Scene" scene="{{sScene}}" w="240" h="180" hint-size="240px,180px"></dc-import>
+      <b style="font-family: Nunito, sans-serif; font-size: 22px">{{sTitle}}</b>
+      <span style="font-size: 14px; line-height: 1.5; color: #3D4B45; max-width: 310px">{{sBody}}</span>
+      <span style="align-self: stretch; margin-top: 8px; height: 54px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">{{sCta}}</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{m_manage}}" hint-placeholder-val="{{false}}">
+    <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px; color: #0B3D2E">
+      <div style="display: flex; align-items: center; gap: 6px"><a href="Me.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">Your subscription</h1></div>
+      <div style="position: relative; border-radius: 24px; overflow: hidden"><div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="forest" orbs="{{false}}" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div><div style="position: relative; z-index: 1; padding: 18px; color: #FFF8F1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 800; color: #3ED1A0; letter-spacing: 0.08em">ACTIVE</span><b style="font-size: 24px">KAI Pro · Yearly</b><span style="font-size: 13px; color: #D8F3E5">Renews 4 Sep 2027 · ₹[price] · Apple App Store</span></div></div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 4px 16px"><sc-for list="{{manage}}" as="r" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F2EFE8; font-size: 14px"><span style="color: #5F6E67">{{r.k}}</span><b>{{r.v}}</b></div></sc-for></div>
+      <span style="height: 52px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; justify-content: center; font-weight: 700">Change plan</span>
+      <span style="font-size: 12.5px; color: #5F6E67; line-height: 1.5; text-align: center">Cancelling happens in your App Store or Play Store settings. You keep Pro until 4 Sep 2027, and your data always stays yours.</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["paywall","confirm","success","restore","manage"],"default":"paywall"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const m = this.props.mode ?? 'paywall';
+    const sheets = {
+      confirm: ['protecting', 'Confirm with your store', 'You’ll confirm payment with Face ID in the App Store. KAI never sees your card details.', 'Continue'],
+      success: ['celebrating', 'Welcome to KAI Pro', 'Unlimited voice, Ask My Money, forecasts and your full vault are on. Your trial ends 11 Oct; we’ll remind you 2 days before.', 'Let’s go'],
+      restore: ['success', 'Purchase restored', 'KAI Pro is active on this device again — renews 4 Sep 2027.', 'Done']
+    };
+    const s = sheets[m] || ['success', '', '', ''];
+    return {
+      root: 'position: relative; width: 390px; height: 844px; overflow: hidden; font-family: \'Nunito Sans\', sans-serif; background: #FCFBF8;',
+      m_paywall: m === 'paywall', m_sheet: !!sheets[m], m_manage: m === 'manage',
+      sScene: s[0], sTitle: s[1], sBody: s[2], sCta: s[3],
+      rows: [['Voice entries', '30 / mo', 'Unlimited'], ['Accounts, cards, bills, EMIs', '✓', '✓'], ['Reminders', '✓', '✓'], ['Insights', 'Basic', 'Advanced'], ['Ask My Money', '—', '✓'], ['Cash-flow forecast', '—', '✓'], ['Net-worth analytics', 'Basic', 'Full'], ['Document vault', '100 MB', '1 GB'], ['Report export', '—', 'PDF · CSV']].map(([t, f, p]) => ({ t, f, p })),
+      manage: [{ k: 'Plan', v: 'Yearly' }, { k: 'Started', v: '4 Sep 2026' }, { k: 'Next payment', v: '4 Sep 2027' }, { k: 'Billing', v: 'Apple App Store' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

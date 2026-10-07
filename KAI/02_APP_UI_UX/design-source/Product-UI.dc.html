@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Product Moments</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 2600px; height: 1000px; box-sizing: border-box; padding: 56px 72px; background: linear-gradient(180deg, #FCFBF8 0%, #F3EEE4 100%); font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">15 / 19 — Product Moments · 3D character integration</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">3D KAI supports the moment. The UI stays flat.</h1>
+    </div>
+    <span style="max-width: 640px; font-size: 16px; line-height: 1.55; color: #5F6E67">Presentation-level screens for brand context only — layouts are placeholders for the UI/UX stage. The 3D mascot appears large in emotional moments, small as an avatar on working screens.</span>
+  </div>
+  <div style="display: flex; gap: 40px">
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #FFF8F1">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="creamMint" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 40px 22px 22px; display: flex; flex-direction: column; align-items: center; text-align: center">
+            <dc-import name="Mascot" expr="waving" hint-size="220px,220px" style="width: 220px; height: 220px; margin-top: 10px"></dc-import>
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 28px; margin-top: 8px">Hi, I’m KAI.</span>
+            <span style="font-size: 14px; line-height: 1.5; color: #5F6E67; margin-top: 6px">Tell me about your money in your own words. I’ll organise the rest.</span>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 18px; align-self: stretch; text-align: left; font-size: 14px; font-weight: 600">
+              <span style="background: rgba(255,255,255,0.8); border-radius: 14px; padding: 10px 14px">Understand where it goes</span>
+              <span style="background: rgba(255,255,255,0.8); border-radius: 14px; padding: 10px 14px">Plan what comes next</span>
+            </div>
+            <button type="button" style="margin-top: auto; align-self: stretch; height: 52px; border: none; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; font-family: inherit; font-size: 16px; font-weight: 700">Get started</button>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Onboarding</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #06241B">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 48px 22px 26px; display: flex; flex-direction: column; align-items: center; color: #FFF8F1">
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 24px">I’m listening…</span>
+            <div style="position: relative; width: 250px; height: 250px; margin-top: 40px; border-radius: 50%; border: 1.5px solid rgba(62,209,160,0.4); box-shadow: 0 0 0 18px rgba(62,209,160,0.06), 0 0 0 40px rgba(62,209,160,0.03), 0 0 60px rgba(62,209,160,0.25) inset; display: flex; align-items: center; justify-content: center">
+              <dc-import name="Mascot" expr="listening" glow="{{true}}" shadow="{{false}}" hint-size="190px,190px" style="width: 190px; height: 190px"></dc-import>
+            </div>
+            <span style="margin-top: 36px; font-size: 16px; color: #D8F3E5; text-align: center">“Spent 500 on dinner with Riya”</span>
+            <div style="display: flex; gap: 4px; align-items: center; height: 26px; margin-top: 14px">
+              <sc-for list="{{bars}}" as="b" hint-placeholder-count="13"><span style="{{b}}"></span></sc-for>
+            </div>
+            <button type="button" aria-label="Stop listening" style="margin-top: auto; width: 68px; height: 68px; border-radius: 50%; border: 1.5px solid rgba(62,209,160,0.6); background: rgba(62,209,160,0.14); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#3ED1A0" stroke-width="1.9" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z M5.5 11a6.5 6.5 0 0 0 13 0 M12 17.5V21"></path></svg></button>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Voice input</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #FCFBF8">
+          <div style="height: 100%; box-sizing: border-box; padding: 44px 20px 22px; display: flex; flex-direction: column; align-items: center">
+            <div style="position: relative">
+              <dc-import name="Mascot" expr="happy" hint-size="200px,200px" style="width: 200px; height: 200px"></dc-import>
+              <span style="position: absolute; right: 18px; bottom: 34px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4BE0AE, #17805A); box-shadow: 0 10px 18px -8px rgba(23,128,90,0.7), inset 0 2px 1px rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg></span>
+            </div>
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 24px; margin-top: 8px">Added. Nice and tidy.</span>
+            <div style="align-self: stretch; margin-top: 18px; background: #FFFFFF; border-radius: 20px; box-shadow: 0 18px 36px -24px rgba(6,36,27,0.35); padding: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+              <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="color: #5F6E67">Amount</span><b style="font-size: 22px; font-variant-numeric: tabular-nums">₹500</b></div>
+              <div style="display: flex; justify-content: space-between"><span style="color: #5F6E67">Category</span><b>Food & Dining</b></div>
+              <div style="display: flex; justify-content: space-between"><span style="color: #5F6E67">Paid with</span><b>Credit card ··4021</b></div>
+              <div style="display: flex; justify-content: space-between"><span style="color: #5F6E67">When</span><b>Today, 8:14 PM</b></div>
+            </div>
+            <button type="button" style="margin-top: auto; align-self: stretch; height: 52px; border: none; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; font-family: inherit; font-size: 16px; font-weight: 700">Done</button>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Transaction confirmed</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #0B3D2E">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="forest" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 48px 22px 26px; display: flex; flex-direction: column; color: #FFF8F1">
+            <span style="align-self: flex-start; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #C7B6FF; background: rgba(199,182,255,0.14); padding: 5px 10px; border-radius: 999px">KAI noticed</span>
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px; line-height: 1.2; margin-top: 14px">You spent 23% more on dining this month.</span>
+            <span style="font-size: 14px; color: #94B3A1; margin-top: 8px">Want to see what changed?</span>
+            <dc-import name="Mascot" expr="insight" glow="{{true}}" hint-size="230px,230px" style="width: 230px; height: 230px; align-self: center; margin-top: 30px"></dc-import>
+            <button type="button" style="margin-top: auto; height: 52px; border: none; border-radius: 999px; background: #FFF8F1; color: #0B3D2E; font-family: inherit; font-size: 16px; font-weight: 700">Show insights</button>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">AI insight</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #FFF8F1">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="mint" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 40px 22px 26px; display: flex; flex-direction: column; align-items: center; text-align: center">
+            <dc-import name="Mascot" expr="celebrating" hint-size="250px,250px" style="width: 250px; height: 250px"></dc-import>
+            <span style="font-size: 15px; font-weight: 700; color: #126B4B; margin-top: 6px">Goal complete</span>
+            <span style="font-family: 'Nunito Sans', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">₹50,000</span>
+            <span style="font-size: 14px; color: #0B3D2E; margin-top: 4px">Your vacation fund is ready.</span>
+            <button type="button" style="margin-top: auto; align-self: stretch; height: 52px; border: none; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; font-family: inherit; font-size: 16px; font-weight: 700">Plan the next one</button>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Goal completed</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #06241B">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" orbs="{{false}}" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 40px 22px 26px; display: flex; flex-direction: column; align-items: center; text-align: center; color: #FFF8F1">
+            <dc-import name="Mascot" expr="reminder" glow="{{true}}" hint-size="250px,250px" style="width: 250px; height: 250px"></dc-import>
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px; margin-top: 6px">Upcoming bill</span>
+            <span style="font-size: 14.5px; line-height: 1.5; color: #D8F3E5; margin-top: 6px">Your electricity bill of <b style="color: #FFFFFF">₹2,430</b> is due in 3 days.</span>
+            <div style="display: flex; gap: 10px; margin-top: auto; align-self: stretch">
+              <button type="button" style="flex: 1; height: 52px; border: 1.5px solid rgba(255,248,241,0.3); border-radius: 999px; background: transparent; color: #FFF8F1; font-family: inherit; font-size: 15px; font-weight: 700">Later</button>
+              <button type="button" style="flex: 1.4; height: 52px; border: none; border-radius: 999px; background: #3ED1A0; color: #0B3D2E; font-family: inherit; font-size: 15px; font-weight: 800">Pay now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Bill reminder</b>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+      <div style="width: 312px; height: 660px; border-radius: 50px; background: #121614; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 70px -36px rgba(6,36,27,0.55)">
+        <div style="position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #FCFBF8">
+          <div style="height: 100%; box-sizing: border-box; padding: 40px 16px 0; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              <div style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #5F6E67">Good morning,</span><span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 19px">Let’s make progress today.</span></div>
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: radial-gradient(circle at 35% 25%, #FFFFFF, #D8F3E5); box-shadow: 0 10px 18px -10px rgba(6,36,27,0.4); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0"><dc-import name="Mascot" shadow="{{false}}" hint-size="50px,50px" style="width: 50px; height: 50px"></dc-import></div>
+            </div>
+            <label style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 999px; padding: 10px 14px; font-size: 13px; color: #5F6E67"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask KAI</span><input type="text" placeholder="Tell me about my money…" style="border: none; outline: none; background: transparent; font-family: inherit; font-size: 13px; flex: 1; min-width: 0; color: #0B3D2E"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#17805A" stroke-width="1.9" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z M5.5 11a6.5 6.5 0 0 0 13 0 M12 17.5V21"></path></svg></label>
+            <div style="background: #0B3D2E; color: #FFF8F1; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 18px 30px -18px rgba(6,36,27,0.6)">
+              <span style="font-size: 12px; color: #94B3A1">Net worth</span>
+              <span style="font-weight: 800; font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums"><span style="font-size: 21px; color: #94B3A1">₹</span>24,80,000</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: #3ED1A0">+12% this month</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+              <div style="background: #FFFFFF; border-radius: 18px; padding: 12px 14px; box-shadow: 0 14px 26px -20px rgba(6,36,27,0.4); display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #126B4B; font-weight: 700">Income</span><b style="font-size: 18px; font-variant-numeric: tabular-nums">₹1,20,000</b></div>
+              <div style="background: #FFFFFF; border-radius: 18px; padding: 12px 14px; box-shadow: 0 14px 26px -20px rgba(6,36,27,0.4); display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #A8361F; font-weight: 700">Expenses</span><b style="font-size: 18px; font-variant-numeric: tabular-nums">₹68,430</b></div>
+            </div>
+            <div style="background: #E9E3FF; border-radius: 18px; padding: 12px 14px; font-size: 13px; line-height: 1.45; color: #3B2A8F"><b>KAI:</b> Dining is up 23%. Want a gentle cap for the rest of the month?</div>
+            <nav style="margin-top: auto; margin-left: -16px; margin-right: -16px; padding: 10px 20px 22px; background: #FFFFFF; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: #5F6E67">
+              <span style="color: #17805A">Home</span><span>Insights</span>
+              <span style="width: 44px; height: 44px; border-radius: 50%; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3ED1A0" stroke-width="2.2" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></span>
+              <span>Goals</span><span>You</span>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <b style="font-size: 15px">Home</b>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2600,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const h = [8, 14, 22, 12, 26, 18, 10, 20, 26, 14, 18, 10, 6];
+    return { bars: h.map((x) => 'width: 4px; height: ' + x + 'px; border-radius: 4px; background: #3ED1A0; opacity: ' + (0.45 + x / 52)) };
+  }
+}
+</script>
+</body>
+</html>

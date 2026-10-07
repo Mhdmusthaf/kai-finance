@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Typography System</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1400px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: grid; grid-template-columns: minmax(0, 1fr) 600px; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">08 — Typography</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Type scale · mobile base</h1>
+      <span style="font-size: 15px; color: #5F6E67">Nunito (700–800) for display and headings. Nunito Sans (400–800) for body, UI and every number.</span>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; overflow: hidden">
+      <sc-for list="{{scale}}" as="s" hint-placeholder-count="14">
+        <div style="display: grid; grid-template-columns: 130px minmax(0, 1fr) 250px; align-items: center; gap: 20px; padding: 12px 24px; border-bottom: 1px solid #F0ECE3">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #17805A">{{s.role}}</span>
+          <span style="{{s.style}}">{{s.sample}}</span>
+          <span style="font-size: 12px; line-height: 1.5; color: #5F6E67; font-variant-numeric: tabular-nums">{{s.spec}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="background: #0B3D2E; color: #FFF8F1; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+      <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #3ED1A0">Financial figures</span>
+      <div style="display: flex; align-items: baseline; gap: 4px; font-weight: 800; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em">
+        <span style="font-size: 44px; font-weight: 700; color: #94B3A1">₹</span>
+        <span style="font-size: 72px; line-height: 1">2,48,000</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; font-variant-numeric: tabular-nums">
+        <div style="background: rgba(255,248,241,0.06); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #94B3A1">Goal reached</span><span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em"><span style="font-size: 22px; color: #94B3A1">₹</span>50,000</span></div>
+        <div style="background: rgba(255,248,241,0.06); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #94B3A1">Spent this week</span><span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em"><span style="font-size: 22px; color: #94B3A1">₹</span>12,450</span></div>
+        <div style="background: rgba(255,248,241,0.06); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #94B3A1">Portfolio</span><span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: #3ED1A0">+12.4%</span></div>
+        <div style="background: rgba(255,248,241,0.06); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #94B3A1">Budget used</span><span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em">62%</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.55; color: #D8F3E5">
+        <span>• Nunito Sans 800, <b>tabular + lining figures</b> (font-feature-settings: "tnum", "lnum") so columns align.</span>
+        <span>• ₹ at 62–72% of the figure size, weight 700, muted colour — the amount leads, the currency follows.</span>
+        <span>• Indian digit grouping always (2,48,000 — never 248,000). Paise only where it matters.</span>
+        <span>• Positive change: Mint on dark / Deep Mint on light. Negative: Error tone, never pure red. Always signed (+ / −).</span>
+      </div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; padding: 24px 28px; display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">Hierarchy by channel (px)</span>
+      <div style="display: grid; grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)); gap: 0; font-size: 13.5px; font-variant-numeric: tabular-nums">
+        <span style="padding: 8px 0; font-weight: 800; color: #5F6E67">Channel</span><span style="padding: 8px 0; font-weight: 800; color: #5F6E67">Display</span><span style="padding: 8px 0; font-weight: 800; color: #5F6E67">H1</span><span style="padding: 8px 0; font-weight: 800; color: #5F6E67">Body</span><span style="padding: 8px 0; font-weight: 800; color: #5F6E67">Caption</span>
+        <sc-for list="{{channels}}" as="c" hint-placeholder-count="5">
+          <span style="padding: 9px 0; border-top: 1px solid #F0ECE3; font-weight: 700">{{c.n}}</span><span style="padding: 9px 0; border-top: 1px solid #F0ECE3">{{c.d}}</span><span style="padding: 9px 0; border-top: 1px solid #F0ECE3">{{c.h}}</span><span style="padding: 9px 0; border-top: 1px solid #F0ECE3">{{c.b}}</span><span style="padding: 9px 0; border-top: 1px solid #F0ECE3">{{c.c}}</span>
+        </sc-for>
+      </div>
+      <span style="font-size: 12.5px; line-height: 1.55; color: #5F6E67">Line height 1.05–1.15 for display, 1.2–1.3 for headings, 1.5 for body. Tracking tightens as size grows: −2% at 40 px+, 0 at body, +8% for uppercase labels.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const N = "font-family: Nunito, sans-serif; color: #0B3D2E; ";
+    const S = "font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; ";
+    const r = (role, sample, style, spec) => ({ role, sample, style: style + ' white-space: nowrap; overflow: hidden; text-overflow: ellipsis;', spec });
+    return {
+      scale: [
+        r('Display', 'Your Money OS.', N + 'font-weight: 800; font-size: 56px; line-height: 60px; letter-spacing: -0.02em;', 'Nunito 800 · 56 / 60 · −2%'),
+        r('H1', 'Good morning, Aditi', N + 'font-weight: 800; font-size: 40px; line-height: 46px; letter-spacing: -0.015em;', 'Nunito 800 · 40 / 46 · −1.5%'),
+        r('H2', 'This month at a glance', N + 'font-weight: 800; font-size: 32px; line-height: 38px; letter-spacing: -0.01em;', 'Nunito 800 · 32 / 38 · −1%'),
+        r('H3', 'Upcoming bills', N + 'font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: -0.005em;', 'Nunito 700 · 24 / 30 · −0.5%'),
+        r('H4', 'Vacation fund', N + 'font-weight: 700; font-size: 20px; line-height: 26px;', 'Nunito 700 · 20 / 26 · 0'),
+        r('Body Large', 'Talk to KAI and turn everyday conversations into clarity.', S + 'font-weight: 400; font-size: 18px; line-height: 28px;', 'Nunito Sans 400 · 18 / 28 · 0'),
+        r('Body', 'Your electricity bill is due in 3 days.', S + 'font-weight: 400; font-size: 16px; line-height: 24px;', 'Nunito Sans 400 · 16 / 24 · 0'),
+        r('Body Small', 'Added to Food & Dining · SBI Credit Card', S + 'font-weight: 400; font-size: 14px; line-height: 20px;', 'Nunito Sans 400 · 14 / 20 · 0'),
+        r('Caption', 'Today, 8:14 PM', S + 'font-weight: 600; font-size: 12px; line-height: 16px; letter-spacing: 0.01em; color: #5F6E67;', 'Nunito Sans 600 · 12 / 16 · +1%'),
+        r('Button', 'Get started', S + 'font-weight: 700; font-size: 16px; line-height: 20px; letter-spacing: 0.005em;', 'Nunito Sans 700 · 16 / 20 · +0.5%'),
+        r('Label', 'NET WORTH', S + 'font-weight: 800; font-size: 12px; line-height: 16px; letter-spacing: 0.08em;', 'Nunito Sans 800 · 12 / 16 · +8% · caps'),
+        r('Navigation', 'Home   Insights   Goals   You', S + 'font-weight: 700; font-size: 12px; line-height: 16px;', 'Nunito Sans 700 · 12 / 16 · 0'),
+        r('Numbers', '₹1,20,000   ₹68,430', S + 'font-weight: 700; font-size: 20px; line-height: 24px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums;', 'Nunito Sans 700 · 20 / 24 · tnum'),
+        r('Financial hero', '₹24,80,000', S + 'font-weight: 800; font-size: 40px; line-height: 44px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums lining-nums;', 'Nunito Sans 800 · 40 / 44 · −2% · tnum lnum')
+      ],
+      channels: [
+        { n: 'Mobile', d: '40', h: '32', b: '16', c: '12' },
+        { n: 'Web', d: '72', h: '48', b: '18', c: '13' },
+        { n: 'Marketing', d: '120', h: '64', b: '20', c: '14' },
+        { n: 'Social (1080)', d: '96', h: '64', b: '32', c: '24' },
+        { n: 'Presentations', d: '120', h: '72', b: '28', c: '20' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

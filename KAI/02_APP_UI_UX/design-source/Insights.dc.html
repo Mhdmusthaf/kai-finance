@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Insights</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: {{H}}px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 58px 20px 120px; display: flex; flex-direction: column; gap: 14px">
+    <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em">Insights</h1>
+    <a href="Ask.dc.html" style="position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 40px -26px rgba(6,36,27,0.6)">
+      <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div>
+      <div style="position: relative; z-index: 1; padding: 16px 18px; color: #FFF8F1; display: grid; grid-template-columns: minmax(0, 1fr) 118px; align-items: center">
+        <div style="display: flex; flex-direction: column; gap: 8px"><b style="font-family: Nunito, sans-serif; font-size: 21px; line-height: 1.2">Ask my money anything</b><span style="display: flex; align-items: center; gap: 8px; background: rgba(255,248,241,0.1); border-radius: 999px; padding: 9px 12px; font-size: 13px; color: #D8F3E5"><dc-import name="Icon" icon="mic" size="16" color="#3ED1A0" hint-size="16px,16px"></dc-import>“Can I afford a ₹50,000 phone?”</span></div>
+        <dc-import name="Scene" scene="ask" w="124" h="100" dark="{{true}}" hint-size="124px,100px"></dc-import>
+      </div>
+    </a>
+    <sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <a href="Recap.dc.html" style="display: flex; align-items: center; gap: 12px; background: linear-gradient(120deg, #FFF0E6 0%, #FFE1D2 100%); border-radius: 22px; padding: 10px 16px 10px 6px"><dc-import name="Scene" scene="recap" w="96" h="76" hint-size="96px,76px"></dc-import><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #A8361F">New · monthly recap</span><b style="font-size: 16px">September with KAI</b><span style="font-size: 12.5px; color: #6B3A30">Your month as a 6-part story</span></span><dc-import name="Icon" icon="chevron" size="18" color="#A8361F" hint-size="18px,18px"></dc-import></a>
+        <span style="font-size: 12.5px; font-weight: 800; color: #5F6E67; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 4px">This week</span>
+        <sc-for list="{{cards}}" as="c" hint-placeholder-count="5">
+          <a href="{{c.href}}" style="display: flex; flex-direction: column; gap: 8px; background: #FFFFFF; border-radius: 22px; padding: 16px; box-shadow: 0 12px 26px -22px rgba(6,36,27,0.45)">
+            <span style="display: flex; align-items: center; gap: 8px"><span style="{{c.chip}}"><dc-import name="Icon" icon="{{c.i}}" size="16" color="{{c.ic}}" hint-size="16px,16px"></dc-import></span><span style="{{c.tagS}}">{{c.tag}}</span></span>
+            <b style="font-size: 16px; line-height: 1.35">{{c.t}}</b>
+            <span style="font-size: 13px; line-height: 1.45; color: #5F6E67">{{c.d}}</span>
+            <span style="font-size: 13.5px; font-weight: 800; color: #17805A">{{c.cta}} ›</span>
+          </a>
+        </sc-for>
+        <a href="CashFlow.dc.html" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px"><span style="background: #FFFFFF; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><dc-import name="Icon" icon="reports" size="18" color="#17805A" hint-size="18px,18px"></dc-import><b style="font-size: 13.5px">Cash flow</b></span><span style="background: #FFFFFF; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><dc-import name="Icon" icon="networth" size="18" color="#17805A" hint-size="18px,18px"></dc-import><b style="font-size: 13.5px">Net worth</b></span><span style="background: #FFFFFF; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><dc-import name="Icon" icon="pie" size="18" color="#17805A" hint-size="18px,18px"></dc-import><b style="font-size: 13.5px">Reports</b></span></a>
+      </div>
+    </sc-if>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 16px">
+        <dc-import name="Scene" scene="thinking" w="280" h="224" hint-size="280px,224px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 22px">I’m still getting to know your money</span>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 300px">After about two weeks of entries, I’ll start spotting patterns worth your attention.</span>
+        <div style="align-self: stretch; display: flex; flex-direction: column; gap: 6px; margin-top: 10px; text-align: left"><div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700"><span>Learning progress</span><span>6 of 20 entries</span></div><div style="height: 10px; border-radius: 999px; background: #EEF3EF"><div style="width: 30%; height: 100%; border-radius: 999px; background: #8D74F0"></div></div></div>
+      </div>
+    </sc-if>
+  </div>
+  <dc-import name="TabBar" active="insights" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["default","empty"],"default":"default"},"$preview":{"width":390,"height":1520}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'default';
+    const kinds = { spend: ['#A8361F', '#FFE8E0', 'Spending'], save: ['#126B4B', '#D8F3E5', 'Savings'], plan: ['#9A5B00', '#FFF1DC', 'Coming up'], subs: ['#5B40C9', '#E9E3FF', 'Subscriptions'], goal: ['#126B4B', '#D8F3E5', 'Goals'] };
+    const I = (k, i, t, d, cta, href) => { const [c, bg, tag] = kinds[k]; return { i, t, d, cta, href, tag, ic: c,
+      chip: 'width: 28px; height: 28px; border-radius: 9px; display: flex; align-items: center; justify-content: center; background: ' + bg + ';',
+      tagS: 'font-size: 11.5px; font-weight: 800; color: ' + c + ';' }; };
+    return {
+      H: st === 'empty' ? 844 : 1520, full: st !== 'empty', empty: st === 'empty',
+      cards: [
+        I('spend', 'food', 'You spent 18% more on dining this month.', '₹14,200 so far vs ₹12,030 by this point in September. Most of the jump is weekend dinners.', 'See what changed', 'Insight-Detail.dc.html'),
+        I('save', 'savings', 'Your savings rate improved from 22% to 31%.', 'September: you kept ₹43,400 of ₹1,40,000. Rent and EMIs stayed the same; shopping dropped.', 'See the breakdown', 'CashFlow.dc.html'),
+        I('plan', 'calendar', '₹30,170 goes out this week.', 'SIP and electricity tomorrow, SBI card on Wednesday, laptop EMI on Saturday. Your HDFC balance covers it.', 'Open Upcoming', 'Upcoming.dc.html'),
+        I('subs', 'repeat', 'Subscriptions went up ₹1,029 a month.', 'Cult.fit started in September. All subscriptions now cost ₹3,840 a month.', 'Review subscriptions', 'Recurring-Flow.dc.html'),
+        I('goal', 'plane', 'You’re on track to reach your Goa trip by 1 Dec.', 'Two more ₹4,500 contributions and it’s fully funded — two weeks before your date.', 'Open goal', 'Goal-Flow.dc.html')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

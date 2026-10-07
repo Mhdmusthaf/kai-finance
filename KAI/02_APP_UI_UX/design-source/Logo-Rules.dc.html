@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Clear Space, Sizes and Misuse</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1200px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">12 — Clear Space</span>
+      <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; height: 340px; display: flex; align-items: center; justify-content: center">
+        <div style="position: relative; padding: 52px; border: 1.5px dashed #3ED1A0; border-radius: 6px; background: repeating-linear-gradient(45deg, rgba(62,209,160,0.07) 0 6px, transparent 6px 12px)">
+          <div style="display: flex; align-items: center; gap: 8px; background: #FFFFFF">
+            <dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="120px,120px" style="width: 120px; height: 120px"></dc-import>
+            <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 90px; line-height: 0.9; letter-spacing: -0.035em">KAI</span>
+          </div>
+          <span style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 800; color: #17805A">x</span>
+          <span style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 800; color: #17805A">x</span>
+          <span style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 800; color: #17805A">x</span>
+          <span style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 800; color: #17805A">x</span>
+        </div>
+      </div>
+      <span style="font-size: 14px; line-height: 1.6; color: #3D4B45"><b style="color: #0B3D2E">x = the height of the mascot’s leaf</b> (≈ 0.55 × the wordmark cap height). Keep at least 1x clear on every side — no text, edges, images or other logos. On app icons and avatars the tile edge counts as the boundary.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">13 — Minimum Sizes</span>
+      <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; overflow: hidden">
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; padding: 14px 22px; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6E67; border-bottom: 1px solid #F0ECE3"><span>Asset</span><span>Digital</span><span>Print</span><span>Preview</span></div>
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; padding: 14px 22px; font-size: 14px; border-bottom: 1px solid #F0ECE3"><b>Primary / Horizontal</b><span>120 px wide</span><span>30 mm</span><div style="display: flex; align-items: center; gap: 2px"><dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="40px,40px" style="width: 40px; height: 40px"></dc-import><span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.03em">KAI</span></div></div>
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; padding: 14px 22px; font-size: 14px; border-bottom: 1px solid #F0ECE3"><b>Wordmark</b><span>48 px wide</span><span>12 mm</span><span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em">KAI</span></div>
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; padding: 14px 22px; font-size: 14px; border-bottom: 1px solid #F0ECE3"><b>Mascot (full colour)</b><span>32 px</span><span>10 mm</span><dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="32px,32px" style="width: 32px; height: 32px"></dc-import></div>
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; padding: 14px 22px; font-size: 14px"><b>Seed monogram</b><span>16 px</span><span>5 mm</span><svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0B3D2E" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path><path fill="#22A06B" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path></svg></div>
+      </div>
+      <span style="font-size: 14px; line-height: 1.6; color: #3D4B45">Below 32 px switch to the one-colour mascot; below 24 px use the Seed. The tagline is dropped below 160 px logo width.</span>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 14px">
+    <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #A8361F">14 — Incorrect Usage</span>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+      <sc-for list="{{donts}}" as="d" hint-placeholder-count="10">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="{{d.tile}}">
+            <div style="{{d.wrap}}">
+              <dc-import name="Mascot" render="flat" shadow="{{false}}" leaf="{{d.leaf}}" hint-size="{{d.ms}}" style="{{d.mStyle}}"></dc-import>
+              <span style="{{d.word}}">{{d.text}}</span>
+            </div>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#A8361F" stroke-width="2.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 12px; right: 12px" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg>
+          </div>
+          <span style="font-size: 13.5px; font-weight: 700">{{d.n}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const word = (extra) => "font-family: Nunito, sans-serif; font-weight: 800; font-size: 54px; line-height: 0.9; letter-spacing: -0.035em; color: #0B3D2E; " + (extra || '');
+    const d = (n, o) => ({
+      n,
+      tile: 'position: relative; height: 180px; border-radius: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: ' + (o.bg || '#FFFFFF') + '; border: 1px solid #ECE7DC;',
+      wrap: 'display: flex; align-items: center; gap: 4px; ' + (o.wrap || ''),
+      leaf: o.leaf || '#22A06B',
+      ms: (o.m || 72) + 'px,' + (o.m || 72) + 'px',
+      mStyle: 'width: ' + (o.m || 72) + 'px; height: ' + (o.m || 72) + 'px; flex-shrink: 0; ' + (o.mExtra || ''),
+      word: word(o.word),
+      text: o.text || 'KAI'
+    });
+    return { donts: [
+      d('Don’t stretch', { wrap: 'transform: scaleX(1.45);' }),
+      d('Don’t compress', { wrap: 'transform: scaleX(0.62);' }),
+      d('Don’t rotate', { wrap: 'transform: rotate(-16deg);' }),
+      d('Don’t recolour randomly', { leaf: '#E0457B', word: 'color: #7C5CFF;' }),
+      d('Don’t add shadows', { word: 'text-shadow: 4px 6px 8px rgba(0,0,0,0.45);', mExtra: 'filter: drop-shadow(5px 7px 6px rgba(0,0,0,0.45));' }),
+      d('Don’t distort the mascot', { mExtra: 'transform: scaleY(0.6) scaleX(1.25);' }),
+      d('Don’t change proportions', { m: 30 }),
+      d('Don’t use low contrast', { bg: '#3ED1A0', word: 'color: #D8F3E5;' }),
+      d('Don’t modify the wordmark', { word: "font-family: Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0.08em;", text: 'Kai' }),
+      d('Don’t separate the lockup', { wrap: 'flex-direction: row-reverse; align-items: flex-end; gap: 70px;' })
+    ] };
+  }
+}
+</script>
+</body>
+</html>

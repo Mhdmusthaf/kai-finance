@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Add transaction</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Tx-List.dc.html" aria-label="Close" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="close" size="22" hint-size="22px,22px"></dc-import></a>
+      <b style="font-family: Nunito, sans-serif; font-size: 18px">{{title}}</b>
+      <a href="VoiceFlow.dc.html" aria-label="Say it instead" style="width: 44px; height: 44px; border-radius: 14px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="mic" size="20" color="#3ED1A0" hint-size="20px,20px"></dc-import></a>
+    </div>
+    <div style="display: flex; gap: 8px; margin-right: -20px; overflow: hidden"><sc-for list="{{types}}" as="t" hint-placeholder-count="6"><span style="{{t.s}}">{{t.t}}</span></sc-for></div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 0">
+      <span style="{{amtBox}}"><span style="font-size: 30px; color: #94A39C; font-weight: 700">₹</span><span style="{{amtStyle}}">{{amount}}</span><span style="width: 2px; height: 40px; background: #17805A; margin-left: 2px"></span></span>
+      <sc-if value="{{error}}" hint-placeholder-val="{{false}}"><span role="alert" style="font-size: 13px; font-weight: 700; color: #A8361F">Add an amount to save this expense</span></sc-if>
+      <sc-if value="{{noError}}" hint-placeholder-val="{{true}}"><span style="font-size: 12.5px; color: #5F6E67">{{amtHint}}</span></sc-if>
+    </div>
+
+    <sc-if value="{{t_expense}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12.5px; font-weight: 800; color: #5F6E67">Category <span style="font-weight: 600; color: #5B40C9">· suggested by KAI</span></span><div style="display: flex; gap: 8px; margin-right: -20px; overflow: hidden"><sc-for list="{{cats}}" as="c" hint-placeholder-count="6"><span style="{{c.s}}"><dc-import name="Icon" icon="{{c.i}}" size="22" color="{{c.c}}" hint-size="22px,22px"></dc-import><span style="font-size: 11.5px; font-weight: 700">{{c.t}}</span></span></sc-for></div></div>
+    </sc-if>
+    <sc-if value="{{t_income}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12.5px; font-weight: 800; color: #5F6E67">Source</span><div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{sources}}" as="c" hint-placeholder-count="8"><span style="{{c.s}}">{{c.t}}</span></sc-for></div></div>
+    </sc-if>
+    <sc-if value="{{t_transfer}}" hint-placeholder-val="{{false}}">
+      <div style="position: relative; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 14px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)"><dc-import name="Icon" icon="bank" size="22" color="#17805A" hint-size="22px,22px"></dc-import><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 11.5px; color: #5F6E67">From</span><b>SBI Savings</b></span><span style="font-size: 13px; color: #5F6E67; font-variant-numeric: tabular-nums">₹48,200 → ₹38,200</span></div>
+        <div style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 14px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)"><dc-import name="Icon" icon="bank" size="22" color="#17805A" hint-size="22px,22px"></dc-import><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 11.5px; color: #5F6E67">To</span><b>HDFC Savings</b></span><span style="font-size: 13px; color: #5F6E67; font-variant-numeric: tabular-nums">₹82,300 → ₹92,300</span></div>
+        <button type="button" aria-label="Swap accounts" style="position: absolute; right: 56px; top: 50%; margin-top: -20px; width: 40px; height: 40px; border-radius: 50%; border: 3px solid #FCFBF8; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="repeat" size="18" color="#3ED1A0" hint-size="18px,18px"></dc-import></button>
+      </div>
+    </sc-if>
+    <sc-if value="{{t_cardpay}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 12px; background: #0B3D2E; color: #FFF8F1; border-radius: 18px; padding: 14px"><dc-import name="Icon" icon="card" size="22" color="#3ED1A0" hint-size="22px,22px"></dc-import><span style="flex: 1; display: flex; flex-direction: column"><b>SBI Credit Card ··4021</b><span style="font-size: 12px; color: #94B3A1">Statement ₹18,240 · due Wed 7 Oct</span></span></div>
+        <div style="display: flex; gap: 8px"><sc-for list="{{payOpts}}" as="p" hint-placeholder-count="3"><span style="{{p.s}}"><b style="font-size: 14px">{{p.t}}</b><span style="font-size: 12px; opacity: 0.8">{{p.v}}</span></span></sc-for></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{t_investment}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12.5px; font-weight: 800; color: #5F6E67">What kind?</span><div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{invKinds}}" as="c" hint-placeholder-count="6"><span style="{{c.s}}">{{c.t}}</span></sc-for></div></div>
+    </sc-if>
+
+    <div style="background: #FFFFFF; border-radius: 20px; padding: 2px 16px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)">
+      <sc-for list="{{fields}}" as="f" hint-placeholder-count="5">
+        <div style="display: flex; align-items: center; gap: 12px; min-height: 50px; border-bottom: 1px solid #F2EFE8">
+          <dc-import name="Icon" icon="{{f.i}}" size="18" color="#5F6E67" hint-size="18px,18px"></dc-import>
+          <span style="width: 92px; font-size: 13px; color: #5F6E67">{{f.k}}</span>
+          <span style="{{f.vs}}">{{f.v}}</span>
+          <sc-if value="{{f.toggle}}" hint-placeholder-val="{{false}}"><span style="width: 44px; height: 26px; border-radius: 999px; background: #17805A; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF"></span></span></sc-if>
+          <sc-if value="{{f.more}}" hint-placeholder-val="{{true}}"><dc-import name="Icon" icon="chevron" size="16" color="#B9C4BF" hint-size="16px,16px"></dc-import></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{note}}" hint-placeholder-val="{{false}}"><span style="display: flex; gap: 8px; align-items: flex-start; background: #F2F4F3; border-radius: 14px; padding: 12px; font-size: 12.5px; line-height: 1.5; color: #3D4B45"><dc-import name="Icon" icon="info" size="16" color="#5F6E67" hint-size="16px,16px"></dc-import><span>{{noteText}}</span></span></sc-if>
+  </div>
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 34px; display: flex; gap: 10px">
+    <sc-if value="{{edit}}" hint-placeholder-val="{{false}}"><a href="Tx-Detail-States.dc.html" style="width: 56px; height: 56px; border-radius: 50%; background: #FFE8E0; display: flex; align-items: center; justify-content: center" aria-label="Delete"><dc-import name="Icon" icon="trash" size="22" color="#A8361F" hint-size="22px,22px"></dc-import></a></sc-if>
+    <a href="Home-States.dc.html" style="{{saveStyle}}">{{saveText}}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"type":{"editor":"enum","options":["expense","income","transfer","cardpay","investment"],"default":"expense"},"mode":{"editor":"enum","options":["new","edit","error"],"default":"new"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const t = this.props.type ?? 'expense';
+    const mode = this.props.mode ?? 'new';
+    const err = mode === 'error';
+    const names = { expense: 'expense', income: 'income', transfer: 'transfer', cardpay: 'card payment', investment: 'investment' };
+    const pill = (on) => 'flex-shrink: 0; padding: 9px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700; ' + (on ? 'background: #0B3D2E; color: #FFF8F1;' : 'background: #FFFFFF; border: 1px solid #E6E1D6;');
+    const F = (i, k, v, more, toggle, muted) => ({ i, k, v, more: more !== false, toggle: !!toggle, vs: 'flex: 1; font-size: 14.5px; font-weight: 700; text-align: right; ' + (muted ? 'color: #94A39C; font-weight: 600;' : '') });
+    const amounts = { expense: err ? '0' : '500', income: '50,000', transfer: '10,000', cardpay: '18,240', investment: '5,000' };
+    const hints = { expense: 'From your SBI card · ₹38,160 limit left', income: 'Received today', transfer: 'Between your own accounts', cardpay: 'Total due', investment: 'Moves money into your portfolio' };
+    const fields = {
+      expense: [F('edit', 'Description', 'Dinner'), F('card', 'Paid with', 'SBI Credit Card'), F('clock', 'When', 'Today, 8:02 PM'), F('shop', 'Merchant', 'Add merchant', true, false, true), F('flag', 'Tags & note', 'Add', true, false, true), F('repeat', 'Repeats', 'Never')],
+      income: [F('bank', 'Received in', 'SBI Savings'), F('clock', 'When', 'Today'), F('edit', 'From', 'Acme Labs'), F('repeat', 'Every month', 'On the 1st', false, true)],
+      transfer: [F('clock', 'When', 'Today, 8:02 PM'), F('edit', 'Note', 'Monthly top-up', true, false, true), F('repeat', 'Repeats', 'Never')],
+      cardpay: [F('bank', 'Pay from', 'HDFC Savings'), F('clock', 'When', 'Today')],
+      investment: [F('invest', 'Fund', 'SBI Bluechip Fund'), F('bank', 'From', 'HDFC Savings'), F('clock', 'When', 'Mon 5 Oct'), F('sip', 'Part of SIP', 'Monthly · 5th', false, true)]
+    }[t];
+    const notes = {
+      transfer: 'Transfers move money between your own accounts. They never count as spending or income.',
+      cardpay: 'Paying a card bill isn’t new spending — those purchases were already counted. This settles what you owe on the card.',
+      investment: 'Counted as invested, not spent. It also updates your portfolio and net worth.'
+    };
+    return {
+      title: (mode === 'edit' ? 'Edit ' : 'New ') + names[t],
+      types: ['Expense', 'Income', 'Transfer', 'Card payment', 'Investment', 'EMI'].map((n, i) => ({ t: n, s: pill(['expense', 'income', 'transfer', 'cardpay', 'investment'][i] === t) })),
+      amount: amounts[t], amtHint: hints[t], error: err, noError: !err,
+      amtBox: 'display: flex; align-items: center; gap: 4px; padding: 6px 16px; border-radius: 18px; ' + (err ? 'background: #FFE8E0;' : ''),
+      amtStyle: 'font-weight: 800; font-size: 52px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: ' + (err ? '#C9B9B2' : t === 'income' ? '#17805A' : '#0B3D2E') + ';',
+      t_expense: t === 'expense', t_income: t === 'income', t_transfer: t === 'transfer', t_cardpay: t === 'cardpay', t_investment: t === 'investment',
+      cats: [['Food & Dining', 'food', 1], ['Transport', 'car', 0], ['Fuel', 'fuel', 0], ['Shopping', 'shop', 0], ['Bills', 'bills', 0], ['Rent', 'home', 0], ['Health', 'health', 0]].map(([n, i, on]) => ({ t: n, i, c: on ? '#FFF8F1' : '#17805A', s: 'flex-shrink: 0; width: 76px; height: 72px; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; ' + (on ? 'background: #0B3D2E; color: #FFF8F1;' : 'background: #FFFFFF; border: 1px solid #E6E1D6;') })),
+      sources: ['Salary', 'Freelance', 'Business', 'Client payment', 'Interest', 'Dividends', 'Rental', 'Refund'].map((n, i) => ({ t: n, s: pill(i === 0) })),
+      payOpts: [['Total', '₹18,240', 1], ['Minimum', '₹910', 0], ['Other', 'Any amount', 0]].map(([n, v, on]) => ({ t: n, v, s: 'flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 16px; ' + (on ? 'background: #D8F3E5; border: 2px solid #17805A;' : 'background: #FFFFFF; border: 2px solid #ECE7DC;') })),
+      invKinds: ['SIP instalment', 'Mutual fund', 'Stocks', 'Fixed deposit', 'Gold', 'Other'].map((n, i) => ({ t: n, s: pill(i === 0) })),
+      fields, note: !!notes[t], noteText: notes[t] || '', edit: mode === 'edit',
+      saveText: mode === 'edit' ? 'Save changes' : (t === 'cardpay' ? 'Record payment' : 'Save'),
+      saveStyle: 'flex: 1; height: 56px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; ' + (err ? 'background: #DCD8CF; color: #8A9690;' : 'background: #0B3D2E; color: #FFF8F1; box-shadow: 0 16px 30px -16px rgba(6,36,27,0.6);')
+    };
+  }
+}
+</script>
+</body>
+</html>

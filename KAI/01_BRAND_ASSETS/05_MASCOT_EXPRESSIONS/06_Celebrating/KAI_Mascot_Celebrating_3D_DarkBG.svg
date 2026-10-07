@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -12 220 220" width="1024" height="1024"><title>KAI Mascot — Celebrating (3D, dark BG)</title><defs>
+<clipPath id="kc"><path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" /></clipPath>
+<filter id="kf2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" /></filter>
+<filter id="kf4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" /></filter>
+<filter id="kf8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8" /></filter>
+<filter id="kf16" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="16" /></filter>
+<radialGradient id="kb3" cx="0.62" cy="0.3" r="0.82" fx="0.66" fy="0.24">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="0.42" stop-color="#FCF9F2" />
+<stop offset="0.76" stop-color="#EDE8DB" />
+<stop offset="1" stop-color="#D3D7C8" />
+</radialGradient>
+<linearGradient id="kbn" x1="0" y1="0.4" x2="1" y2="0.56">
+<stop offset="0" stop-color="#4FC48C" stop-opacity="0.5" />
+<stop offset="0.16" stop-color="#7FD6A8" stop-opacity="0.18" />
+<stop offset="0.36" stop-color="#9FE0BE" stop-opacity="0" />
+</linearGradient>
+<radialGradient id="kao" cx="0.5" cy="1.04" r="0.56">
+<stop offset="0" stop-color="#1B4636" stop-opacity="0.32" />
+<stop offset="1" stop-color="#1B4636" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="kar" cx="0.38" cy="0.28" r="0.9">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="1" stop-color="#D7DACB" />
+</radialGradient>
+<radialGradient id="kal" cx="0.6" cy="0.3" r="0.9">
+<stop offset="0" stop-color="#C9EAD6" />
+<stop offset="1" stop-color="#7FCDA4" />
+</radialGradient>
+<linearGradient id="kft" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F7F3EA" />
+<stop offset="1" stop-color="#C9CEBF" />
+</linearGradient>
+<linearGradient id="kl3" x1="0" y1="1" x2="1" y2="0">
+<stop offset="0" stop-color="#127048" />
+<stop offset="0.45" stop-color="#22A06B" />
+<stop offset="1" stop-color="#63E2B2" />
+</linearGradient>
+<radialGradient id="ksh" cx="0.55" cy="0.3" r="0.55">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.5" />
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="key" cx="0.4" cy="0.32" r="0.78">
+<stop offset="0" stop-color="#21493A" />
+<stop offset="0.55" stop-color="#0B231B" />
+<stop offset="1" stop-color="#030A07" />
+</radialGradient>
+<radialGradient id="kir" cx="0.5" cy="0.85" r="0.62">
+<stop offset="0" stop-color="#4BE0AE" stop-opacity="0.95" />
+<stop offset="0.55" stop-color="#22A06B" stop-opacity="0.55" />
+<stop offset="1" stop-color="#22A06B" stop-opacity="0" />
+</radialGradient>
+<radialGradient id="kbl" cx="0.35" cy="0.3" r="0.8">
+<stop offset="0" stop-color="#FFE3C2" />
+<stop offset="0.55" stop-color="#F7B57A" />
+<stop offset="1" stop-color="#D98A4E" />
+</radialGradient>
+<radialGradient id="kbf" cx="0.62" cy="0.36" r="0.72">
+<stop offset="0" stop-color="#FFFFFF" />
+<stop offset="0.7" stop-color="#FFFFFF" />
+<stop offset="1" stop-color="#E3EBE5" />
+</radialGradient>
+<linearGradient id="ksf" x1="0" y1="0.3" x2="1" y2="0.6">
+<stop offset="0" stop-color="#8ED8B4" stop-opacity="0.85" />
+<stop offset="0.26" stop-color="#8ED8B4" stop-opacity="0.25" />
+<stop offset="0.44" stop-color="#8ED8B4" stop-opacity="0" />
+</linearGradient>
+</defs>
+
+<g>
+<ellipse cx="100" cy="122" rx="70" ry="66" fill="#3ED1A0" opacity="0.22" filter="url(#kf16)" />
+<ellipse cx="100" cy="190" rx="60" ry="9" fill="#0B2A20" opacity="0.18" filter="url(#kf8)" />
+<ellipse cx="100" cy="186" rx="42" ry="5" fill="#0B2A20" opacity="0.26" filter="url(#kf4)" />
+<ellipse cx="36" cy="100" rx="9.5" ry="15" transform="rotate(-32 36 100)" fill="url(#kal)" />
+<ellipse cx="80" cy="181" rx="15" ry="8.5" fill="url(#kft)" />
+<ellipse cx="122" cy="181" rx="15" ry="8.5" fill="url(#kft)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kb3)" />
+<g clip-path="url(#kc)">
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kbn)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="url(#kao)" />
+<ellipse cx="104" cy="62" rx="18" ry="7" fill="#0B3D2E" opacity="0.2" filter="url(#kf4)" />
+<path d="M100 60 C146 60 168 94 166 128 C164 162 136 184 100 184 C64 184 34 164 34 128 C34 92 56 60 100 60 Z" fill="none" stroke="#6FF0C2" stroke-width="5" opacity="0.9" filter="url(#kf2)" />
+</g>
+<ellipse cx="134" cy="86" rx="21" ry="11" transform="rotate(-28 134 86)" fill="#FFFFFF" opacity="0.8" filter="url(#kf4)" />
+<ellipse cx="167" cy="102" rx="9.5" ry="15" transform="rotate(32 167 102)" fill="url(#kar)" />
+<path d="M101 62 C99 54 100 48 103 43" fill="none" stroke="#167A50" stroke-width="4.5" stroke-linecap="round" />
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#kl3)" />
+<path d="M103 46 C98 22 120 6 156 8 C160 36 140 54 103 46 Z" fill="url(#ksh)" />
+<path d="M106 44 C120 34 134 22 150 12" fill="none" stroke="#0E5E3D" stroke-width="2" stroke-linecap="round" opacity="0.35" />
+<path d="M107 42 C121 32 134 21 149 11" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+</g>
+
+<g>
+<g fill="none" stroke="#0B2A20" stroke-width="5" stroke-linecap="round">
+<path d="M76 119 Q86 105 96 119" />
+<path d="M118 117 Q128 103 138 117" />
+</g>
+<path d="M97 129 Q107 147 117 129 Z" fill="#0B2A20" stroke="#0B2A20" stroke-width="2" stroke-linejoin="round" />
+<ellipse cx="107" cy="137" rx="4.5" ry="2.6" fill="#E9806F" />
+<g>
+<circle cx="40" cy="44" r="4.5" fill="#C7B6FF" />
+<rect x="60" y="22" width="10" height="5.5" rx="2.75" transform="rotate(-30 64 24)" fill="#FFB89A" />
+<circle cx="150" cy="30" r="4" fill="#3ED1A0" />
+<rect x="172" y="60" width="10" height="5.5" rx="2.75" transform="rotate(35 176 62)" fill="#C7B6FF" />
+<circle cx="24" cy="76" r="3.5" fill="#3ED1A0" />
+<rect x="134" y="8" width="9" height="5.5" rx="2.75" transform="rotate(20 138 10)" fill="#FFB89A" />
+<circle cx="39" cy="43" r="1.4" fill="#FFFFFF" opacity="0.7" />
+<circle cx="149" cy="29" r="1.2" fill="#FFFFFF" opacity="0.7" />
+</g>
+</g>
+
+</svg>

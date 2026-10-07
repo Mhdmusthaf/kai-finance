@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add / edit transaction — variants</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="display: flex; gap: 48px; padding: 40px 48px 48px; background: #EEE9DF; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; width: max-content">
+  <sc-for list="{{states}}" as="s" hint-placeholder-count="7">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-family: Nunito, sans-serif; font-size: 20px">{{s.t}}</b><span style="font-size: 13px; color: #5F6E67; max-width: 390px; min-height: 36px">{{s.d}}</span></div>
+      <div style="width: 390px; height: 844px; border-radius: 40px; overflow: hidden; box-shadow: 0 30px 60px -36px rgba(6,36,27,0.55)"><dc-import name="Tx-Add" type="{{s.ty}}" mode="{{s.m}}" hint-size="390px,844px"></dc-import></div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3162,"height":1030}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { states: [
+      { ty: 'income', m: 'new', t: 'Add income', d: 'Source chips, account received in, recurring salary in one toggle.' },
+      { ty: 'transfer', m: 'new', t: 'Transfer', d: 'From/To with live balances; clearly not spending.' },
+      { ty: 'cardpay', m: 'new', t: 'Credit card payment', d: 'Settles card liability — total, minimum or custom.' },
+      { ty: 'investment', m: 'new', t: 'Investment', d: 'Linked to an SIP when it matches one.' },
+      { ty: 'expense', m: 'edit', t: 'Edit expense', d: 'Same form, delete within reach.' },
+      { ty: 'expense', m: 'error', t: 'Validation', d: 'Inline, specific, and the Save button explains itself by being disabled.' },
+      { ty: 'transfer', m: 'edit', t: 'Edit transfer', d: 'Swap accounts in one tap.' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

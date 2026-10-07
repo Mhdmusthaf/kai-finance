@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI World — environment component</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{rootStyle}}">
+<svg viewBox="0 0 800 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display: block; transform: {{flip}}">
+<defs>
+<filter id="{{f10}}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"></feGaussianBlur></filter>
+<filter id="{{f4}}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+<filter id="{{f60}}" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="60"></feGaussianBlur></filter>
+<linearGradient id="{{gRib}}" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="{{ribA}}" stop-opacity="0"></stop>
+<stop offset="0.25" stop-color="{{ribA}}"></stop>
+<stop offset="0.7" stop-color="{{ribB}}"></stop>
+<stop offset="1" stop-color="{{ribB}}" stop-opacity="0.2"></stop>
+</linearGradient>
+<radialGradient id="{{gO1}}" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#B9A4F5"></stop></radialGradient>
+<radialGradient id="{{gO2}}" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#FFF3EC"></stop><stop offset="1" stop-color="#F59E78"></stop></radialGradient>
+<radialGradient id="{{gO3}}" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#F2FFF8"></stop><stop offset="1" stop-color="#5CCB98"></stop></radialGradient>
+</defs>
+<ellipse cx="640" cy="80" rx="260" ry="200" fill="{{glow}}" opacity="{{glowOp}}" filter="url(#{{f60}})"></ellipse>
+<ellipse cx="400" cy="590" rx="560" ry="190" fill="{{floor}}" opacity="{{floorOp}}" filter="url(#{{f10}})"></ellipse>
+<g display="{{showRibbon}}">
+<path d="M-40 392 C120 312 220 432 380 342 S640 192 860 242" fill="none" stroke="#06241B" stroke-width="26" stroke-linecap="round" opacity="0.14" transform="translate(0 16)" filter="url(#{{f10}})"></path>
+<path d="M-40 392 C120 312 220 432 380 342 S640 192 860 242" fill="none" stroke="url(#{{gRib}})" stroke-width="24" stroke-linecap="round" opacity="{{ribOp}}"></path>
+<path d="M-40 386 C120 306 220 426 380 336 S640 186 860 236" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.4"></path>
+<path d="M-40 440 C150 380 260 470 420 400 S660 280 860 320" fill="none" stroke="url(#{{gRib}})" stroke-width="7" stroke-linecap="round" opacity="0.45"></path>
+</g>
+<g display="{{showOrbs}}">
+<ellipse cx="128" cy="168" rx="16" ry="4" fill="#06241B" opacity="0.12" filter="url(#{{f4}})"></ellipse>
+<circle cx="124" cy="118" r="18" fill="url(#{{gO1}})"></circle>
+<circle cx="700" cy="96" r="11" fill="url(#{{gO2}})"></circle>
+<ellipse cx="628" cy="456" rx="22" ry="5" fill="#06241B" opacity="0.14" filter="url(#{{f4}})"></ellipse>
+<circle cx="620" cy="408" r="22" fill="url(#{{gO3}})"></circle>
+<circle cx="250" cy="70" r="2.5" fill="{{dust}}" opacity="0.6"></circle>
+<circle cx="520" cy="60" r="2" fill="{{dust}}" opacity="0.5"></circle>
+<circle cx="560" cy="300" r="1.8" fill="{{dust}}" opacity="0.5"></circle>
+<circle cx="80" cy="300" r="2.2" fill="{{dust}}" opacity="0.45"></circle>
+<circle cx="740" cy="330" r="2.6" fill="{{dust}}" opacity="0.5"></circle>
+</g>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tone":{"editor":"enum","options":["cream","forest","dark","mint","lavender","peach","creamMint","forestGreen","lavenderCream"],"default":"cream"},"ribbon":{"editor":"boolean","default":true},"orbs":{"editor":"boolean","default":true},"flip":{"editor":"boolean","default":false},"radius":{"editor":"int","default":0},"$preview":{"width":800,"height":500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    if (!this._id) this._id = 'w' + Math.random().toString(36).slice(2, 9);
+    const id = this._id;
+    const p = this.props;
+    const T = {
+      cream: { bg: 'radial-gradient(120% 90% at 70% 0%, #FFFDF9 0%, #FBF4EA 55%, #F1E7D7 100%)', glow: '#CFF2E1', glowOp: 0.9, floor: '#FFFFFF', floorOp: 0.85, ribA: '#7FE6C1', ribB: '#22A06B', ribOp: 0.85, dust: '#22A06B' },
+      forest: { bg: 'radial-gradient(110% 90% at 72% 10%, #1D6E53 0%, #0B3D2E 48%, #072C20 100%)', glow: '#3ED1A0', glowOp: 0.28, floor: '#145C45', floorOp: 0.7, ribA: '#6FF0C2', ribB: '#22A06B', ribOp: 0.75, dust: '#D8F3E5' },
+      dark: { bg: 'radial-gradient(100% 80% at 60% 20%, #0F4A37 0%, #06241B 55%, #02110C 100%)', glow: '#3ED1A0', glowOp: 0.22, floor: '#0B3D2E', floorOp: 0.8, ribA: '#6FF0C2', ribB: '#17805A', ribOp: 0.6, dust: '#6FF0C2' },
+      mint: { bg: 'radial-gradient(110% 90% at 70% 10%, #D6F8E9 0%, #A9EBCD 60%, #86DDB7 100%)', glow: '#FFFFFF', glowOp: 0.8, floor: '#EFFCF5', floorOp: 0.85, ribA: '#FFFFFF', ribB: '#22A06B', ribOp: 0.8, dust: '#FFFFFF' },
+      lavender: { bg: 'radial-gradient(110% 90% at 70% 10%, #F8F5FF 0%, #E9E3FF 60%, #D9CEFF 100%)', glow: '#FFFFFF', glowOp: 0.8, floor: '#FFFFFF', floorOp: 0.8, ribA: '#C7B6FF', ribB: '#3ED1A0', ribOp: 0.75, dust: '#8D74F0' },
+      peach: { bg: 'radial-gradient(110% 90% at 70% 10%, #FFFAF6 0%, #FFE9DD 60%, #FFD6C2 100%)', glow: '#FFFFFF', glowOp: 0.8, floor: '#FFFFFF', floorOp: 0.8, ribA: '#FFB89A', ribB: '#3ED1A0', ribOp: 0.7, dust: '#F59E78' },
+      creamMint: { bg: 'linear-gradient(160deg, #FFF8F1 0%, #EAF8F0 55%, #C9F0DD 100%)', glow: '#FFFFFF', glowOp: 0.8, floor: '#FFFFFF', floorOp: 0.8, ribA: '#7FE6C1', ribB: '#22A06B', ribOp: 0.8, dust: '#22A06B' },
+      forestGreen: { bg: 'linear-gradient(160deg, #0B3D2E 0%, #145C45 55%, #22A06B 100%)', glow: '#3ED1A0', glowOp: 0.3, floor: '#1D6E53', floorOp: 0.6, ribA: '#D8F3E5', ribB: '#6FF0C2', ribOp: 0.6, dust: '#D8F3E5' },
+      lavenderCream: { bg: 'linear-gradient(160deg, #E9E3FF 0%, #F6F0F6 55%, #FFF8F1 100%)', glow: '#FFFFFF', glowOp: 0.8, floor: '#FFFFFF', floorOp: 0.8, ribA: '#C7B6FF', ribB: '#3ED1A0', ribOp: 0.7, dust: '#8D74F0' }
+    };
+    const t = T[p.tone] || T.cream;
+    const on = (b) => (b ? 'inline' : 'none');
+    return Object.assign({}, t, {
+      f10: id + 'a', f4: id + 'b', f60: id + 'c', gRib: id + 'r', gO1: id + 'o1', gO2: id + 'o2', gO3: id + 'o3',
+      rootStyle: 'position: absolute; inset: 0; overflow: hidden; border-radius: ' + (p.radius ?? 0) + 'px; background: ' + t.bg + ';',
+      flip: p.flip ? 'scaleX(-1)' : 'none',
+      showRibbon: on(p.ribbon ?? true), showOrbs: on(p.orbs ?? true)
+    });
+  }
+}
+</script>
+</body>
+</html>

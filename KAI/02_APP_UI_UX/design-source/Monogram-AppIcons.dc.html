@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Monogram and App Icons</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1100px; box-sizing: border-box; padding: 64px 72px; background: #FFF8F1; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: grid; grid-template-columns: 520px minmax(0, 1fr); gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">06 — Monogram / Symbol</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">The Seed</h1>
+    </div>
+    <div style="position: relative; background: #FFFFFF; border-radius: 28px; border: 1px solid #ECE7DC; height: 420px; display: flex; align-items: center; justify-content: center">
+      <svg viewBox="0 0 100 100" width="340" height="340" xmlns="http://www.w3.org/2000/svg" aria-label="Monogram construction">
+        <circle cx="50" cy="62" r="34" fill="none" stroke="#3ED1A0" stroke-width="0.3" stroke-dasharray="1 1"></circle>
+        <line x1="0" y1="62" x2="100" y2="62" stroke="#3ED1A0" stroke-width="0.25" stroke-dasharray="1 1"></line>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="#3ED1A0" stroke-width="0.25" stroke-dasharray="1 1"></line>
+        <path fill="#0B3D2E" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path>
+        <path fill="#22A06B" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path>
+      </svg>
+    </div>
+    <span style="font-size: 15px; line-height: 1.6; color: #3D4B45">A circle for the body (r = 34u), a leaf rotated 30° to the right, and two eye ovals offset toward the leaf — the same 3/4 turn as the mascot. Built on a 100u grid with 16u safe margin.</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{uses}}" as="u" hint-placeholder-count="7">
+        <span style="padding: 7px 14px; border-radius: 999px; background: #D8F3E5; font-size: 13px; font-weight: 700; color: #0B3D2E">{{u}}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">3D App Icon System</span>
+      <span style="font-size: 16px; color: #5F6E67">1024 master · 22.4% corner radius · soft top bevel, inner shade, long contact shadow · 3D mascot above 48 px, flat Seed below</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{icons}}" as="i" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+          <div style="{{i.tile}}">
+            <sc-if value="{{i.isMascot}}" hint-placeholder-val="{{true}}">
+              <dc-import name="Mascot" shadow="{{false}}" glow="{{i.glow}}" mono="{{i.mono}}" mono-color="{{i.ink}}" hint-size="{{i.ms}}" style="{{i.msStyle}}"></dc-import>
+            </sc-if>
+            <sc-if value="{{i.isSeed}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 100 100" width="132" height="132" xmlns="http://www.w3.org/2000/svg">
+                <path fill="{{i.ink}}" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path>
+                <path fill="{{i.leaf}}" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path>
+              </svg>
+            </sc-if>
+          </div>
+          <span style="font-size: 14px; font-weight: 700">{{i.n}}</span>
+          <span style="font-size: 12px; color: #5F6E67">{{i.file}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; padding: 24px 28px; display: flex; flex-direction: column; gap: 18px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #17805A">Size ladder — actual pixels</span>
+      <div style="display: flex; align-items: flex-end; gap: 28px">
+        <sc-for list="{{sizes}}" as="s" hint-placeholder-count="6">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+            <div style="{{s.tile}}">
+              <svg viewBox="0 0 100 100" width="{{s.inner}}" height="{{s.inner}}" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFF8F1" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path>
+                <path fill="#3ED1A0" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path>
+              </svg>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #5F6E67">{{s.n}}</span>
+          </div>
+        </sc-for>
+        <span style="margin-left: auto; max-width: 300px; font-size: 13px; line-height: 1.55; color: #5F6E67">16–32 px: Seed monogram (eyes enlarged 10%, no gradient). 48–128 px: flat mascot. 256 px and up: full-colour mascot.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const grad = {
+      '#FFFFFF': 'linear-gradient(165deg, #FFFFFF 0%, #EEF1EC 100%)',
+      '#06241B': 'radial-gradient(120% 100% at 30% 0%, #145C45 0%, #0B3D2E 42%, #06241B 100%)',
+      '#3ED1A0': 'linear-gradient(165deg, #74E6C0 0%, #2DBB8A 100%)',
+      '#FFF8F1': 'linear-gradient(165deg, #FFFDF9 0%, #F2E8D9 100%)',
+      '#0B3D2E': 'linear-gradient(165deg, #1A6A50 0%, #0B3D2E 58%, #072C20 100%)',
+      '#D8F3E5': 'linear-gradient(165deg, #EEFBF4 0%, #C2E9D3 100%)'
+    };
+    const bevel = ' box-shadow: inset 0 2px 1px rgba(255,255,255,0.6), inset 0 -4px 8px rgba(6,36,27,0.14), 0 22px 34px -14px rgba(6,36,27,0.5), 0 4px 10px rgba(6,36,27,0.12);';
+    const tile = (bg) => 'width: 176px; height: 176px; border-radius: 40px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: ' + (grad[bg] || bg) + ';' + bevel;
+    const m = (n, file, bg, extra, mono, ink) => ({ n, file, tile: tile(bg), isMascot: true, isSeed: false, mono: !!mono, glow: bg === '#06241B' || bg === '#0B3D2E', ink: ink || '#0B3D2E', ms: '138px,138px', msStyle: 'width: 138px; height: 138px' });
+    const s = (n, file, bg, ink, leaf) => ({ n, file, tile: tile(bg), isMascot: false, isSeed: true, ink, leaf });
+    const zoom = { n: 'Minimal mascot', file: 'KAI_AppIcon_Minimal', tile: tile('#0B3D2E') + ' align-items: flex-start;', isMascot: true, isSeed: false, mono: false, glow: true, ink: '#0B3D2E', ms: '230px,230px', msStyle: 'width: 230px; height: 230px; flex-shrink: 0; margin-top: -8px' };
+    const sz = [16, 24, 32, 48, 64, 128].map((p) => ({ n: p + ' px', inner: Math.round(p * 0.8), tile: 'width: ' + p + 'px; height: ' + p + 'px; border-radius: ' + Math.round(p * 0.224) + 'px; background: linear-gradient(165deg, #1A6A50 0%, #0B3D2E 60%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 ' + Math.max(2, Math.round(p * 0.12)) + 'px ' + Math.max(4, Math.round(p * 0.2)) + 'px -' + Math.round(p*0.06) + 'px rgba(6,36,27,0.45); display: flex; align-items: center; justify-content: center' }));
+    return {
+      uses: ['App icon', 'Favicon', 'Social avatar', 'Notification icon', 'Small UI icon', 'Watermark', 'Loading indicator'],
+      icons: [
+        m('Light', 'KAI_AppIcon_Light', '#FFFFFF', ' box-shadow: 0 0 0 1px #ECE7DC inset;'),
+        m('Dark', 'KAI_AppIcon_Dark', '#06241B'),
+        m('KAI Green', 'KAI_AppIcon_Green', '#3ED1A0'),
+        m('Cream', 'KAI_AppIcon_Cream', '#FFF8F1', ' box-shadow: 0 0 0 1px #ECE7DC inset;'),
+        m('Forest Green', 'KAI_AppIcon_Forest', '#0B3D2E'),
+        zoom,
+        s('Simplified small', 'KAI_AppIcon_Small', '#0B3D2E', '#FFF8F1', '#3ED1A0'),
+        s('Monogram', 'KAI_AppIcon_Monogram', '#D8F3E5', '#0B3D2E', '#22A06B')
+      ],
+      sizes: sz
+    };
+  }
+}
+</script>
+</body>
+</html>

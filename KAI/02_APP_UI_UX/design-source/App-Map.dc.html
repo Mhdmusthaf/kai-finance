@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI App — Map and data model</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1400px; box-sizing: border-box; padding: 56px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">KAI App · iOS &amp; Android</span><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">How the Money OS fits together</h1></div>
+    <span style="max-width: 560px; font-size: 16px; line-height: 1.55; color: #5F6E67">Five tabs, one always-there voice button, and a data model where every financial object creates its own schedule, reminders, transactions and insights.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+      <div style="background: #FFFFFF; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 16px 34px -28px rgba(6,36,27,0.5)">
+        <span style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 13px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="{{t.i}}" size="20" color="#3ED1A0" hint-size="20px,20px"></dc-import></span><b style="font-family: Nunito, sans-serif; font-size: 20px">{{t.t}}</b></span>
+        <span style="font-size: 13px; color: #5F6E67; line-height: 1.45">{{t.q}}</span>
+        <div style="display: flex; flex-direction: column; gap: 6px"><sc-for list="{{t.items}}" as="x" hint-placeholder-count="5"><span style="font-size: 13.5px; font-weight: 600; padding: 7px 10px; border-radius: 10px; background: #F6F4EF">{{x}}</span></sc-for></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display: flex; gap: 12px; align-items: center; background: #0B3D2E; color: #FFF8F1; border-radius: 22px; padding: 16px 20px">
+    <div style="width: 64px; height: 64px; flex-shrink: 0"><dc-import name="Mascot" expr="listening" glow="{{true}}" shadow="{{false}}" hint-size="64px,64px"></dc-import></div>
+    <span style="flex: 1; font-size: 15px; line-height: 1.5"><b style="color: #3ED1A0">Everywhere:</b> the voice button (tap to speak, hold to dictate) floats above every tab. Global search, notifications and Ask My Money are one tap from Home. Add-anything forms open as full-screen sheets; quick choices open as bottom sheets.</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 14px">
+    <b style="font-family: Nunito, sans-serif; font-size: 26px">Objects create events</b>
+    <div style="display: flex; align-items: center; gap: 10px"><sc-for list="{{core}}" as="c" hint-placeholder-count="6"><span style="{{c.s}}">{{c.t}}</span><sc-if value="{{c.arrow}}" hint-placeholder-val="{{true}}"><span style="font-size: 22px; color: #94B3A1">→</span></sc-if></sc-for></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+      <sc-for list="{{chains}}" as="ch" hint-placeholder-count="4">
+        <div style="background: #FFFFFF; border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+          <span style="display: flex; align-items: center; gap: 8px"><dc-import name="Icon" icon="{{ch.i}}" size="20" color="#17805A" hint-size="20px,20px"></dc-import><b style="font-size: 16px">{{ch.t}}</b></span>
+          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap"><sc-for list="{{ch.steps}}" as="s" hint-placeholder-count="6"><span style="padding: 6px 10px; border-radius: 10px; background: #EEF8F3; font-size: 12.5px; font-weight: 700">{{s}}</span></sc-for></div>
+          <span style="font-size: 12.5px; color: #5F6E67">{{ch.rule}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; font-size: 13.5px; line-height: 1.5; color: #3D4B45">
+    <div style="display: flex; flex-direction: column; gap: 4px"><b style="color: #0B3D2E">Two timestamps, always</b><span>Every transaction stores <b>Happened</b> (date &amp; time of the event) and <b>Recorded</b> (when it was entered), plus Source: voice, manual or a future integration.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><b style="color: #0B3D2E">What counts as spending</b><span>Expenses, EMIs and bills do. Own-account transfers, card bill payments (settlements), investments and loan repayments received do not — so analytics never double-count.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><b style="color: #0B3D2E">Ready for later</b><span>Each object has a <b>source</b> field (manual today; bank/AA, broker, insurer later) and a <b>space</b> field (Personal today; Business or Family later) — no UI clutter until they ship.</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      tabs: [
+        { t: 'Home', i: 'home', q: 'How much do I have, spend, earn — what’s next, what needs me?', items: ['Dashboard', 'Notifications', 'Global search', 'Quick add'] },
+        { t: 'Activity', i: 'list', q: 'Every rupee in, out and between.', items: ['Transaction list', 'Search & filters', 'Detail · edit · delete', 'Add expense / income / transfer'] },
+        { t: 'Upcoming', i: 'calendar', q: 'What’s coming, when, from where.', items: ['Today → Later', 'Financial calendar', 'Event detail', 'Mark paid / remind'] },
+        { t: 'Insights', i: 'insights', q: 'What it means and what I could do.', items: ['Insight feed', 'Ask My Money', 'Cash flow · Net worth', 'Reports · Monthly recap'] },
+        { t: 'My Money', i: 'wallet', q: 'Everything I own, owe and plan.', items: ['Accounts · Cards', 'Loans · EMIs', 'Investments · SIPs', 'Insurance · Bills · Subs', 'Goals · Owed · Documents', 'Profile · Security · Pro'] }
+      ],
+      core: ['Financial object', 'Schedule', 'Upcoming event', 'Notification', 'Transaction', 'Analytics'].map((t, i) => ({ t, arrow: i < 5, s: 'flex: 1; text-align: center; padding: 14px 10px; border-radius: 16px; font-weight: 800; font-size: 15px; ' + (i === 0 ? 'background: #0B3D2E; color: #FFF8F1;' : i === 5 ? 'background: #E9E3FF; color: #2E1F73;' : 'background: #D8F3E5;') })),
+      chains: [
+        { t: 'Credit card', i: 'card', steps: ['Card', 'Transactions', 'Statement', 'Bill', 'Due date', 'Payment', 'Settled'], rule: 'Card spends count when made; the bill payment is a settlement, never a second expense.' },
+        { t: 'SIP', i: 'sip', steps: ['SIP', 'Schedule', 'Upcoming', 'Investment', 'Portfolio'], rule: 'Instalments move money into investments — counted as invested, not spent.' },
+        { t: 'Insurance', i: 'shield', steps: ['Policy', 'Renewal', 'Premium due', 'Payment', 'History', 'Documents'], rule: 'Reminders 30 days before renewal; PDF linked in the vault.' },
+        { t: 'Goal', i: 'goals', steps: ['Goal', 'Target', 'Savings', 'Progress', 'Completion'], rule: 'Contributions stay in a linked account; the goal tracks, it doesn’t move money.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

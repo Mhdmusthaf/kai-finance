@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding — all steps</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="display: flex; gap: 48px; padding: 40px 48px 48px; background: #EEE9DF; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; width: max-content">
+  <sc-for list="{{states}}" as="s" hint-placeholder-count="8">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-family: Nunito, sans-serif; font-size: 20px">{{s.t}}</b><span style="font-size: 13px; color: #5F6E67; max-width: 390px; min-height: 36px">{{s.d}}</span></div>
+      <div style="width: 390px; height: 844px; border-radius: 40px; overflow: hidden; box-shadow: 0 30px 60px -36px rgba(6,36,27,0.55)"><dc-import name="Onboarding" step="{{s.k}}" hint-size="390px,844px"></dc-import></div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3552,"height":1030}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { states: [
+      { k: 'moneyos', t: '2 · What KAI is', d: 'Objects and the chain that connects them — the mental model in one screen.' },
+      { k: 'profile', t: '3 · Name', d: 'One field. Role chips only tune tips and are optional.' },
+      { k: 'currency', t: '4 · Currency', d: 'INR preselected from region; Indian digit grouping.' },
+      { k: 'account', t: '5 · First account', d: 'Manual balance, no bank login required.' },
+      { k: 'goals', t: '6 · Goals', d: 'Pick what matters; amounts come later.' },
+      { k: 'objects', t: '7 · Optional objects', d: 'Turn on reminders now; details can be spoken later.' },
+      { k: 'voice', t: '8 · Voice introduction', d: 'Teach the hero interaction with a real first entry.' },
+      { k: 'done', t: '9 · First transaction', d: 'Instant success, then Home.' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

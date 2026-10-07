@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Financial object list</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; gap: 6px">
+      <a href="MyMoney.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a>
+      <h1 style="flex: 1; margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">{{title}}</h1>
+      <a href="Obj-Add-States.dc.html" aria-label="{{addLabel}}" style="width: 44px; height: 44px; border-radius: 14px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="plus" size="22" color="#3ED1A0" hint-size="22px,22px"></dc-import></a>
+    </div>
+
+    <sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #FFFFFF; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 14px 30px -24px rgba(6,36,27,0.5)">
+          <span style="font-size: 13px; color: #5F6E67">{{totalLabel}}</span>
+          <b style="font-size: 32px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">{{total}}</b>
+          <span style="{{subStyle}}">{{totalSub}}</span>
+          <sc-if value="{{hasSplit}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; height: 12px; border-radius: 999px; overflow: hidden; gap: 3px; margin-top: 4px"><sc-for list="{{split}}" as="s" hint-placeholder-count="5"><span style="{{s.bar}}"></span></sc-for></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px"><sc-for list="{{split}}" as="s" hint-placeholder-count="5"><span style="display: flex; align-items: center; gap: 6px"><span style="{{s.dot}}"></span>{{s.t}} <b>{{s.p}}</b></span></sc-for></div>
+          </sc-if>
+        </div>
+        <sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}"><span style="display: flex; gap: 8px; align-items: flex-start; background: #E9E3FF; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: #2E1F73"><dc-import name="Icon" icon="sparkle" size="16" color="#5B40C9" hint-size="16px,16px"></dc-import><span>{{note}}</span></span></sc-if>
+        <sc-for list="{{sections}}" as="sec" hint-placeholder-count="1">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12.5px; font-weight: 800; color: #5F6E67; letter-spacing: 0.06em; text-transform: uppercase">{{sec.t}}</span>
+            <sc-for list="{{sec.rows}}" as="r" hint-placeholder-count="3">
+              <a href="{{r.href}}" style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border-radius: 20px; padding: 14px; box-shadow: 0 12px 26px -22px rgba(6,36,27,0.45)">
+                <span style="display: flex; align-items: center; gap: 12px">
+                  <span style="{{r.chip}}"><dc-import name="Icon" icon="{{r.i}}" size="20" color="{{r.ic}}" hint-size="20px,20px"></dc-import></span>
+                  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b style="font-size: 15px">{{r.t}}</b><span style="font-size: 12px; color: #5F6E67">{{r.d}}</span></span>
+                  <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><b style="font-size: 15px; font-variant-numeric: tabular-nums">{{r.v}}</b><span style="{{r.tagS}}">{{r.tag}}</span></span>
+                </span>
+                <sc-if value="{{r.hasBar}}" hint-placeholder-val="{{false}}"><div style="height: 8px; border-radius: 999px; background: #EEF3EF"><div style="{{r.bar}}"></div></div></sc-if>
+              </a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 20px">
+        <dc-import name="Scene" scene="{{emptyScene}}" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 22px">{{emptyTitle}}</span>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 310px">{{emptyBody}}</span>
+        <span style="margin-top: 8px; background: #FFFFFF; border-radius: 16px; padding: 12px 14px; font-size: 14px; font-weight: 600; display: flex; gap: 8px; align-items: center"><dc-import name="Icon" icon="mic" size="18" color="#17805A" hint-size="18px,18px"></dc-import>{{emptyVoice}}</span>
+        <a href="Obj-Add-States.dc.html" style="margin-top: 8px; height: 52px; padding: 0 24px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; font-weight: 800">{{addLabel}}</a>
+      </div>
+    </sc-if>
+  </div>
+  <dc-import name="TabBar" active="money" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"kind":{"editor":"enum","options":["accounts","cards","debt","investments","insurance","bills","subs"],"default":"accounts"},"state":{"editor":"enum","options":["default","empty"],"default":"default"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const k = this.props.kind ?? 'accounts';
+    const empty = (this.props.state ?? 'default') === 'empty';
+    const chip = (bg) => 'width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: ' + bg + ';';
+    const tagS = (c, bg) => 'font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; color: ' + c + '; background: ' + bg + ';';
+    const R = (t, d, v, i, href, o) => Object.assign({ t, d, v, i, href, ic: '#17805A', chip: chip('#D8F3E5'), tag: '', tagS: 'display: none;', hasBar: false, bar: '' }, o || {});
+    const tg = (txt, kind) => ({ tag: txt, tagS: kind === 'warn' ? tagS('#9A5B00', '#FFF1DC') : kind === 'bad' ? tagS('#A8361F', '#FFE8E0') : kind === 'ok' ? tagS('#126B4B', '#D8F3E5') : tagS('#5F6E67', '#F2F4F3') });
+    const bar = (p, c) => ({ hasBar: true, bar: 'width: ' + p + '%; height: 100%; border-radius: 999px; background: ' + (c || '#17805A') + ';' });
+    const split = (arr) => arr.map(([t, p, c]) => ({ t, p: p + '%', bar: 'flex: ' + p + '; background: ' + c + ';', dot: 'width: 9px; height: 9px; border-radius: 3px; background: ' + c + ';' }));
+    const D = {
+      accounts: { title: 'Accounts', addLabel: 'Add account', totalLabel: 'Across 4 accounts', total: '₹1,42,500', totalSub: '+₹8,900 since last month', sub: 'ok',
+        sections: [{ t: 'Active', rows: [
+          R('HDFC Savings', 'Primary · ··4410', '₹82,300', 'bank', 'Accounts-Flow.dc.html', tg('Primary', 'ok')),
+          R('SBI Savings', 'Salary account · ··7712', '₹48,200', 'bank', 'Accounts-Flow.dc.html'),
+          R('Paytm Wallet', 'UPI wallet', '₹10,000', 'wallet', 'Accounts-Flow.dc.html'),
+          R('Cash', 'In your wallet', '₹2,000', 'cash', 'Accounts-Flow.dc.html')] },
+          { t: 'Archived · 1', rows: [R('ICICI Savings', 'Closed Aug 2025', '₹0', 'bank', 'Accounts-Flow.dc.html', Object.assign({ ic: '#94A39C', chip: chip('#F2F4F3') }, tg('Archived')))] }],
+        emptyScene: 'home', emptyTitle: 'Add your first account', emptyBody: 'Bank, cash or wallet. Just a name and a balance — no bank login needed.', emptyVoice: '“I have 82,000 in my HDFC savings”' },
+      cards: { title: 'Credit cards', addLabel: 'Add card', totalLabel: 'Owed on 2 cards', total: '₹28,250', totalSub: '₹18,240 due Wed 7 Oct', sub: 'warn',
+        sections: [{ t: 'Your cards', rows: [
+          R('SBI SimplyCLICK ··4021', 'Due 7 Oct · ₹38,160 available', '₹21,840', 'card', 'Accounts-Flow.dc.html', Object.assign({ chip: chip('#0B3D2E'), ic: '#3ED1A0' }, tg('Due in 3 days', 'bad'), bar(36, '#0B3D2E'))),
+          R('HDFC Millennia ··7788', 'Due 18 Oct · ₹93,590 available', '₹6,410', 'card', 'Accounts-Flow.dc.html', Object.assign({ chip: chip('#0B3D2E'), ic: '#3ED1A0' }, tg('Includes EMI'), bar(6, '#0B3D2E')))] }],
+        note: 'Keeping each card under 30% of its limit is a good habit. SBI is at 36% this cycle.',
+        emptyScene: 'cards', emptyTitle: 'No cards yet', emptyBody: 'Add a credit card and KAI tracks its bill, due date and how much of the limit you’re using.', emptyVoice: '“SBI credit card, limit 60,000, due on the 7th”' },
+      debt: { title: 'Loans & EMIs', addLabel: 'Add loan or EMI', totalLabel: 'Still to repay', total: '₹3,69,800', totalSub: '₹16,950 a month across 2', sub: 'muted',
+        sections: [{ t: 'Loans', rows: [R('Car loan · HDFC Bank', '26 of 60 paid · next 15 Oct', '₹3,42,800', 'car', 'Debt-Flow.dc.html', Object.assign({}, tg('₹12,450/mo'), bar(43)))] },
+          { t: 'EMIs', rows: [R('Laptop EMI', '6 of 12 paid · next 10 Oct', '₹27,000', 'laptop', 'Debt-Flow.dc.html', Object.assign({}, tg('₹4,500/mo'), bar(50, '#3ED1A0')))] }],
+        note: 'Your laptop EMI ends in March — monthly commitments drop to ₹12,450.',
+        emptyScene: 'debt', emptyTitle: 'No loans or EMIs', emptyBody: 'Nice and light. If you add one, KAI tracks every payment and shows the finish line.', emptyVoice: '“My laptop EMI is 4,500 for 12 months, due on the 10th”' },
+      investments: { title: 'Investments', addLabel: 'Add investment', totalLabel: 'Current value', total: '₹4,86,300', totalSub: 'Invested ₹4,20,000 · +₹66,300 (+15.8%)', sub: 'ok', hasSplit: true,
+        split: split([['Mutual funds', 52, '#17805A'], ['Stocks', 18, '#3ED1A0'], ['FD', 15, '#B9A4F5'], ['Gold', 8, '#F7A47F'], ['PPF', 7, '#94B3A1']]),
+        sections: [{ t: 'SIPs · ₹8,000 a month', rows: [
+          R('SBI Bluechip SIP', '₹5,000 on the 5th · next tomorrow', '₹68,450', 'sip', 'Invest-Flow.dc.html', tg('+14.1%', 'ok')),
+          R('Parag Parikh Flexi Cap', '₹3,000 on the 20th', '₹41,900', 'sip', 'Invest-Flow.dc.html', tg('+16.4%', 'ok'))] },
+          { t: 'Holdings', rows: [
+            R('Mutual funds · 4', 'Equity & hybrid', '₹2,52,800', 'invest', 'Invest-Flow.dc.html', tg('+17.2%', 'ok')),
+            R('Fixed deposit · SBI', '7.1% · matures Mar 2027', '₹72,900', 'savings', 'Invest-Flow.dc.html', tg('+₹2,900', 'ok'))] }],
+        emptyScene: 'investing', emptyTitle: 'Plant your first seed', emptyBody: 'Add a SIP, FD or fund. KAI shows what you put in, what it’s worth, and how it grows.', emptyVoice: '“I invest 5,000 every month in an SBI mutual fund SIP on the 5th”' },
+      insurance: { title: 'Insurance', addLabel: 'Add policy', totalLabel: 'Total cover', total: '₹1.10 Cr', totalSub: 'Premiums ₹42,600 a year · 3 policies', sub: 'muted',
+        sections: [{ t: 'Policies', rows: [
+          R('HDFC Ergo Optima Secure', 'Health · ₹10L · renews 15 Mar', '₹18,600/yr', 'health', 'Recurring-Flow.dc.html'),
+          R('ICICI Pru iProtect', 'Term life · ₹1 Cr · renews 2 Jun', '₹14,200/yr', 'shield', 'Recurring-Flow.dc.html'),
+          R('Bajaj Allianz · Car', 'Vehicle · renews 22 Dec', '₹9,800/yr', 'car', 'Recurring-Flow.dc.html', tg('In 79 days', 'warn'))] }],
+        note: 'Next renewal: car insurance on 22 Dec. KAI will remind you on 22 Nov.',
+        emptyScene: 'protecting', emptyTitle: 'Keep your cover in one place', emptyBody: 'Add policies so renewals never sneak up on you. Store the PDFs in your vault.', emptyVoice: '“Health insurance from HDFC Ergo for 10 lakh, renewal every March”' },
+      bills: { title: 'Bills', addLabel: 'Add bill', totalLabel: 'Bills this month', total: '₹26,109', totalSub: '₹3,610 still to pay', sub: 'warn',
+        sections: [{ t: 'Due soon', rows: [
+          R('Electricity · BESCOM', 'Tomorrow · HDFC Savings', '₹2,430', 'bolt', 'Recurring-Flow.dc.html', Object.assign({ ic: '#9A5B00', chip: chip('#FFF1DC') }, tg('Tomorrow', 'warn'))),
+          R('Internet · ACT', 'Wed 14 Oct', '₹1,180', 'wifi', 'Recurring-Flow.dc.html', tg('10 days'))] },
+          { t: 'Paid this month', rows: [
+            R('Rent', 'Paid 1 Oct', '₹18,000', 'home', 'Recurring-Flow.dc.html', tg('Paid', 'ok')),
+            R('Maintenance', 'Paid 2 Oct', '₹3,500', 'home', 'Recurring-Flow.dc.html', tg('Paid', 'ok')),
+            R('Water', 'Paid 3 Oct', '₹600', 'drop', 'Recurring-Flow.dc.html', tg('Paid', 'ok')),
+            R('Mobile · Jio', 'Paid 3 Oct', '₹399', 'phone', 'Recurring-Flow.dc.html', tg('Paid', 'ok'))] }],
+        emptyScene: 'relaxing', emptyTitle: 'No bills to worry about', emptyBody: 'Add rent, electricity or internet and KAI reminds you before each one is due.', emptyVoice: '“Electricity bill around 2,000, due on the 5th”' },
+      subs: { title: 'Subscriptions', addLabel: 'Add subscription', totalLabel: 'Every month', total: '₹3,840', totalSub: '₹46,080 a year · 6 subscriptions', sub: 'muted',
+        sections: [{ t: 'Renewing next', rows: [
+          R('Netflix', 'Mon 12 Oct · SBI card', '₹649', 'play', 'Recurring-Flow.dc.html', { ic: '#5B40C9', chip: chip('#E9E3FF') }),
+          R('Adobe Creative Cloud', 'Thu 15 Oct · HDFC card', '₹1,675', 'laptop', 'Recurring-Flow.dc.html', { ic: '#5B40C9', chip: chip('#E9E3FF') }),
+          R('Cult.fit', 'Tue 20 Oct · UPI', '₹1,029', 'health', 'Recurring-Flow.dc.html', { ic: '#5B40C9', chip: chip('#E9E3FF') }),
+          R('iCloud+, Spotify, YouTube', '3 smaller ones', '₹487', 'repeat', 'Recurring-Flow.dc.html', { ic: '#5B40C9', chip: chip('#E9E3FF') })] }],
+        note: 'Adobe is 44% of your subscriptions. Using it every month? If not, it might be worth pausing.',
+        emptyScene: 'relaxing', emptyTitle: 'No subscriptions tracked', emptyBody: 'KAI spots repeating charges and offers to add them — or add your own.', emptyVoice: '“Netflix 649 every month on my SBI card”' }
+    };
+    const d = D[k];
+    const subColor = { ok: '#17805A', warn: '#9A5B00', muted: '#5F6E67' }[d.sub];
+    return Object.assign({ hasSplit: false, split: [], note: '' }, d, {
+      full: !empty, empty, hasNote: !!d.note,
+      subStyle: 'font-size: 13px; font-weight: 700; color: ' + subColor + ';'
+    });
+  }
+}
+</script>
+</body>
+</html>

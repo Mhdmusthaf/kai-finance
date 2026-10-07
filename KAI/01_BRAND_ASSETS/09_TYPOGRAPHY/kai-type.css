@@ -1,0 +1,18 @@
+/* KAI type system — Nunito (display) + Nunito Sans (UI & numbers) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap');
+:root { --kai-font-display: 'Nunito', sans-serif; --kai-font-ui: 'Nunito Sans', sans-serif; }
+.kai-display { font: 800 56px/60px var(--kai-font-display); letter-spacing: -0.02em; }
+.kai-h1 { font: 800 40px/46px var(--kai-font-display); letter-spacing: -0.015em; }
+.kai-h2 { font: 800 32px/38px var(--kai-font-display); letter-spacing: -0.01em; }
+.kai-h3 { font: 700 24px/30px var(--kai-font-display); letter-spacing: -0.005em; }
+.kai-h4 { font: 700 20px/26px var(--kai-font-display); }
+.kai-body-lg { font: 400 18px/28px var(--kai-font-ui); }
+.kai-body { font: 400 16px/24px var(--kai-font-ui); }
+.kai-body-sm { font: 400 14px/20px var(--kai-font-ui); }
+.kai-caption { font: 600 12px/16px var(--kai-font-ui); letter-spacing: 0.01em; }
+.kai-button { font: 700 16px/20px var(--kai-font-ui); letter-spacing: 0.005em; }
+.kai-label { font: 800 12px/16px var(--kai-font-ui); letter-spacing: 0.08em; text-transform: uppercase; }
+.kai-nav { font: 700 12px/16px var(--kai-font-ui); }
+.kai-number { font: 700 20px/24px var(--kai-font-ui); letter-spacing: -0.01em; font-feature-settings: "tnum", "lnum"; }
+.kai-figure { font: 800 40px/44px var(--kai-font-ui); letter-spacing: -0.02em; font-feature-settings: "tnum", "lnum"; }
+.kai-figure .currency { font-size: 0.68em; font-weight: 700; opacity: 0.7; }

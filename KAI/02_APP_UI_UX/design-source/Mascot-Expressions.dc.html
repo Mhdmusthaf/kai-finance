@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Mascot Expressions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1000px; box-sizing: border-box; padding: 64px 72px; background: #FFF8F1; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">05 — Mascot System</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Ten moods, one physical character</h1>
+    </div>
+    <span style="max-width: 540px; font-size: 16px; line-height: 1.55; color: #5F6E67">Rendered in the soft-3D standard: same matte body, same leaf, same glossy eyes, same light. Only eyes, mouth, arms and one small prop change — every mood is the same master component with one setting.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px">
+    <sc-for list="{{moods}}" as="m" hint-placeholder-count="10">
+      <div style="background: radial-gradient(110% 80% at 60% 10%, #FFFFFF 0%, #FBF5EC 60%, #F1E8DA 100%); border-radius: 26px; padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: inset 0 1px 0 #FFFFFF, 0 26px 44px -30px rgba(6,36,27,0.45)">
+        <dc-import name="Mascot" expr="{{m.expr}}" hint-size="190px,190px" style="width: 190px; height: 190px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-size: 19px; font-weight: 800">{{m.n}}</span>
+        <span style="font-size: 13px; color: #5F6E67; text-align: center">{{m.use}}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; font-size: 14px; line-height: 1.55; color: #3D4B45">
+    <div style="display: flex; flex-direction: column; gap: 6px"><b style="color: #0B3D2E">Where KAI appears</b><span>Assistant avatar, voice input, notifications, empty and loading states, onboarding, success, reminders, achievements, social content, stickers, merchandise.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><b style="color: #0B3D2E">Props stay tiny</b><span>Sound waves, a spark, a bell, confetti or “z” — never coins, charts, money bags or devices. KAI never holds money.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><b style="color: #0B3D2E">Concerned, never sad</b><span>KAI flags problems calmly. No tears, no anger, no red. The brows lift; the tone stays helpful.</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { moods: [
+      { expr: 'default', n: 'Default', use: 'Friendly & calm · avatar' },
+      { expr: 'listening', n: 'Listening', use: 'Voice input' },
+      { expr: 'thinking', n: 'Thinking', use: 'Processing · loading' },
+      { expr: 'insight', n: 'Insight', use: 'Found something' },
+      { expr: 'happy', n: 'Happy', use: 'All good · success' },
+      { expr: 'celebrating', n: 'Celebrating', use: 'Goal & milestone' },
+      { expr: 'reminder', n: 'Reminder', use: 'Upcoming bill' },
+      { expr: 'concerned', n: 'Concerned', use: 'Check this · error' },
+      { expr: 'sleeping', n: 'Sleeping', use: 'Idle · empty state' },
+      { expr: 'waving', n: 'Waving', use: 'Hello · onboarding' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

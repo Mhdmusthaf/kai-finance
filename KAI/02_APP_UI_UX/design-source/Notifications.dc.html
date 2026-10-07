@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Notifications</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="{{root}}">
+  <sc-if value="{{push}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div>
+    <div style="position: relative; z-index: 1; padding: 120px 14px 0; display: flex; flex-direction: column; gap: 10px; color: #FFF8F1">
+      <div style="text-align: center; display: flex; flex-direction: column; margin-bottom: 30px"><span style="font-size: 18px; font-weight: 600; opacity: 0.85">Sunday 4 October</span><b style="font-size: 76px; font-weight: 700; line-height: 1; letter-spacing: -0.03em">8:05</b></div>
+      <sc-for list="{{pushes}}" as="p" hint-placeholder-count="3">
+        <div style="display: flex; gap: 10px; background: rgba(255,248,241,0.16); border-radius: 22px; padding: 12px 14px">
+          <span style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(165deg, #1A6A50, #0B3D2E); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 100 100" width="26" height="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFF8F1" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path><path fill="#3ED1A0" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path></svg></span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; justify-content: space-between; font-size: 13px"><b>KAI</b><span style="opacity: 0.7">{{p.time}}</span></span><b style="font-size: 14.5px">{{p.t}}</b><span style="font-size: 13.5px; opacity: 0.9; line-height: 1.35">{{p.d}}</span></span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{center}}" hint-placeholder-val="{{true}}">
+    <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: center; gap: 6px"><a href="Home.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a><h1 style="flex: 1; margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">Notifications</h1><a href="Me-Flow.dc.html" aria-label="Notification settings" style="width: 44px; height: 44px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="sliders" size="20" hint-size="20px,20px"></dc-import></a></div>
+      <sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+          <span style="font-size: 12.5px; font-weight: 800; color: #5F6E67; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 4px">{{g.t}}</span>
+          <sc-for list="{{g.rows}}" as="n" hint-placeholder-count="3">
+            <a href="{{n.href}}" style="{{n.s}}"><span style="{{n.chip}}"><dc-import name="Icon" icon="{{n.i}}" size="18" color="{{n.ic}}" hint-size="18px,18px"></dc-import></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; justify-content: space-between; gap: 8px"><b style="font-size: 14px">{{n.t}}</b><span style="font-size: 11.5px; color: #94A39C; white-space: nowrap">{{n.time}}</span></span><span style="font-size: 13px; color: #3D4B45; line-height: 1.4">{{n.d}}</span><sc-if value="{{n.act}}" hint-placeholder-val="{{false}}"><span style="display: flex; gap: 8px; margin-top: 6px"><span style="height: 34px; padding: 0 14px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; font-size: 12.5px; font-weight: 800">{{n.a1}}</span><span style="height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #E2DCCF; display: flex; align-items: center; font-size: 12.5px; font-weight: 700">{{n.a2}}</span></span></sc-if></span></a>
+          </sc-for>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 40px"><dc-import name="Scene" scene="relaxing" w="300" h="240" hint-size="300px,240px"></dc-import><b style="font-family: Nunito, sans-serif; font-size: 22px">You’re all caught up</b><span style="font-size: 14.5px; color: #3D4B45">KAI only pings you when something actually matters.</span></div>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["center","empty","push"],"default":"center"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'center';
+    const K = { due: ['card', '#A8361F', '#FFE8E0'], sip: ['sip', '#17805A', '#D8F3E5'], ins: ['shield', '#0B3D2E', '#F2F4F3'], ai: ['sparkle', '#5B40C9', '#E9E3FF'], goal: ['flag', '#17805A', '#D8F3E5'], odd: ['alert', '#9A5B00', '#FFF1DC'], sub: ['repeat', '#5B40C9', '#E9E3FF'] };
+    const N = (k, t, d, time, unread, href, a1, a2) => { const [i, ic, bg] = K[k]; return { t, d, time, i, ic, href, act: !!a1, a1: a1 || '', a2: a2 || '',
+      chip: 'width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: ' + bg + ';',
+      s: 'display: flex; gap: 12px; border-radius: 18px; padding: 12px 14px; ' + (unread ? 'background: #FFFFFF; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45); border-left: 0;' : 'background: transparent;') }; };
+    return {
+      root: 'position: relative; width: 390px; height: 844px; overflow: hidden; font-family: \'Nunito Sans\', sans-serif; color: #0B3D2E; background: ' + (st === 'push' ? '#06241B' : '#FCFBF8') + ';',
+      push: st === 'push', center: st !== 'push', full: st === 'center', empty: st === 'empty',
+      groups: [
+        { t: 'New', rows: [
+          N('due', 'SBI card bill due in 3 days', '₹18,240 by Wed 7 Oct. Minimum ₹910.', '9:00 AM', 1, 'Accounts-Flow.dc.html', 'Record payment', 'Remind tomorrow'),
+          N('sip', 'SIP tomorrow', '₹5,000 to SBI Bluechip from HDFC Savings. Balance is fine.', '8:00 AM', 1, 'Invest-Flow.dc.html'),
+          N('ai', 'New insight', 'Dining is up 18% this month. Want to see why?', 'Yesterday', 1, 'Insight-Detail.dc.html')] },
+        { t: 'Earlier', rows: [
+          N('odd', 'Unusual charge?', '₹4,999 at “AMZN Digital” — higher than your usual. Was this you?', 'Fri', 0, 'Tx-Detail.dc.html', 'Yes, it was me', 'Look into it'),
+          N('goal', 'Goa trip hit 80%', '₹10,000 to go. Two more contributions.', 'Fri', 0, 'Goal-Flow.dc.html'),
+          N('sub', 'Cult.fit renews 20 Oct', '₹1,029 on UPI. New since September.', 'Thu', 0, 'Recurring-Flow.dc.html')] }
+      ],
+      pushes: [
+        { t: '₹500 Dinner added ✓', d: 'SBI Credit Card · Food & Dining', time: '8:02 PM' },
+        { t: 'SBI card bill in 3 days', d: '₹18,240 due Wed 7 Oct. Tap to record payment.', time: '9:00 AM' },
+        { t: 'Goa trip is 82% there', d: '₹9,000 to go — on track for 1 Dec.', time: 'Fri' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

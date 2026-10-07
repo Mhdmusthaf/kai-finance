@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Typeface Selection</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;family=Plus+Jakarta+Sans:wght@500;800&amp;family=Sora:wght@500;700&amp;family=Manrope:wght@500;800&amp;family=DM+Sans:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1000px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">Typography · Selection</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Six candidates, one voice.</h1>
+    </div>
+    <span style="max-width: 460px; font-size: 16px; line-height: 1.55; color: #5F6E67">Each face set at the same optical weight and tested on the wordmark, the tagline and an Indian-format rupee figure.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; flex-grow: 1">
+    <sc-for list="{{fonts}}" as="f" hint-placeholder-count="6">
+      <div style="{{f.card}}">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-size: 15px; font-weight: 800">{{f.name}}</span>
+          <span style="{{f.badgeStyle}}">{{f.badge}}</span>
+        </div>
+        <div style="font-family: {{f.ff}}; font-weight: {{f.w}}; font-size: 112px; line-height: 0.9; letter-spacing: -0.03em; color: #0B3D2E">KAI</div>
+        <div style="font-family: {{f.ff}}; font-weight: 500; font-size: 22px; color: #5F6E67">Your Money OS. ₹2,48,000</div>
+        <span style="font-size: 14px; line-height: 1.5; color: #3D4B45">{{f.note}}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; background: #0B3D2E; color: #FFF8F1; border-radius: 24px; padding: 32px 40px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #3ED1A0">Final recommendation</span>
+      <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.015em">The Nunito family — Nunito for the voice, Nunito Sans for the numbers.</span>
+    </div>
+    <span style="font-size: 15px; line-height: 1.6; color: #D8F3E5">One superfamily, one designer’s skeleton. Nunito’s rounded terminals give the wordmark its subtle cuteness; its geometric construction keeps it serious. Nunito Sans shares every proportion with squared terminals and tabular figures, so long-form UI text and ₹ amounts stay crisp at 12 px. Sora, Manrope and DM Sans read too technical or neutral; Plus Jakarta is strong but corporate.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const base = 'display: flex; flex-direction: column; gap: 14px; padding: 24px 26px; border-radius: 20px; ';
+    const pick = base + 'background: #D8F3E5; border: 2px solid #17805A;';
+    const other = base + 'background: #FFFFFF; border: 1px solid #E8E5DD;';
+    const b = 'font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; ';
+    const f = (name, ff, w, note, win, badge) => ({ name, ff, w, note, card: win ? pick : other, badge, badgeStyle: b + (win ? 'background: #17805A; color: #FFFFFF;' : 'background: #F2F4F3; color: #5F6E67;') });
+    return { fonts: [
+      f('Nunito · 800', "Nunito, sans-serif", 800, 'Rounded terminals, geometric bones. Friendly without being a cartoon. Strongest match to the mascot’s soft forms.', true, 'Wordmark'),
+      f('Nunito Sans · 800', "'Nunito Sans', sans-serif", 800, 'Same proportions, squared terminals. Too flat for the wordmark, ideal for UI text and tabular numbers.', true, 'UI & numbers'),
+      f('Plus Jakarta Sans', "'Plus Jakarta Sans', sans-serif", 800, 'Polished and modern, but reads like a bank or B2B SaaS. Loses the companion warmth.', false, 'Runner-up'),
+      f('Sora', "Sora, sans-serif", 700, 'Wide and techy. Pushes KAI toward crypto / sci-fi territory the brief rules out.', false, 'Too futuristic'),
+      f('Manrope', "Manrope, sans-serif", 800, 'Clean and legible, but neutral. The A feels sharp next to a soft round mascot.', false, 'Too neutral'),
+      f('DM Sans', "'DM Sans', sans-serif", 700, 'Geometric and calm, slightly generic — widely used across AI start-ups.', false, 'Too generic')
+    ] };
+  }
+}
+</script>
+</body>
+</html>

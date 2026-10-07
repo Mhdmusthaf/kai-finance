@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI App — 3D scene library</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1560px; box-sizing: border-box; padding: 56px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">KAI App · Emotional states</span><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">22 scenes, one character</h1></div>
+    <span style="max-width: 560px; font-size: 16px; line-height: 1.55; color: #5F6E67">Each scene is the approved 3D mascot plus one soft-3D prop. Screens pick a scene by name, so every empty, loading, success and emotional moment stays in the same world.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+    <sc-for list="{{scenes}}" as="s" hint-placeholder-count="22">
+      <div style="background: radial-gradient(110% 80% at 60% 10%, #FFFFFF 0%, #FBF5EC 60%, #F1E8DA 100%); border-radius: 22px; padding: 10px 10px 14px; display: flex; flex-direction: column; align-items: center; gap: 2px; box-shadow: 0 20px 36px -28px rgba(6,36,27,0.5)">
+        <dc-import name="Scene" scene="{{s.k}}" w="210" h="168" hint-size="210px,168px"></dc-import>
+        <b style="font-size: 14.5px">{{s.t}}</b>
+        <span style="font-size: 12px; color: #5F6E67; text-align: center">{{s.u}}</span>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = [['welcome', 'Welcome', 'Onboarding, splash'], ['home', 'Default · wallet', 'Home hero'], ['emptyWallet', 'Waiting', 'No transactions'], ['listening', 'Listening', 'Voice'], ['processing', 'Processing', 'Loading, voice'], ['thinking', 'Thinking', 'AI, no insights yet'],
+      ['ask', 'Insight · ask', 'Ask My Money'], ['success', 'Successful', 'Saved, settled, paid'], ['celebrating', 'Celebrating', 'Goal complete, Pro'], ['encouraging', 'Encouraging', 'Streaks, nudges'], ['savings', 'Saving', 'Goals, savings'], ['investing', 'Investing', 'Portfolio, net worth'],
+      ['goals', 'Goal-setting', 'Goals empty'], ['organizing', 'Organizing', 'Vault, accounts'], ['emptyDocs', 'Empty folder', 'Vault empty'], ['protecting', 'Protecting', 'Security, insurance, lock'], ['cards', 'Cards', 'Credit cards'], ['bills', 'Reminder', 'Bills, upcoming'],
+      ['debt', 'Paying down', 'Loans & EMIs'], ['relaxing', 'Relaxing', 'Nothing due, all square'], ['concerned', 'Concerned', 'Errors, deletes'], ['recap', 'Recap', 'Monthly story']];
+    return { scenes: S.map(([k, t, u]) => ({ k, t, u })) };
+  }
+}
+</script>
+</body>
+</html>

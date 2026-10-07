@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Sign in, lock and permissions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+</style>
+</helmet>
+<div style="{{root}}">
+  <sc-if value="{{dark}}" hint-placeholder-val="{{false}}"><div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="dark" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div></sc-if>
+  <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column">
+
+    <sc-if value="{{m_signup}}" hint-placeholder-val="{{true}}">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 16px">
+        <div style="width: 96px; height: 96px; margin-left: -10px"><dc-import name="Mascot" expr="waving" shadow="{{false}}" hint-size="96px,96px"></dc-import></div>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 30px; line-height: 1.1; letter-spacing: -0.02em">Create your KAI account</span>
+        <span style="font-size: 15px; color: #5F6E67; margin-top: -6px">So your money stays safe across devices.</span>
+        <label style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px"><span style="font-size: 13px; font-weight: 700; color: #5F6E67">Mobile number</span><span style="display: flex; align-items: center; height: 58px; border-radius: 16px; border: 2px solid #17805A; background: #FFFFFF; padding: 0 16px; gap: 10px"><b style="font-size: 17px">+91</b><span style="width: 1px; height: 24px; background: #E2DCCF"></span><input type="tel" value="98765 43210" style="border: none; outline: none; font-family: inherit; font-size: 18px; font-weight: 700; color: #0B3D2E; flex: 1; min-width: 0; background: transparent"></span></label>
+        <a href="Auth-States.dc.html" style="height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800">Send code</a>
+        <div style="display: flex; align-items: center; gap: 10px; color: #94A39C; font-size: 12px; font-weight: 700"><span style="flex: 1; height: 1px; background: #E6E1D6"></span>OR<span style="flex: 1; height: 1px; background: #E6E1D6"></span></div>
+        <button type="button" style="height: 54px; border-radius: 999px; border: 1.5px solid #E2DCCF; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; color: #0B3D2E">Continue with Apple</button>
+        <button type="button" style="height: 54px; border-radius: 999px; border: 1.5px solid #E2DCCF; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; color: #0B3D2E">Continue with Google</button>
+        <button type="button" style="height: 44px; border: none; background: transparent; font-family: inherit; font-size: 14px; font-weight: 700; color: #17805A">Use email instead</button>
+      </div>
+      <span style="font-size: 12px; color: #5F6E67; text-align: center; line-height: 1.5">By continuing you agree to the <a href="#" style="color: #17805A; font-weight: 700">Terms</a> and <a href="Me-Flow.dc.html" style="color: #17805A; font-weight: 700">Privacy promise</a>.</span>
+    </sc-if>
+
+    <sc-if value="{{m_otp}}" hint-placeholder-val="{{false}}">
+      <a href="Auth.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 14px; padding-top: 10px">
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.15">Enter the code</span>
+        <span style="font-size: 15px; color: #5F6E67">Sent to +91 98765 •••10 · <a href="Auth.dc.html" style="color: #17805A; font-weight: 700">Change</a></span>
+        <div style="display: flex; gap: 8px; margin-top: 10px"><sc-for list="{{otp}}" as="o" hint-placeholder-count="6"><span style="{{o.s}}">{{o.v}}</span></sc-for></div>
+        <span style="font-size: 13px; color: #5F6E67">Reading the code from your messages automatically… <b style="color: #0B3D2E">Resend in 0:24</b></span>
+      </div>
+      <a href="Auth-States.dc.html" style="height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800">Verify</a>
+    </sc-if>
+
+    <sc-if value="{{m_lock}}" hint-placeholder-val="{{false}}">
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; color: #FFF8F1">
+        <dc-import name="Scene" scene="protecting" w="300" h="240" dark="{{true}}" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 28px">Welcome back, Aditi</span>
+        <span style="font-size: 14.5px; color: #94B3A1">KAI is locked to keep your money private.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <a href="Home.dc.html" style="height: 58px; border-radius: 999px; background: #3ED1A0; color: #0B3D2E; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 800"><dc-import name="Icon" icon="scan" size="22" color="#0B3D2E" hint-size="22px,22px"></dc-import>Unlock with Face ID</a>
+        <a href="Auth-States.dc.html" style="height: 48px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #D8F3E5">Use PIN instead</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{m_pin}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 10px">
+        <div style="width: 84px; height: 84px"><dc-import name="Mascot" expr="default" shadow="{{false}}" hint-size="84px,84px"></dc-import></div>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 24px">Set a 4-digit PIN</span>
+        <span style="font-size: 14px; color: #5F6E67">A backup for when Face ID can’t see you.</span>
+        <div style="display: flex; gap: 16px; margin-top: 18px"><sc-for list="{{pinDots}}" as="p" hint-placeholder-count="4"><span style="{{p}}"></span></sc-for></div>
+      </div>
+      <div style="margin-top: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; padding: 0 18px">
+        <sc-for list="{{keys}}" as="k" hint-placeholder-count="12"><button type="button" aria-label="{{k.a}}" style="{{k.s}}">{{k.t}}</button></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{m_expired}}" hint-placeholder-val="{{false}}">
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px">
+        <dc-import name="Scene" scene="protecting" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">Please sign in again</span>
+        <span style="font-size: 15px; line-height: 1.5; color: #3D4B45; max-width: 300px">For your safety, KAI signs out after 30 days away. Your data is safe and waiting.</span>
+      </div>
+      <a href="Auth.dc.html" style="height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800">Sign in</a>
+    </sc-if>
+
+    <sc-if value="{{m_perm}}" hint-placeholder-val="{{false}}">
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding-top: 20px">
+        <dc-import name="Scene" scene="{{permScene}}" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px; line-height: 1.15">{{permTitle}}</span>
+        <span style="font-size: 15px; line-height: 1.5; color: #3D4B45; max-width: 310px">{{permBody}}</span>
+        <div style="align-self: stretch; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; text-align: left">
+          <sc-for list="{{permPoints}}" as="p" hint-placeholder-count="3"><span style="display: flex; gap: 10px; align-items: center; background: #FFFFFF; border-radius: 14px; padding: 12px 14px; font-size: 14px; font-weight: 600"><dc-import name="Icon" icon="check" size="18" color="#17805A" hint-size="18px,18px"></dc-import>{{p}}</span></sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <a href="Auth-States.dc.html" style="height: 56px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800">{{permCta}}</a>
+        <a href="Onboarding.dc.html" style="height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #5F6E67">Not now</a>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["signup","otp","lock","pin","expired","mic","notifications"],"default":"signup"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const m = this.props.mode ?? 'signup';
+    const dark = m === 'lock';
+    const digits = ['4', '8', '2', '', '', ''];
+    const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'bio', '0', 'del'];
+    const perm = m === 'mic' ? {
+      permScene: 'listening', permTitle: 'Let KAI hear you', permCta: 'Allow microphone',
+      permBody: 'Voice is the fastest way to log money. Your phone will ask for permission next.',
+      permPoints: ['Only listens while you hold the button', 'Audio is turned into text, then discarded', 'You can switch it off anytime in Settings']
+    } : {
+      permScene: 'bills', permTitle: 'Reminders that actually help', permCta: 'Allow notifications',
+      permBody: 'A heads-up before bills, EMIs, SIPs and card dues — never spam, never ads.',
+      permPoints: ['Due-date reminders, a day or more ahead', 'Quiet hours by default, 10 PM – 8 AM', 'Choose exactly what you hear about']
+    };
+    return Object.assign({
+      root: 'position: relative; width: 390px; height: 844px; overflow: hidden; font-family: \'Nunito Sans\', sans-serif; color: #0B3D2E; background: ' + (dark ? '#06241B' : '#FCFBF8') + ';',
+      dark, m_signup: m === 'signup', m_otp: m === 'otp', m_lock: dark, m_pin: m === 'pin', m_expired: m === 'expired', m_perm: m === 'mic' || m === 'notifications',
+      otp: digits.map((v, i) => ({ v, s: 'flex: 1; height: 58px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; background: #FFFFFF; ' + (i === 3 ? 'border: 2px solid #17805A;' : 'border: 1.5px solid #E2DCCF;') })),
+      pinDots: [1, 1, 0, 0].map((f) => 'width: 16px; height: 16px; border-radius: 50%; box-sizing: border-box; ' + (f ? 'background: #0B3D2E;' : 'border: 2px solid #CFC9BC;')),
+      keys: keys.map((k) => ({ t: k === 'bio' ? '◎' : k === 'del' ? '⌫' : k, a: k === 'bio' ? 'Use Face ID' : k === 'del' ? 'Delete' : k,
+        s: 'height: 64px; border-radius: 50%; border: none; font-family: Nunito, sans-serif; font-size: 26px; font-weight: 800; color: #0B3D2E; background: ' + (k === 'bio' || k === 'del' ? 'transparent' : '#FFFFFF') + ';' + (k === 'bio' || k === 'del' ? '' : ' box-shadow: 0 8px 16px -14px rgba(6,36,27,0.5);') }))
+    }, perm);
+  }
+}
+</script>
+</body>
+</html>

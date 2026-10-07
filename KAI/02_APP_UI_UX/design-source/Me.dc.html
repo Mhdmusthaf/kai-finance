@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Profile, settings, security and privacy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 6px"><a href="{{backHref}}" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">{{title}}</h1></div>
+
+    <sc-if value="{{m_profile}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 22px; padding: 14px; box-shadow: 0 12px 26px -22px rgba(6,36,27,0.45)">
+        <span style="width: 64px; height: 64px; border-radius: 50%; background: #E9E3FF; color: #5B40C9; display: flex; align-items: center; justify-content: center; font-family: Nunito, sans-serif; font-weight: 800; font-size: 24px">AR</span>
+        <span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 17px">Aditi Rao</b><span style="font-size: 13px; color: #5F6E67">+91 98765 •••10 · Personal</span></span>
+        <span style="font-size: 11.5px; font-weight: 800; color: #5B40C9; background: #E9E3FF; border-radius: 999px; padding: 4px 10px">PRO</span>
+      </div>
+      <a href="Pro-Flow.dc.html" style="position: relative; border-radius: 22px; overflow: hidden"><div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="forest" orbs="{{false}}" ribbon="{{false}}" hint-size="100%,100%"></dc-import></div><span style="position: relative; z-index: 1; display: flex; align-items: center; gap: 4px; padding: 6px 16px 6px 4px; color: #FFF8F1"><dc-import name="Scene" scene="encouraging" w="90" h="72" dark="{{true}}" hint-size="90px,72px"></dc-import><span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 15px">KAI Pro · yearly</b><span style="font-size: 12.5px; color: #94B3A1">Renews 4 Sep 2027 · manage</span></span><dc-import name="Icon" icon="chevron" size="18" color="#3ED1A0" hint-size="18px,18px"></dc-import></span></a>
+    </sc-if>
+
+    <sc-if value="{{m_security}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; align-items: center; gap: 4px; background: linear-gradient(120deg, #EEFBF4, #D8F3E5); border-radius: 22px; padding: 6px 16px 6px 4px"><dc-import name="Scene" scene="protecting" w="110" h="88" hint-size="110px,88px"></dc-import><span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">Your money is locked tight</b><span style="font-size: 12.5px; color: #3D4B45; line-height: 1.4">Face ID, a backup PIN and encryption on every device.</span></span></div>
+    </sc-if>
+
+    <sc-if value="{{m_privacy}}" hint-placeholder-val="{{false}}">
+      <div style="background: #0B3D2E; color: #FFF8F1; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <b style="font-family: Nunito, sans-serif; font-size: 18px">KAI’s privacy promise</b>
+        <sc-for list="{{promise}}" as="p" hint-placeholder-count="4"><span style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #D8F3E5"><dc-import name="Icon" icon="check" size="16" color="#3ED1A0" hint-size="16px,16px"></dc-import>{{p}}</span></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-for list="{{sections}}" as="sec" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12px; font-weight: 800; color: #5F6E67; letter-spacing: 0.06em; text-transform: uppercase; padding-left: 4px">{{sec.t}}</span>
+        <div style="background: #FFFFFF; border-radius: 20px; padding: 0 14px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)">
+          <sc-for list="{{sec.rows}}" as="r" hint-placeholder-count="4">
+            <a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-bottom: 1px solid #F2EFE8">
+              <dc-import name="Icon" icon="{{r.i}}" size="20" color="{{r.ic}}" hint-size="20px,20px"></dc-import>
+              <span style="flex: 1; display: flex; flex-direction: column; padding: 8px 0"><b style="{{r.ts}}">{{r.t}}</b><sc-if value="{{r.hasSub}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; color: #5F6E67">{{r.sub}}</span></sc-if></span>
+              <sc-if value="{{r.isToggle}}" hint-placeholder-val="{{false}}"><span style="{{r.sw}}"><span style="{{r.knob}}"></span></span></sc-if>
+              <sc-if value="{{r.isValue}}" hint-placeholder-val="{{true}}"><span style="font-size: 13px; color: #5F6E67">{{r.v}}</span><dc-import name="Icon" icon="chevron" size="16" color="#B9C4BF" hint-size="16px,16px"></dc-import></sc-if>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["profile","settings","security","privacy","help"],"default":"profile"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const m = this.props.mode ?? 'profile';
+    const R = (i, t, v, href, o) => Object.assign({ i, t, v: v || '', href: href || 'Me-Flow.dc.html', ic: '#17805A', ts: 'font-size: 14.5px;', sub: '', hasSub: false, isToggle: false, isValue: true }, o || {});
+    const T = (i, t, on, sub) => R(i, t, '', 'Me-Flow.dc.html', { isToggle: true, isValue: false, sub: sub || '', hasSub: !!sub, sw: 'width: 48px; height: 30px; border-radius: 999px; position: relative; flex-shrink: 0; background: ' + (on ? '#17805A' : '#DCD8CF') + ';', knob: 'position: absolute; top: 3px; ' + (on ? 'right: 3px;' : 'left: 3px;') + ' width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF;' });
+    const danger = { ic: '#A8361F', ts: 'font-size: 14.5px; color: #A8361F;' };
+    const S = {
+      profile: ['Me', 'Home.dc.html', [
+        { t: 'Your money', rows: [R('user', 'Profile & preferences', 'Aditi'), R('bell', 'Notifications', '6 types on'), R('globe', 'Currency & language', '₹ · English')] },
+        { t: 'Safety', rows: [R('lock', 'Security', 'Face ID'), R('shield', 'Privacy & data', ''), R('device', 'Devices', '2 signed in')] },
+        { t: 'KAI', rows: [R('help', 'Help & support', ''), R('info', 'About KAI', 'v1.0'), R('logout', 'Sign out', '', 'Auth.dc.html', danger)] }]],
+      settings: ['Settings', 'Me.dc.html', [
+        { t: 'Preferences', rows: [R('globe', 'Currency', 'INR ₹'), R('chat', 'Language', 'English'), R('calendar', 'Week starts on', 'Monday'), R('moon', 'Appearance', 'System')] },
+        { t: 'Notifications', rows: [T('card', 'Due dates', true, 'Bills, EMIs, card dues'), T('sip', 'SIPs & renewals', true), T('sparkle', 'Insights', true, 'At most 2 a week'), T('moon', 'Quiet hours', true, '10 PM – 8 AM')] },
+        { t: 'Voice', rows: [T('mic', 'Hold-to-talk', true), R('globe', 'Voice language', 'English + Hindi')] }]],
+      security: ['Security', 'Me.dc.html', [
+        { t: 'Unlock', rows: [T('scan', 'Face ID', true), R('key', 'Change PIN', ''), R('clock', 'Lock after', '5 minutes'), T('eye', 'Hide amounts in app switcher', true)] },
+        { t: 'Sessions', rows: [R('device', 'iPhone 15 · this device', 'Now'), R('device', 'Pixel 8', 'Active 2 days ago'), R('logout', 'Sign out other devices', '', 'Me-Flow.dc.html', danger)] },
+        { t: 'Recovery', rows: [R('phone', 'Recovery phone', '+91 ••••10'), R('key', 'Recovery code', 'Saved Sep 2025')] }]],
+      privacy: ['Privacy & data', 'Me.dc.html', [
+        { t: 'What KAI uses', rows: [R('list', 'What’s stored', 'See it all'), R('sparkle', 'AI processing', 'On · explained'), R('mic', 'Voice recordings', 'Not kept')] },
+        { t: 'Permissions', rows: [R('mic', 'Microphone', 'Allowed'), R('bell', 'Notifications', 'Allowed'), R('camera', 'Camera (scanning)', 'Ask each time')] },
+        { t: 'Your data', rows: [R('download', 'Export everything', 'CSV + PDFs'), R('trash', 'Delete account & data', '', 'Me-Flow.dc.html', danger)] }]],
+      help: ['Help & support', 'Me.dc.html', [
+        { t: 'Get help', rows: [R('chat', 'Chat with support', 'Replies in ~2 hrs'), R('help', 'Help centre', ''), R('mic', 'Voice tips', '')] },
+        { t: 'About', rows: [R('info', 'About KAI', 'Version 1.0'), R('doc', 'Terms', ''), R('shield', 'Privacy policy', ''), R('star', 'Rate KAI', '')] }]]
+    }[m];
+    return {
+      title: S[0], backHref: S[1], sections: S[2],
+      m_profile: m === 'profile', m_security: m === 'security', m_privacy: m === 'privacy',
+      promise: ['Your data is encrypted and never sold — not to banks, not to advertisers.', 'No ads, ever. KAI is paid for by KAI Pro.', 'Voice is turned into text, then the audio is discarded.', 'Export or delete everything, anytime, in two taps.']
+    };
+  }
+}
+</script>
+</body>
+</html>

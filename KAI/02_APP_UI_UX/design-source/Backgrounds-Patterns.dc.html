@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Backgrounds and Patterns</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1200px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">10 — Backgrounds</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Calm grounds</h1>
+    </div>
+    <span style="max-width: 520px; font-size: 16px; line-height: 1.55; color: #5F6E67">Flat colour first. Gradients only move between neighbouring tones of one family — never across hues, never neon.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+    <sc-for list="{{bgs}}" as="b" hint-placeholder-count="10">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div style="{{b.css}}"></div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 14px">{{b.n}}</b><span style="font-size: 12px; color: #5F6E67">{{b.spec}}</span></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+    <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">11 — Patterns</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="height: 330px; border-radius: 24px; overflow: hidden; background: #FFF8F1; border: 1px solid #ECE7DC">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-label="Leaf scatter pattern">
+            <defs>
+              <pattern id="kaiLeafPat" width="96" height="96" patternUnits="userSpaceOnUse">
+                <path d="M20 40 C16 22 30 12 50 12 C53 30 41 42 20 40 Z" fill="#D8F3E5"></path>
+                <path d="M68 88 C64 70 78 60 98 60 C101 78 89 90 68 88 Z" fill="#D8F3E5" transform="rotate(180 82 74)"></path>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#kaiLeafPat)"></rect>
+          </svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">Leaf Field</b><span style="font-size: 13px; color: #5F6E67">The mascot’s leaf, Soft Green on Cream. Packaging, web hero, presentation covers.</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="height: 330px; border-radius: 24px; overflow: hidden; background: #0B3D2E">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-label="Seed grid pattern">
+            <defs>
+              <pattern id="kaiSeedPat" width="64" height="64" patternUnits="userSpaceOnUse">
+                <g transform="translate(16 14) scale(0.32)" fill="none" stroke="#3ED1A0" stroke-opacity="0.22" stroke-width="5">
+                  <circle cx="50" cy="62" r="34"></circle>
+                  <path d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path>
+                </g>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#kaiSeedPat)"></rect>
+          </svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">Seed Grid</b><span style="font-size: 13px; color: #5F6E67">Outlined monogram at 22% Mint on Forest. Merchandise linings, social backgrounds.</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="height: 330px; border-radius: 24px; overflow: hidden; background: radial-gradient(120% 90% at 80% 10%, #145C45 0%, #0B3D2E 45%, #06241B 100%)">
+          <svg viewBox="0 0 440 330" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Flow curves pattern">
+            <g fill="none" stroke="#3ED1A0" stroke-linecap="round">
+              <path d="M-20 280 C120 300 240 220 300 120 S420 20 470 40" stroke-opacity="0.5" stroke-width="2"></path>
+              <path d="M-20 300 C130 318 260 240 320 140 S430 50 470 70" stroke-opacity="0.28" stroke-width="2"></path>
+              <path d="M-20 320 C140 336 280 260 340 160 S440 80 470 100" stroke-opacity="0.14" stroke-width="2"></path>
+            </g>
+          </svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">Flow Lines</b><span style="font-size: 13px; color: #5F6E67">The orbit line from the hero, three strokes max. Voice, video end-cards, dark heroes.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const b = (n, spec, bg, border) => ({ n, spec, css: 'height: 170px; border-radius: 20px; background: ' + bg + ';' + (border ? ' border: 1px solid #ECE7DC;' : '') });
+    return { bgs: [
+      b('Cream', '#FFF8F1 · default brand canvas', '#FFF8F1', true),
+      b('White', '#FFFFFF · product & documents', '#FFFFFF', true),
+      b('Forest Green', '#0B3D2E · statements, CTAs', '#0B3D2E'),
+      b('Dark Green', '#06241B · dark mode, video', '#06241B'),
+      b('Mint', '#3ED1A0 · rare, celebratory', '#3ED1A0'),
+      b('Soft Green', 'Soft Green → Cream, 160°', 'linear-gradient(160deg, #D8F3E5 0%, #FFF8F1 100%)', true),
+      b('Lavender', 'Soft Purple → Cream · AI insight', 'linear-gradient(160deg, #E9E3FF 0%, #FFF8F1 100%)', true),
+      b('Peach', '#FFF0E8 → Cream · reminders', 'linear-gradient(160deg, #FFE6DA 0%, #FFF8F1 100%)', true),
+      b('Neutral Gray', '#F2F4F3 · UI surfaces', '#F2F4F3', true),
+      b('Premium Dark', 'Radial #145C45 → #0B3D2E → #06241B', 'radial-gradient(120% 90% at 80% 10%, #145C45 0%, #0B3D2E 45%, #06241B 100%)')
+    ] };
+  }
+}
+</script>
+</body>
+</html>

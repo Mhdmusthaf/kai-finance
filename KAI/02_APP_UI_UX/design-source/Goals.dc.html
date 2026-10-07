@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Goals</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 6px">
+      <a href="MyMoney.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a>
+      <h1 style="flex: 1; margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">Goals</h1>
+      <a href="Achievements.dc.html" aria-label="Achievements" style="width: 44px; height: 44px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="star" size="20" color="#D9895A" hint-size="20px,20px"></dc-import></a>
+      <a href="Goal.dc.html" aria-label="New goal" style="width: 44px; height: 44px; border-radius: 14px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="plus" size="22" color="#3ED1A0" hint-size="22px,22px"></dc-import></a>
+    </div>
+    <sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 40px -26px rgba(6,36,27,0.45)">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="creamMint" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; padding: 16px 18px; display: grid; grid-template-columns: minmax(0, 1fr) 128px; align-items: center">
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #3D4B45">Saved towards goals</span><b style="font-size: 28px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">₹1,61,000</b><span style="font-size: 12.5px; font-weight: 700; color: #126B4B">+₹18,000 this month</span></div>
+            <dc-import name="Scene" scene="savings" w="132" h="106" hint-size="132px,106px"></dc-import>
+          </div>
+        </div>
+        <sc-for list="{{goals}}" as="g" hint-placeholder-count="3">
+          <a href="{{g.href}}" style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border-radius: 22px; padding: 16px; box-shadow: 0 12px 26px -22px rgba(6,36,27,0.45)">
+            <span style="display: flex; align-items: center; gap: 12px"><span style="{{g.chip}}"><dc-import name="Icon" icon="{{g.i}}" size="22" color="{{g.ic}}" hint-size="22px,22px"></dc-import></span><span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 15.5px">{{g.t}}</b><span style="font-size: 12.5px; color: #5F6E67">{{g.d}}</span></span><b style="{{g.pctS}}">{{g.p}}</b></span>
+            <div style="height: 10px; border-radius: 999px; background: #EEF3EF"><div style="{{g.bar}}"></div></div>
+            <span style="display: flex; justify-content: space-between; font-size: 12.5px"><b style="font-variant-numeric: tabular-nums">{{g.v}}</b><span style="{{g.statusS}}">{{g.s}}</span></span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 30px">
+        <dc-import name="Scene" scene="goals" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 22px">What are you saving for?</span>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 300px">A trip, a laptop, a safety net. Give it a name and a number — KAI works out the monthly step.</span>
+        <a href="Goal.dc.html" style="margin-top: 10px; height: 52px; padding: 0 24px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; font-weight: 800">Create a goal</a>
+      </div>
+    </sc-if>
+  </div>
+  <dc-import name="TabBar" active="money" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["default","empty"],"default":"default"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'default';
+    const G = (t, d, v, p, s, i, col, kind, href) => ({ t, d, v, p: p + '%', s, i, href, ic: col, chip: 'width: 46px; height: 46px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: ' + (kind === 'done' ? '#FFE6DA' : '#D8F3E5') + ';',
+      bar: 'width: ' + p + '%; height: 100%; border-radius: 999px; background: ' + (kind === 'done' ? 'linear-gradient(90deg, #F7A47F, #D9895A)' : kind === 'behind' ? '#E0A030' : 'linear-gradient(90deg, #3ED1A0, #17805A)') + ';',
+      pctS: 'font-size: 18px; color: ' + (kind === 'done' ? '#D9895A' : '#17805A') + ';',
+      statusS: 'font-weight: 700; color: ' + (kind === 'behind' ? '#9A5B00' : kind === 'done' ? '#A8361F' : '#126B4B') + ';' });
+    return {
+      full: st !== 'empty', empty: st === 'empty',
+      goals: [
+        G('Goa trip', 'By 15 Dec · from HDFC Savings', '₹41,000 of ₹50,000', 82, 'On track · ₹4,500/mo', 'plane', '#17805A', 'ok', 'Goal-Flow.dc.html'),
+        G('Emergency fund', 'By Jun 2027 · SBI Savings', '₹1,20,000 of ₹3,00,000', 40, 'Needs ₹15,000/mo · ₹2,000 behind', 'shield', '#17805A', 'behind', 'Goal-Flow.dc.html'),
+        G('Parents’ anniversary gift', 'Completed 12 Sep', '₹25,000 of ₹25,000', 100, 'Done ✓', 'gift', '#D9895A', 'done', 'Goal-Flow.dc.html')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

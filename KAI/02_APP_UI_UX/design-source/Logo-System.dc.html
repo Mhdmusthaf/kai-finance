@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Logo System</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1100px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">04 — Logo System</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Six approved lockups</h1>
+    </div>
+    <span style="max-width: 480px; font-size: 16px; line-height: 1.55; color: #5F6E67">The mascot always sits to the left of, or above, the wordmark. Its height equals the wordmark cap height × 1.6 in horizontal lockups.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; flex-grow: 1">
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 12px">
+        <dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="150px,150px" style="width: 150px; height: 150px"></dc-import>
+        <div style="display: flex; flex-direction: column">
+          <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 96px; line-height: 0.9; letter-spacing: -0.035em">KAI</span>
+          <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 21px; color: #5F6E67; margin-top: 6px">Your Money OS.</span>
+        </div>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>A · Primary</b><span style="color: #5F6E67">KAI_Logo_Primary</span></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 10px">
+        <dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="140px,140px" style="width: 140px; height: 140px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 104px; line-height: 0.9; letter-spacing: -0.035em">KAI</span>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>B · Horizontal</b><span style="color: #5F6E67">KAI_Logo_Horizontal</span></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center">
+        <dc-import name="Mascot" render="flat" shadow="{{false}}" hint-size="160px,160px" style="width: 160px; height: 160px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 84px; line-height: 0.9; letter-spacing: -0.035em">KAI</span>
+        <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 19px; color: #5F6E67; margin-top: 8px">Your Money OS.</span>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>C · Stacked</b><span style="color: #5F6E67">KAI_Logo_Stacked</span></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center">
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 150px; line-height: 0.9; letter-spacing: -0.035em">KAI</span>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>D · Wordmark</b><span style="color: #5F6E67">KAI_Wordmark</span></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center">
+        <dc-import name="Mascot" render="flat" hint-size="260px,260px" style="width: 260px; height: 260px"></dc-import>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>E · Mascot</b><span style="color: #5F6E67">KAI_Mascot</span></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #ECE7DC; border-radius: 24px; display: flex; flex-direction: column">
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 40px">
+        <svg viewBox="0 0 100 100" width="190" height="190" xmlns="http://www.w3.org/2000/svg" aria-label="KAI monogram">
+          <path fill="#0B3D2E" fill-rule="evenodd" d="M16 62 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 Z M35 62 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z M55 61 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0 Z"></path>
+          <path fill="#22A06B" d="M52 27 C48 10 63 1 84 3 C86 21 73 31 52 27 Z"></path>
+        </svg>
+        <span style="font-size: 14px; line-height: 1.5; color: #5F6E67; max-width: 150px">“The Seed.” Body, leaf and eyes — the mascot reduced to three shapes.</span>
+      </div>
+      <div style="padding: 16px 22px; border-top: 1px solid #F0ECE3; display: flex; justify-content: space-between; font-size: 14px"><b>F · Monogram</b><span style="color: #5F6E67">KAI_Monogram</span></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

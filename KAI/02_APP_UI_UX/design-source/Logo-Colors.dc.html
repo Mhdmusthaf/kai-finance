@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Logo Colour Variations</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1600px; height: 1100px; box-sizing: border-box; padding: 64px 72px; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #17805A">04 — Logo System · Colour</span>
+      <h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.02em">Nine colour versions</h1>
+    </div>
+    <span style="max-width: 480px; font-size: 16px; line-height: 1.55; color: #5F6E67">Every version is a transparent vector — the tile colour shows where it belongs, it is never part of the logo. One-colour versions knock the eyes and mouth out, so they work on any surface.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; flex-grow: 1">
+    <sc-for list="{{tiles}}" as="t" hint-placeholder-count="9">
+      <div style="border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #ECE7DC">
+        <div style="{{t.bg}}">
+          <dc-import name="Mascot" render="flat" mono="{{t.mono}}" mono-color="{{t.ink}}" shadow="{{false}}" hint-size="{{t.ms}}" style="{{t.msStyle}}"></dc-import>
+          <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: {{t.fs}}; line-height: 0.9; letter-spacing: -0.035em; color: {{t.ink}}">KAI</span>
+        </div>
+        <div style="padding: 14px 20px; background: #FFFFFF; display: flex; justify-content: space-between; font-size: 14px"><b>{{t.n}}</b><span style="color: #5F6E67">{{t.file}}</span></div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const base = 'flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 8px; ';
+    const checker = 'background-color: #FFFFFF; background-image: conic-gradient(#EEF0EF 25%, transparent 0 50%, #EEF0EF 0 75%, transparent 0); background-size: 20px 20px;';
+    const t = (n, file, bg, mono, ink, small) => ({ n, file, bg: base + bg, mono, ink, fs: small ? '40px' : '84px', ms: small ? '60px,60px' : '120px,120px', msStyle: small ? 'width: 60px; height: 60px' : 'width: 120px; height: 120px' });
+    return { tiles: [
+      t('1 · Full colour', 'KAI_Logo_FullColor', 'background: #FFF8F1;', false, '#0B3D2E'),
+      t('2 · On dark', 'KAI_Logo_DarkBG', 'background: #0B3D2E;', false, '#FFF8F1'),
+      t('3 · On light', 'KAI_Logo_LightBG', 'background: #FFFFFF;', false, '#0B3D2E'),
+      t('4 · White', 'KAI_Logo_White', 'background: #17805A;', true, '#FFFFFF'),
+      t('5 · Black', 'KAI_Logo_Black', 'background: #F2F4F3;', true, '#1A1A1A'),
+      t('6 · Monochrome Forest', 'KAI_Logo_Mono', 'background: #D8F3E5;', true, '#0B3D2E'),
+      t('7 · Green', 'KAI_Logo_Green', 'background: #FFFFFF;', true, '#17805A'),
+      t('8 · Simplified small', 'KAI_Logo_Small', 'background: #FFF8F1;', true, '#0B3D2E', true),
+      t('9 · Transparent', 'KAI_Logo_Transparent', checker, false, '#0B3D2E')
+    ] };
+  }
+}
+</script>
+</body>
+</html>

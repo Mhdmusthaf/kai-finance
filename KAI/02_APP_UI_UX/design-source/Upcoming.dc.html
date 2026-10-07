@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Upcoming</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: {{H}}px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 58px 20px 120px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; justify-content: space-between"><h1 style="margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em">Upcoming</h1><a href="Calendar.dc.html" aria-label="Calendar view" style="height: 40px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; box-shadow: 0 8px 18px -14px rgba(6,36,27,0.5)"><dc-import name="Icon" icon="calendar" size="18" color="#17805A" hint-size="18px,18px"></dc-import>Calendar</a></div>
+
+    <sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 40px -26px rgba(6,36,27,0.6)">
+          <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="forest" orbs="{{false}}" hint-size="100%,100%"></dc-import></div>
+          <div style="position: relative; z-index: 1; padding: 18px 20px; color: #FFF8F1; display: grid; grid-template-columns: minmax(0, 1fr) 110px; align-items: center">
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #94B3A1">Going out · rest of October</span><b style="font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">₹56,563</b><span style="font-size: 12.5px; color: #D8F3E5">11 payments · ₹30,170 this week</span><span style="font-size: 12.5px; color: #3ED1A0; font-weight: 700">Balance after all: ₹85,937 ✓</span></div>
+            <dc-import name="Scene" scene="bills" w="120" h="96" dark="{{true}}" hint-size="120px,96px"></dc-import>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; margin-right: -20px; overflow: hidden"><sc-for list="{{types}}" as="t" hint-placeholder-count="7"><span style="{{t.s}}">{{t.t}}</span></sc-for></div>
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 800; color: #5F6E67; letter-spacing: 0.04em; text-transform: uppercase; padding-top: 4px"><span>{{g.t}}</span><span style="font-variant-numeric: tabular-nums">{{g.sum}}</span></div>
+            <sc-if value="{{g.none}}" hint-placeholder-val="{{false}}"><span style="background: #FFFFFF; border-radius: 16px; padding: 14px; font-size: 14px; color: #5F6E67">Nothing due. Enjoy your Sunday.</span></sc-if>
+            <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="2">
+              <a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 12px 14px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)">
+                <span style="{{r.chip}}"><dc-import name="Icon" icon="{{r.i}}" size="20" color="{{r.ic}}" hint-size="20px,20px"></dc-import></span>
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b style="font-size: 14.5px">{{r.t}}</b><span style="font-size: 12px; color: #5F6E67">{{r.d}}</span></span>
+                <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 3px"><b style="{{r.amt}}">{{r.v}}</b><span style="{{r.tagS}}">{{r.tag}}</span></span>
+              </a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 30px">
+        <dc-import name="Scene" scene="relaxing" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <span style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 22px">All clear ahead</span>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 300px">Nothing scheduled. Add bills, EMIs, SIPs or renewals and KAI lines them up here — with a heads-up before each.</span>
+        <a href="Obj-Add-States.dc.html" style="margin-top: 10px; height: 52px; padding: 0 22px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; font-weight: 800">Add something recurring</a>
+      </div>
+    </sc-if>
+  </div>
+  <dc-import name="TabBar" active="upcoming" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["default","empty"],"default":"default"},"$preview":{"width":390,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'default';
+    const T = {
+      bill: ['bills', '#9A5B00', '#FFF1DC', 'Bill'], emi: ['emi', '#9A5B00', '#FFF1DC', 'EMI'], loan: ['car', '#9A5B00', '#FFF1DC', 'Loan'],
+      sip: ['sip', '#17805A', '#D8F3E5', 'SIP'], card: ['card', '#A8361F', '#FFE8E0', 'Card due'], sub: ['repeat', '#5B40C9', '#E9E3FF', 'Subscription'],
+      ins: ['shield', '#0B3D2E', '#F2F4F3', 'Insurance'], inc: ['income', '#17805A', '#D8F3E5', 'Income']
+    };
+    const R = (ty, t, d, v, href) => { const [i, ic, bg, tag] = T[ty]; return { t, d, v, i, ic, href: href || 'Calendar.dc.html', tag,
+      chip: 'width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: ' + bg + ';',
+      tagS: 'font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; color: ' + ic + '; background: ' + bg + ';',
+      amt: 'font-size: 15px; font-variant-numeric: tabular-nums; color: ' + (ty === 'inc' ? '#17805A' : '#0B3D2E') + ';' }; };
+    const pill = (on) => 'flex-shrink: 0; padding: 8px 13px; border-radius: 999px; font-size: 13px; font-weight: 700; ' + (on ? 'background: #0B3D2E; color: #FFF8F1;' : 'background: #FFFFFF; border: 1px solid #E6E1D6;');
+    return {
+      H: st === 'empty' ? 844 : 1560, full: st !== 'empty', empty: st === 'empty',
+      types: ['All', 'Bills', 'EMIs & loans', 'Cards', 'SIPs', 'Subscriptions', 'Insurance'].map((t, i) => ({ t, s: pill(i === 0) })),
+      groups: [
+        { t: 'Today · Sun 4 Oct', sum: '', none: true, rows: [] },
+        { t: 'Tomorrow · Mon 5 Oct', sum: '₹7,430', none: false, rows: [R('sip', 'SBI Bluechip SIP', 'Auto-debit · HDFC Savings', '₹5,000', 'Invest-Flow.dc.html'), R('bill', 'Electricity · BESCOM', 'Pay from HDFC Savings', '₹2,430', 'Recurring-Flow.dc.html')] },
+        { t: 'This week', sum: '₹22,740', none: false, rows: [R('card', 'SBI card bill', 'Wed 7 Oct · minimum ₹910', '₹18,240', 'Accounts-Flow.dc.html'), R('emi', 'Laptop EMI · 7 of 12', 'Sat 10 Oct · HDFC card', '₹4,500', 'Debt-Flow.dc.html')] },
+        { t: 'Next week', sum: '₹15,954', none: false, rows: [R('sub', 'Netflix', 'Mon 12 Oct · SBI card', '₹649', 'Recurring-Flow.dc.html'), R('bill', 'Internet · ACT', 'Wed 14 Oct', '₹1,180', 'Recurring-Flow.dc.html'), R('loan', 'Car loan EMI · 27 of 60', 'Thu 15 Oct · HDFC Savings', '₹12,450', 'Debt-Flow.dc.html'), R('sub', 'Adobe Creative Cloud', 'Thu 15 Oct · HDFC card', '₹1,675', 'Recurring-Flow.dc.html')] },
+        { t: 'Later', sum: '', none: false, rows: [R('card', 'HDFC card bill', 'Sun 18 Oct', '₹6,410', 'Accounts-Flow.dc.html'), R('sip', 'Parag Parikh SIP', 'Tue 20 Oct', '₹3,000', 'Invest-Flow.dc.html'), R('sub', 'Cult.fit', 'Tue 20 Oct · UPI', '₹1,029', 'Recurring-Flow.dc.html'), R('inc', 'Salary · Acme Labs', 'Sun 1 Nov · expected', '+₹1,40,000', 'Tx-List.dc.html'), R('ins', 'Car insurance renewal', 'Tue 22 Dec · Bajaj Allianz', '₹9,800', 'Recurring-Flow.dc.html')] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

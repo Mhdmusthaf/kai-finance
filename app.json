@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "KAI — Your Money OS",
+    "slug": "kai-finance",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+    "scheme": "kai",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B3D2E"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.kai.money",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "KAI requires microphone access to parse voice transactions and expense logging.",
+        "NSSpeechRecognitionUsageDescription": "KAI requires speech recognition to transcribe your voice commands.",
+        "NSFaceIDUsageDescription": "KAI uses Face ID to securely authenticate and protect your private financial data."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+        "backgroundColor": "#0B3D2E"
+      },
+      "package": "app.kai.money",
+      "versionCode": 1,
+      "permissions": [
+        "RECORD_AUDIO",
+        "INTERNET",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "web": {
+      "favicon": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png"
+    }
+  }
+}

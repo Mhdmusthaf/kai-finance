@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Monthly recap</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; font-family: 'Nunito Sans', sans-serif; color: {{fg}}; background: #0B3D2E">
+  <div style="position: absolute; inset: 0; pointer-events: none"><dc-import name="World" tone="{{tone}}" hint-size="100%,100%"></dc-import></div>
+  <div style="position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 54px 22px 34px; display: flex; flex-direction: column">
+    <div style="display: flex; gap: 4px"><sc-for list="{{bars}}" as="b" hint-placeholder-count="7"><span style="{{b}}"></span></sc-for></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px"><span style="font-size: 13px; font-weight: 800; opacity: 0.8">September with KAI</span><a href="Insights.dc.html" aria-label="Close recap" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="close" size="22" color="{{fg}}" hint-size="22px,22px"></dc-import></a></div>
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+      <dc-import name="Scene" scene="{{scene}}" w="320" h="250" dark="{{dark}}" hint-size="320px,250px"></dc-import>
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: {{accent}}">{{kicker}}</span>
+      <b style="font-family: Nunito, sans-serif; font-size: 34px; line-height: 1.08; letter-spacing: -0.02em">{{headline}}</b>
+      <span style="font-size: 16px; line-height: 1.5; opacity: 0.9">{{body}}</span>
+      <sc-if value="{{hasStats}}" hint-placeholder-val="{{false}}"><div style="display: flex; gap: 8px; margin-top: 6px"><sc-for list="{{stats}}" as="s" hint-placeholder-count="3"><span style="{{s.box}}"><span style="font-size: 11.5px; opacity: 0.8">{{s.k}}</span><b style="font-size: 17px; font-variant-numeric: tabular-nums">{{s.v}}</b></span></sc-for></div></sc-if>
+    </div>
+    <div style="display: flex; gap: 10px"><button type="button" style="{{shareS}}">Share</button><a href="Analytics-Flow.dc.html" style="{{nextS}}">{{nextT}}</a></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"page":{"editor":"enum","options":["intro","money","category","improvement","goals","networth","focus"],"default":"intro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props.page ?? 'intro';
+    const order = ['intro', 'money', 'category', 'improvement', 'goals', 'networth', 'focus'];
+    const idx = order.indexOf(p);
+    const P = {
+      intro: ['forest', 'welcome', 'Your month, as a story', 'September was a good one.', 'You earned, saved, invested and stayed on top of every bill. Tap through — it takes a minute.', []],
+      money: ['dark', 'success', 'Money in & out', 'You kept ₹43,400.', 'That’s 31% of what you earned — your best month this year.', [['In', '₹1,40,000'], ['Out', '₹96,600'], ['Invested', '₹8,000']]],
+      category: ['peach', 'home', 'Biggest category', 'Food & Dining: ₹22,500', 'Mostly weekend dinners. Up 8% on August — still under the ₹24,000 you planned.', []],
+      improvement: ['mint', 'savings', 'Biggest improvement', 'Shopping down 21%.', 'You spent ₹3,900 less on shopping than in August. That alone covered most of a Goa contribution.', []],
+      goals: ['creamMint', 'goals', 'Goals', 'Goa trip hit 82%.', 'And you completed your anniversary gift goal — on time.', [['Goa trip', '82%'], ['Emergency', '40%'], ['Done', '1']]],
+      networth: ['forestGreen', 'investing', 'Net worth', '+₹38,600 this month', 'Your SIPs grew and your car loan shrank. Net worth is now ₹24,80,000.', []],
+      focus: ['lavender', 'encouraging', 'October focus', 'One thing for October', 'Keep weekend dining near ₹5,600 a week and your emergency fund catches up by December.', []]
+    }[p];
+    const dark = ['forest', 'dark', 'forestGreen'].indexOf(P[0]) !== -1;
+    const fg = dark ? '#FFF8F1' : '#0B3D2E';
+    return {
+      tone: P[0], scene: P[1], kicker: P[2], headline: P[3], body: P[4], dark, fg, accent: dark ? '#3ED1A0' : '#17805A',
+      hasStats: P[5].length > 0,
+      stats: P[5].map(([k, v]) => ({ k, v, box: 'flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 16px; background: ' + (dark ? 'rgba(255,248,241,0.1)' : 'rgba(255,255,255,0.75)') + ';' })),
+      bars: order.map((_, i) => 'flex: 1; height: 4px; border-radius: 2px; background: ' + (dark ? (i <= idx ? '#FFF8F1' : 'rgba(255,248,241,0.25)') : (i <= idx ? '#0B3D2E' : 'rgba(11,61,46,0.18)')) + ';'),
+      shareS: 'flex: 1; height: 54px; border-radius: 999px; font-family: inherit; font-size: 15px; font-weight: 700; color: ' + fg + '; background: transparent; border: 1.5px solid ' + (dark ? 'rgba(255,248,241,0.35)' : 'rgba(11,61,46,0.25)') + ';',
+      nextS: 'flex: 1.4; height: 54px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; ' + (dark ? 'background: #3ED1A0; color: #0B3D2E;' : 'background: #0B3D2E; color: #FFF8F1;'),
+      nextT: p === 'focus' ? 'Done' : 'Next'
+    };
+  }
+}
+</script>
+</body>
+</html>

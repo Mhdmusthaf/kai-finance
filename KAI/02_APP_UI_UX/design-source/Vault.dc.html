@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAI — Document vault</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none;color:#0B3D2E}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #FCFBF8; font-family: 'Nunito Sans', sans-serif; color: #0B3D2E">
+  <div style="padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 6px"><a href="MyMoney.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="back" size="22" hint-size="22px,22px"></dc-import></a><h1 style="flex: 1; margin: 0; font-family: Nunito, sans-serif; font-weight: 800; font-size: 26px">{{title}}</h1><sc-if value="{{showUpload}}" hint-placeholder-val="{{true}}"><a href="Owed-Docs-Flow.dc.html" aria-label="Upload document" style="width: 44px; height: 44px; border-radius: 14px; background: #0B3D2E; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="upload" size="20" color="#3ED1A0" hint-size="20px,20px"></dc-import></a></sc-if></div>
+
+    <sc-if value="{{s_list}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 10px; background: #0B3D2E; color: #FFF8F1; border-radius: 20px; padding: 6px 16px 6px 4px"><dc-import name="Scene" scene="organizing" w="96" h="76" dark="{{true}}" hint-size="96px,76px"></dc-import><span style="display: flex; flex-direction: column"><b style="font-size: 15px">14 documents, all encrypted</b><span style="font-size: 12px; color: #94B3A1">38 MB of 1 GB · only you can open them</span></span></div>
+        <label style="display: flex; align-items: center; gap: 10px; height: 48px; border-radius: 14px; padding: 0 14px; background: #FFFFFF; border: 1.5px solid #ECE7DC"><dc-import name="Icon" icon="search" size="18" color="#5F6E67" hint-size="18px,18px"></dc-import><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search documents</span><input type="search" placeholder="Search “form 16”, “car insurance”…" style="border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; flex: 1"></label>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px"><sc-for list="{{cats}}" as="c" hint-placeholder-count="6"><div style="background: #FFFFFF; border-radius: 18px; padding: 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 10px 22px -20px rgba(6,36,27,0.45)"><span style="{{c.chip}}"><dc-import name="Icon" icon="{{c.i}}" size="18" color="{{c.ic}}" hint-size="18px,18px"></dc-import></span><b style="font-size: 13px">{{c.t}}</b><span style="font-size: 11.5px; color: #5F6E67">{{c.n}}</span></div></sc-for></div>
+        <b style="font-family: Nunito, sans-serif; font-size: 17px">Recent</b>
+        <sc-for list="{{docs}}" as="d" hint-placeholder-count="3"><a href="Owed-Docs-Flow.dc.html" style="display: flex; align-items: center; gap: 12px"><span style="width: 42px; height: 52px; border-radius: 10px; background: #FFFFFF; border: 1px solid #ECE7DC; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #A8361F">PDF</span><span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 14px">{{d.t}}</b><span style="font-size: 12px; color: #5F6E67">{{d.d}}</span></span><sc-if value="{{d.alert}}" hint-placeholder-val="{{false}}"><span style="font-size: 10.5px; font-weight: 800; color: #9A5B00; background: #FFF1DC; border-radius: 999px; padding: 3px 8px">{{d.a}}</span></sc-if></a></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s_empty}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 30px">
+        <dc-import name="Scene" scene="emptyDocs" w="300" h="240" hint-size="300px,240px"></dc-import>
+        <b style="font-family: Nunito, sans-serif; font-size: 22px">A safe home for paperwork</b>
+        <span style="font-size: 14.5px; line-height: 1.5; color: #3D4B45; max-width: 300px">Policies, loan papers, tax forms, receipts. Encrypted, searchable, and linked to the things they belong to.</span>
+        <div style="display: flex; gap: 10px; margin-top: 10px"><span style="height: 50px; padding: 0 18px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; gap: 8px; font-weight: 800"><dc-import name="Icon" icon="camera" size="18" color="#3ED1A0" hint-size="18px,18px"></dc-import>Scan</span><span style="height: 50px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; font-weight: 700">Upload file</span></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s_preview}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="height: 300px; border-radius: 22px; background: #EEE9DF; display: flex; align-items: center; justify-content: center"><div style="width: 190px; height: 260px; background: #FFFFFF; border-radius: 6px; box-shadow: 0 14px 28px -14px rgba(6,36,27,0.4); padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px"><span style="height: 12px; width: 60%; border-radius: 3px; background: #0B3D2E"></span><span style="height: 6px; width: 90%; border-radius: 3px; background: #E6E1D6"></span><span style="height: 6px; width: 80%; border-radius: 3px; background: #E6E1D6"></span><span style="height: 6px; width: 85%; border-radius: 3px; background: #E6E1D6"></span><span style="height: 40px; border-radius: 4px; background: #F2F4F3; margin-top: 8px"></span><span style="height: 6px; width: 70%; border-radius: 3px; background: #E6E1D6"></span><span style="height: 6px; width: 90%; border-radius: 3px; background: #E6E1D6"></span></div></div>
+        <div style="background: #FFFFFF; border-radius: 20px; padding: 4px 16px"><sc-for list="{{meta}}" as="m" hint-placeholder-count="5"><div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #F2EFE8; font-size: 14px"><span style="color: #5F6E67">{{m.k}}</span><b>{{m.v}}</b></div></sc-for></div>
+        <div style="display: flex; gap: 10px"><span style="flex: 1; height: 50px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700"><dc-import name="Icon" icon="share" size="18" hint-size="18px,18px"></dc-import>Share</span><span style="flex: 1; height: 50px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700"><dc-import name="Icon" icon="download" size="18" hint-size="18px,18px"></dc-import>Save</span><span style="width: 50px; height: 50px; border-radius: 50%; background: #FFE8E0; display: flex; align-items: center; justify-content: center"><dc-import name="Icon" icon="trash" size="18" color="#A8361F" hint-size="18px,18px"></dc-import></span></div>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{sheet}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; inset: 0; z-index: 10; background: rgba(6,36,27,0.42)"></div>
+    <div role="dialog" aria-label="{{sTitle}}" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 11; background: #FCFBF8; border-radius: 28px 28px 0 0; padding: 10px 20px 34px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px">
+      <span style="width: 40px; height: 5px; border-radius: 3px; background: #DCD8CF"></span>
+      <dc-import name="Scene" scene="{{sScene}}" w="240" h="170" hint-size="240px,170px"></dc-import>
+      <b style="font-family: Nunito, sans-serif; font-size: 21px">{{sTitle}}</b>
+      <span style="font-size: 14px; line-height: 1.5; color: #3D4B45; max-width: 310px">{{sBody}}</span>
+      <sc-if value="{{uploading}}" hint-placeholder-val="{{false}}"><div style="align-self: stretch; display: flex; flex-direction: column; gap: 6px; margin-top: 4px; text-align: left"><div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700"><span>HDFC_Ergo_Policy_2026.pdf</span><span>68%</span></div><div style="height: 8px; border-radius: 999px; background: #EEF3EF"><div style="width: 68%; height: 100%; border-radius: 999px; background: #17805A"></div></div><div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="padding: 5px 10px; border-radius: 999px; background: #D8F3E5; font-size: 12px; font-weight: 700; color: #126B4B">Insurance ✓</span><span style="padding: 5px 10px; border-radius: 999px; background: #D8F3E5; font-size: 12px; font-weight: 700; color: #126B4B">HDFC Ergo ✓</span><span style="padding: 5px 10px; border-radius: 999px; background: #F2F4F3; font-size: 12px; font-weight: 700; color: #5F6E67">Renewal date…</span></div></div></sc-if>
+      <div style="display: flex; gap: 10px; align-self: stretch; margin-top: 8px"><span style="flex: 1; height: 52px; border-radius: 999px; border: 1.5px solid #E2DCCF; display: flex; align-items: center; justify-content: center; font-weight: 700">{{sNo}}</span><span style="flex: 1.3; height: 52px; border-radius: 999px; background: #0B3D2E; color: #FFF8F1; display: flex; align-items: center; justify-content: center; font-weight: 800">{{sYes}}</span></div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["list","empty","uploading","failed","preview"],"default":"list"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.props.state ?? 'list';
+    const chip = (bg) => 'width: 34px; height: 34px; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: ' + bg + ';';
+    const sheets = {
+      uploading: ['processing', 'Reading your document…', 'KAI is filing it and spotting dates so it can remind you.', 'Cancel', 'Upload in background'],
+      failed: ['concerned', 'That upload didn’t finish', 'The file is 28 MB and the limit is 25 MB. KAI can shrink it without losing readability.', 'Choose another', 'Shrink & retry']
+    };
+    const s = sheets[st] || ['success', '', '', '', ''];
+    return {
+      title: st === 'preview' ? 'Policy document' : 'Documents', showUpload: st !== 'preview',
+      s_list: st === 'list' || st === 'uploading' || st === 'failed', s_empty: st === 'empty', s_preview: st === 'preview',
+      sheet: st === 'uploading' || st === 'failed', uploading: st === 'uploading',
+      sScene: s[0], sTitle: s[1], sBody: s[2], sNo: s[3], sYes: s[4],
+      cats: [['Insurance', '3 files', 'shield', '#D8F3E5', '#17805A'], ['Loans', '4 files', 'loan', '#FFF1DC', '#9A5B00'], ['Tax', '3 files', 'doc', '#E9E3FF', '#5B40C9'], ['Investments', '2 files', 'invest', '#D8F3E5', '#17805A'], ['Receipts', '1 file', 'bills', '#FFE6DA', '#A8361F'], ['Bank', '1 file', 'bank', '#F2F4F3', '#0B3D2E']].map(([t, n, i, bg, ic]) => ({ t, n, i, ic, chip: chip(bg) })),
+      docs: [{ t: 'HDFC Ergo policy 2026', d: 'Insurance · linked to Optima Secure', alert: true, a: 'Renews Mar' }, { t: 'Form 16 · FY 2025-26', d: 'Tax · added Jun', alert: false, a: '' }, { t: 'Car loan sanction letter', d: 'Loans · HDFC Bank', alert: false, a: '' }],
+      meta: [{ k: 'Type', v: 'Insurance policy' }, { k: 'Linked to', v: 'HDFC Ergo Optima Secure' }, { k: 'Valid until', v: '15 Mar 2027' }, { k: 'Reminder', v: '30 days before' }, { k: 'Added', v: 'Sun 15 Mar 2026 · 2.1 MB' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

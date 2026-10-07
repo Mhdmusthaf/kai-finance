@@ -4,16 +4,16 @@
     "slug": "kai-finance",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+    "icon": "./assets/icon.png",
     "scheme": "kai",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#0B3D2E"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
       "supportsTablet": false,
@@ -27,11 +27,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B3D2E"
       },
       "package": "app.kai.money",
-      "versionCode": 1,
       "permissions": [
         "RECORD_AUDIO",
         "INTERNET",
@@ -40,11 +39,18 @@
       ]
     },
     "plugins": [
-      "expo-router",
-      "expo-font"
+      "expo-router"
     ],
     "web": {
-      "favicon": "./KAI/02_APP_UI_UX/assets/app-icon/KAI_AppIcon_Forest_1024.png"
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c2e5ac57-56e7-4797-8aae-ed9d2a8f895a"
+      }
     }
   }
 }

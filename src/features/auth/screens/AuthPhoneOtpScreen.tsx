@@ -10,6 +10,8 @@ import {
 import { colors, fonts, space } from '../../../theme/theme';
 import { Button } from '../../../components/Button';
 import { Icon } from '../../../components/Icon';
+import { BottomSheet } from '../../../components/BottomSheet';
+import { Mascot } from '../../../components/Mascot';
 
 interface AuthPhoneOtpProps {
   onSuccess: (phone: string) => void;
@@ -18,8 +20,9 @@ interface AuthPhoneOtpProps {
 export const AuthPhoneOtpScreen: React.FC<AuthPhoneOtpProps> = ({ onSuccess }) => {
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
   const [phone, setPhone] = useState('+91 98000 00000');
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState('123456');
   const [timer, setTimer] = useState(30);
+  const [showQrModal, setShowQrModal] = useState(false);
 
   useEffect(() => {
     let interval: any = null;
@@ -38,6 +41,10 @@ export const AuthPhoneOtpScreen: React.FC<AuthPhoneOtpProps> = ({ onSuccess }) =
     onSuccess(phone);
   };
 
+  const handleGoogleAuth = () => {
+    onSuccess('aditi.sharma@gmail.com');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -51,9 +58,9 @@ export const AuthPhoneOtpScreen: React.FC<AuthPhoneOtpProps> = ({ onSuccess }) =
       <View style={styles.content}>
         {step === 'phone' ? (
           <>
-            <Text style={styles.title}>Enter your phone number</Text>
+            <Text style={styles.title}>Welcome to KAI Money OS</Text>
             <Text style={styles.subtitle}>
-              We will send a 6-digit security code to verify your account.
+              Log in with your phone number, Google, or QR code to sync your account.
             </Text>
 
             <View style={styles.inputContainer}>
@@ -67,12 +74,38 @@ export const AuthPhoneOtpScreen: React.FC<AuthPhoneOtpProps> = ({ onSuccess }) =
                 placeholderTextColor={colors.muted}
               />
             </View>
+
+            <View style={styles.dividerRow}>
+              <View style={styles.line} />
+              <Text style={styles.orText}>OR CONTINUE WITH</Text>
+              <View style={styles.line} />
+            </View>
+
+            {/* Google & QR Login Buttons */}
+            <View style={styles.socialRow}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={handleGoogleAuth}
+                style={styles.socialBtn}
+              >
+                <Text style={styles.socialBtnText}>🌐 Google Account</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => setShowQrModal(true)}
+                style={styles.socialBtn}
+              >
+                <Icon name="search" size={18} color={colors.forest} />
+                <Text style={[styles.socialBtnText, { marginLeft: 8 }]}>QR Sync</Text>
+              </TouchableOpacity>
+            </View>
           </>
         ) : (
           <>
             <Text style={styles.title}>Verify 6-digit OTP</Text>
             <Text style={styles.subtitle}>
-              Sent to {phone}. Check your SMS messages.
+              Sent code to {phone}. Check your SMS messages.
             </Text>
 
             <View style={styles.otpRow}>
@@ -112,9 +145,33 @@ export const AuthPhoneOtpScreen: React.FC<AuthPhoneOtpProps> = ({ onSuccess }) =
         <Button
           title={step === 'phone' ? 'Send OTP Code' : 'Verify & Continue'}
           onPress={step === 'phone' ? handleSendOtp : handleVerifyOtp}
-          disabled={step === 'otp' && otp.length < 6}
         />
       </View>
+
+      {/* QR Code Sync Scanner Modal */}
+      <BottomSheet
+        visible={showQrModal}
+        onClose={() => setShowQrModal(false)}
+        title="QR Code Device Sync"
+      >
+        <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+          <Mascot expression="insight" size={120} />
+          <Text style={{ fontFamily: fonts.display, fontSize: 18, color: colors.forest, marginTop: 16 }}>
+            Scan Web QR Code
+          </Text>
+          <Text style={{ fontFamily: fonts.ui, fontSize: 13, color: colors.gray, textAlign: 'center', marginTop: 6, marginBottom: 20 }}>
+            Open app.kai.money on your browser to pair your phone instantly.
+          </Text>
+          <Button
+            title="Simulate QR Auth Pair"
+            onPress={() => {
+              setShowQrModal(false);
+              onSuccess('aditi.sharma@gmail.com');
+            }}
+            style={{ width: '100%' }}
+          />
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -159,7 +216,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     paddingHorizontal: 16,
-    marginTop: 28,
+    marginTop: 24,
   },
   prefix: {
     fontSize: 20,
@@ -169,6 +226,42 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: fonts.uiBold,
     fontSize: 18,
+    color: colors.forest,
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 24,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: colors.line,
+  },
+  orText: {
+    fontFamily: fonts.label,
+    fontSize: 11,
+    color: colors.muted,
+    marginHorizontal: 12,
+  },
+  socialRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  socialBtn: {
+    flex: 1,
+    height: 48,
+    borderRadius: 14,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.line,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  socialBtnText: {
+    fontFamily: fonts.uiBold,
+    fontSize: 13,
     color: colors.forest,
   },
   otpRow: {

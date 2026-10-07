@@ -1,0 +1,11 @@
+# Ignore design source files, mockups, documentation and backend server from EAS mobile build archive
+KAI/
+server/
+docs/
+*.md
+*.html
+*.pdf
+*.zip
+
+# Keep root assets
+!assets/

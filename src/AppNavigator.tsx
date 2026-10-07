@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 import { TabBar, TabKey } from './components/TabBar';
 import { VoiceButton } from './components/VoiceButton';
 import { HomeScreen } from './screens/HomeScreen';
@@ -15,41 +15,90 @@ import { PinLockScreen } from './features/auth/screens/PinLockScreen';
 import { BottomSheet } from './components/BottomSheet';
 import { Button } from './components/Button';
 import { Mascot } from './components/Mascot';
-import { Text } from 'react-native';
+import { Toast } from './components/Toast';
 import { colors, fonts } from './theme/theme';
+import { AppProvider, useApp } from './context/AppContext';
 
-type AuthStage = 'splash' | 'onboarding' | 'auth_otp' | 'pin_lock' | 'authenticated';
+const AppContent: React.FC = () => {
+  const {
+    authStage,
+    setAuthStage,
+    addTransaction,
+    toastMessage,
+    hideToast,
+  } = useApp();
 
-export const AppNavigator: React.FC = () => {
-  const [stage, setStage] = useState<AuthStage>('splash');
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const [showGallery, setShowGallery] = useState(false);
   const [showVoiceModal, setShowVoiceModal] = useState(false);
 
+  // Voice assistant state
+  const [voiceInput, setVoiceInput] = useState('Spent 500 on dinner yesterday with HDFC card');
+  const [voiceState, setVoiceState] = useState<'listening' | 'thinking' | 'done'>('listening');
+
   // 1. Splash Screen Stage
-  if (stage === 'splash') {
-    return <SplashScreen onFinish={() => setStage('onboarding')} />;
+  if (authStage === 'splash') {
+    return <SplashScreen onFinish={() => setAuthStage('onboarding')} />;
   }
 
   // 2. Onboarding Stage (9 steps)
-  if (stage === 'onboarding') {
-    return <OnboardingScreen onComplete={() => setStage('auth_otp')} />;
+  if (authStage === 'onboarding') {
+    return <OnboardingScreen onComplete={() => setAuthStage('auth_otp')} />;
   }
 
   // 3. Auth Phone OTP Stage
-  if (stage === 'auth_otp') {
-    return <AuthPhoneOtpScreen onSuccess={() => setStage('pin_lock')} />;
+  if (authStage === 'auth_otp') {
+    return <AuthPhoneOtpScreen onSuccess={() => setAuthStage('pin_lock')} />;
   }
 
   // 4. PIN Lock / Biometrics Stage
-  if (stage === 'pin_lock') {
-    return <PinLockScreen onUnlock={() => setStage('authenticated')} />;
+  if (authStage === 'pin_lock') {
+    return <PinLockScreen onUnlock={() => setAuthStage('authenticated')} />;
   }
 
   // 5. Component Gallery View (Phase 1 Reviewer Mode)
   if (showGallery) {
     return <ComponentGalleryScreen onBack={() => setShowGallery(false)} />;
   }
+
+  const handleVoiceParse = (textToParse?: string) => {
+    const text = textToParse || voiceInput;
+    setVoiceState('thinking');
+
+    setTimeout(() => {
+      // Parse transaction from voice input
+      if (text.toLowerCase().includes('salary') || text.toLowerCase().includes('income')) {
+        addTransaction({
+          title: 'Voice Income',
+          subtitle: 'Salary credit · SBI Savings',
+          amount: 14000000,
+          type: 'income',
+          amountColor: 'deepMint',
+          icon: 'income',
+          iconBgColor: colors.softGreen,
+          account: 'SBI Savings',
+          isVoice: true,
+        });
+      } else {
+        addTransaction({
+          title: 'Dinner · Truffles',
+          subtitle: 'Food & Dining · HDFC Savings · Voice',
+          amount: 50000,
+          type: 'expense',
+          icon: 'mic',
+          iconBgColor: colors.softGreen,
+          account: 'HDFC Savings',
+          isVoice: true,
+        });
+      }
+
+      setVoiceState('done');
+      setTimeout(() => {
+        setShowVoiceModal(false);
+        setVoiceState('listening');
+      }, 500);
+    }, 900);
+  };
 
   const renderActiveScreen = () => {
     switch (activeTab) {
@@ -77,30 +126,70 @@ export const AppNavigator: React.FC = () => {
       {/* Active Tab Screen */}
       {renderActiveScreen()}
 
-      {/* Voice FAB Button - Floats above every tab in bottom right */}
+      {/* Voice FAB Button - Floats above tabs */}
       <VoiceButton onPress={() => setShowVoiceModal(true)} />
 
       {/* Bottom Tab Bar */}
       <TabBar activeTab={activeTab} onTabChange={(tab) => setActiveTab(tab)} />
 
-      {/* Voice Modal Sheet */}
+      {/* Floating Toast Notification */}
+      <View style={styles.toastContainer}>
+        <Toast visible={!!toastMessage} message={toastMessage || ''} onUndo={hideToast} />
+      </View>
+
+      {/* Interactive Voice Modal Sheet */}
       <BottomSheet
         visible={showVoiceModal}
         onClose={() => setShowVoiceModal(false)}
-        title="Voice Entry (KAI)"
+        title="Voice Entry (KAI AI)"
       >
-        <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-          <Mascot expression="listening" size={120} />
-          <Text style={{ fontFamily: fonts.display, fontSize: 20, color: colors.forest, marginTop: 16 }}>
-            Listening...
+        <View style={{ alignItems: 'center', paddingVertical: 12 }}>
+          <Mascot expression={voiceState === 'thinking' ? 'thinking' : voiceState === 'done' ? 'celebrating' : 'listening'} size={120} />
+          
+          <Text style={{ fontFamily: fonts.display, fontSize: 20, color: colors.forest, marginTop: 12 }}>
+            {voiceState === 'thinking' ? 'KAI is parsing...' : voiceState === 'done' ? 'Recorded!' : 'Listening...'}
           </Text>
-          <Text style={{ fontFamily: fonts.ui, fontSize: 14, color: colors.gray, textAlign: 'center', marginTop: 6, marginBottom: 20 }}>
-            "Spent 500 on dinner yesterday with HDFC card"
-          </Text>
+
+          {/* Voice Input Box */}
+          <View style={styles.voiceInputBox}>
+            <TextInput
+              style={styles.voiceTextInput}
+              value={voiceInput}
+              onChangeText={setVoiceInput}
+              placeholder="Say what you spent..."
+              placeholderTextColor={colors.muted}
+              multiline
+            />
+          </View>
+
+          {/* Preset Voice Prompts */}
+          <View style={styles.presetRow}>
+            <Text style={{ fontFamily: fonts.caption, color: colors.gray, marginBottom: 8 }}>
+              Try tapping a voice prompt:
+            </Text>
+            {[
+              'Spent 500 on dinner yesterday with HDFC card',
+              'Salary credited 1,40,000 to SBI',
+              'Paid 2,430 electricity bill',
+            ].map((prompt) => (
+              <TouchableOpacity
+                key={prompt}
+                activeOpacity={0.8}
+                onPress={() => {
+                  setVoiceInput(prompt);
+                  handleVoiceParse(prompt);
+                }}
+                style={styles.promptChip}
+              >
+                <Text style={styles.promptChipText}>"{prompt}"</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
           <Button
-            title="Simulate Voice Parse"
-            onPress={() => setShowVoiceModal(false)}
-            style={{ width: '100%' }}
+            title="Log Voice Expense"
+            onPress={() => handleVoiceParse()}
+            style={{ width: '100%', marginTop: 16 }}
           />
         </View>
       </BottomSheet>
@@ -108,9 +197,56 @@ export const AppNavigator: React.FC = () => {
   );
 };
 
+export const AppNavigator: React.FC = () => (
+  <AppProvider>
+    <AppContent />
+  </AppProvider>
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.offWhite,
+  },
+  toastContainer: {
+    position: 'absolute',
+    bottom: 96,
+    left: 20,
+    right: 20,
+    zIndex: 999,
+  },
+  voiceInputBox: {
+    width: '100%',
+    backgroundColor: colors.lightGray,
+    borderRadius: 16,
+    padding: 12,
+    marginVertical: 12,
+    borderWidth: 1,
+    borderColor: colors.line,
+  },
+  voiceTextInput: {
+    fontFamily: fonts.uiBold,
+    fontSize: 15,
+    color: colors.forest,
+    minHeight: 48,
+  },
+  presetRow: {
+    width: '100%',
+    alignItems: 'flex-start',
+  },
+  promptChip: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginBottom: 6,
+    width: '100%',
+  },
+  promptChipText: {
+    fontFamily: fonts.ui,
+    fontSize: 12,
+    color: colors.deepMint,
   },
 });

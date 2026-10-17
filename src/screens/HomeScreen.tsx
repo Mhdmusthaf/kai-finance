@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { colors, fonts, space } from '../theme/theme';
+import { colors, fonts, space, shadow } from '../theme/theme';
 import { Card } from '../components/Card';
 import { AmountText } from '../components/AmountText';
 import { ListRow } from '../components/ListRow';
@@ -22,11 +22,19 @@ import { useApp } from '../context/AppContext';
 interface HomeScreenProps {
   onOpenGallery?: () => void;
   onOpenVoice?: () => void;
+  onOpenNotifications?: () => void;
+  onOpenMe?: () => void;
+  onOpenGoals?: () => void;
+  onOpenNetWorth?: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenGallery,
   onOpenVoice,
+  onOpenNotifications,
+  onOpenMe,
+  onOpenGoals,
+  onOpenNetWorth,
 }) => {
   const {
     accounts,
@@ -142,11 +150,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <TouchableOpacity
             activeOpacity={0.8}
             style={[styles.iconCircle, { marginLeft: 10 }]}
-            onPress={() => setActiveModal('notifications')}
+            onPress={() => (onOpenNotifications ? onOpenNotifications() : setActiveModal('notifications'))}
           >
             <Icon name="bell" size={20} color={colors.forest} />
             {notifications.some((n) => n.unread) && <View style={styles.unreadDot} />}
           </TouchableOpacity>
+
+          {onOpenMe && (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={[styles.iconCircle, { marginLeft: 10 }]}
+              onPress={onOpenMe}
+            >
+              <Icon name="profile" size={20} color={colors.forest} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
 
@@ -223,6 +241,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <Text style={styles.quickActionLabel}>{item.label}</Text>
             </TouchableOpacity>
           ))}
+        </View>
+
+        {/* Goals & Net Worth shortcuts */}
+        <View style={styles.moreRow}>
+          {onOpenGoals && (
+            <TouchableOpacity activeOpacity={0.85} onPress={onOpenGoals} style={styles.moreCard}>
+              <Icon name="goals" size={20} color={colors.forest} />
+              <Text style={styles.moreLabel}>Goals</Text>
+            </TouchableOpacity>
+          )}
+          {onOpenNetWorth && (
+            <TouchableOpacity activeOpacity={0.85} onPress={onOpenNetWorth} style={styles.moreCard}>
+              <Icon name="netWorth" size={20} color={colors.forest} />
+              <Text style={styles.moreLabel}>Net Worth</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {/* KAI Noticed Insight */}
@@ -479,6 +513,20 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   quickActionLabel: { fontFamily: fonts.uiSemi, fontSize: 12, color: colors.charcoal },
+  moreRow: { flexDirection: 'row', gap: 12, marginBottom: space.sectionGap },
+  moreCard: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderRadius: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    ...shadow.card,
+  },
+  moreLabel: { fontFamily: fonts.uiBold, fontSize: 14, color: colors.forest, marginLeft: 10 },
   insightCard: { marginBottom: space.sectionGap },
   insightHeadline: { fontFamily: fonts.display, fontSize: 15, color: colors.forest },
   insightDetail: { fontFamily: fonts.ui, fontSize: 13, color: colors.gray, marginTop: 2 },

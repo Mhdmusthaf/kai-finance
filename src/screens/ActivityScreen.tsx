@@ -7,10 +7,10 @@ import { ListRow } from '../components/ListRow';
 import { Icon } from '../components/Icon';
 import { Button } from '../components/Button';
 import { BottomSheet } from '../components/BottomSheet';
-import { useApp } from '../context/AppContext';
+import { useApp, TransactionItem } from '../context/AppContext';
 
-export const ActivityScreen: React.FC = () => {
-  const { transactions, addTransaction, deleteTransaction } = useApp();
+export const ActivityScreen: React.FC<{ onOpenTransaction?: (tx: TransactionItem) => void }> = ({ onOpenTransaction }) => {
+  const { transactions, addTransaction } = useApp();
   const [activeFilter, setActiveFilter] = useState('All');
   const [showAddModal, setShowAddModal] = useState(false);
   const [title, setTitle] = useState('');
@@ -73,10 +73,10 @@ export const ActivityScreen: React.FC = () => {
 
         <Card variant="default" style={{ padding: 0, overflow: 'hidden', marginBottom: 16 }}>
           {filtered.map((tx, idx) => (
-            <TouchableOpacity key={tx.id} activeOpacity={0.8} onPress={() => deleteTransaction(tx.id)}>
+            <TouchableOpacity key={tx.id} activeOpacity={0.8} onPress={() => onOpenTransaction && onOpenTransaction(tx)}>
               <ListRow
                 title={tx.title}
-                subtitle={`${tx.subtitle} · Tap to delete`}
+                subtitle={tx.subtitle}
                 amount={tx.amount}
                 amountColor={tx.amountColor}
                 icon={<Icon name={tx.icon as any} size={20} color={colors.forest} />}

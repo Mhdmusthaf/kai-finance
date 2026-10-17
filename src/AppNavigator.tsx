@@ -7,6 +7,13 @@ import { ActivityScreen } from './screens/ActivityScreen';
 import { UpcomingScreen } from './screens/UpcomingScreen';
 import { InsightsScreen } from './screens/InsightsScreen';
 import { MyMoneyScreen } from './screens/MyMoneyScreen';
+import { GoalsScreen } from './screens/GoalsScreen';
+import { NotificationsScreen } from './screens/NotificationsScreen';
+import { MeScreen } from './screens/MeScreen';
+import { OwedScreen } from './screens/OwedScreen';
+import { NetWorthScreen } from './screens/NetWorthScreen';
+import { TransactionDetailScreen } from './screens/TransactionDetailScreen';
+import { TransactionItem } from './context/AppContext';
 import { ComponentGalleryScreen } from './screens/ComponentGalleryScreen';
 import { SplashScreen } from './features/auth/screens/SplashScreen';
 import { OnboardingScreen } from './features/auth/screens/OnboardingScreen';
@@ -16,6 +23,7 @@ import { BottomSheet } from './components/BottomSheet';
 import { Button } from './components/Button';
 import { Mascot } from './components/Mascot';
 import { Toast } from './components/Toast';
+import { Icon } from './components/Icon';
 import { colors, fonts } from './theme/theme';
 import { AppProvider, useApp } from './context/AppContext';
 
@@ -33,6 +41,9 @@ const AppContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const [showGallery, setShowGallery] = useState(false);
   const [showVoiceModal, setShowVoiceModal] = useState(false);
+  const [overlay, setOverlay] = useState<
+    null | 'notifications' | 'me' | 'goals' | 'owed' | 'networth' | { kind: 'txDetail'; tx: TransactionItem }
+  >(null);
 
   // Voice assistant state
   const [voiceInput, setVoiceInput] = useState('Spent 500 on dinner yesterday with HDFC card');
@@ -102,10 +113,34 @@ const AppContent: React.FC = () => {
     }, 900);
   };
 
+  // Full-screen overlays sit on top of the tab stack
+  if (overlay) {
+    if (overlay === 'notifications') {
+      return (
+        <NotificationsScreen
+          onBack={() => setOverlay(null)}
+        />
+      );
+    }
+    if (overlay === 'me') {
+      return (
+        <MeScreen
+          onOpenNotifications={() => setOverlay('notifications')}
+        />
+      );
+    }
+    if (overlay === 'goals') return <GoalsScreen />;
+    if (overlay === 'owed') return <OwedScreen />;
+    if (overlay === 'networth') return <NetWorthScreen onBack={() => setOverlay(null)} />;
+    if (typeof overlay === 'object' && overlay.kind === 'txDetail') {
+      return <TransactionDetailScreen transaction={overlay.tx} onBack={() => setOverlay(null)} />;
+    }
+  }
+
   const renderActiveScreen = () => {
     switch (activeTab) {
       case 'activity':
-        return <ActivityScreen />;
+        return <ActivityScreen onOpenTransaction={(tx) => setOverlay({ kind: 'txDetail', tx })} />;
       case 'upcoming':
         return <UpcomingScreen />;
       case 'insights':
@@ -118,6 +153,10 @@ const AppContent: React.FC = () => {
           <HomeScreen
             onOpenGallery={() => setShowGallery(true)}
             onOpenVoice={() => setShowVoiceModal(true)}
+            onOpenNotifications={() => setOverlay('notifications')}
+            onOpenMe={() => setOverlay('me')}
+            onOpenGoals={() => setOverlay('goals')}
+            onOpenNetWorth={() => setOverlay('networth')}
           />
         );
     }
@@ -143,7 +182,22 @@ const AppContent: React.FC = () => {
       <VoiceButton onPress={() => setShowVoiceModal(true)} />
 
       {/* Bottom Tab Bar */}
-      <TabBar activeTab={activeTab} onTabChange={(tab) => setActiveTab(tab)} />
+      <TabBar
+        activeTab={activeTab}
+        onTabChange={(tab) => {
+          setActiveTab(tab);
+          if (tab === 'insights') setOverlay(null);
+        }}
+      />
+
+      {/* Owed quick access: long-press not available, add via Insights header link */}
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => setOverlay('owed')}
+        style={styles.owedFab}
+      >
+        <Icon name="money" size={20} color={colors.cream} />
+      </TouchableOpacity>
 
       {/* Floating Toast Notification */}
       <View style={styles.toastContainer}>
@@ -244,6 +298,18 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     zIndex: 999,
+  },
+  owedFab: {
+    position: 'absolute',
+    bottom: 108,
+    left: 20,
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    backgroundColor: colors.forest,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 95,
   },
   voiceInputBox: {
     width: '100%',

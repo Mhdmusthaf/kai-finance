@@ -1,4 +1,4 @@
-import { COUNTS_AS_SPENDING, COUNTS_AS_INCOME, Paise, Transaction, Account, CreditCard, Loan } from '../../../shared/types';
+import { COUNTS_AS_SPENDING, COUNTS_AS_INCOME, Paise, Transaction, Account, CreditCard, Loan } from '../types';
 
 export function calculateTotalBalance(accounts: Account[]): Paise {
   return accounts

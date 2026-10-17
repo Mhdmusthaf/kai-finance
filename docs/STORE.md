@@ -1,28 +1,29 @@
-# KAI — Store Deployment & Privacy Declarations
+# Store Requirements (verified 2026-10-17)
 
-## App Store & Google Play Metadata
+## Google Play
+- **Target API**: New apps/updates must target **Android 15 (API 35)** or higher (effective since Aug 31, 2025; extension to Nov 1, 2026 only for apps still targeting API 34).
+  - Source: https://support.google.com/googleplay/android-developer/answer/11926878
+  - Expo SDK 58 targets API 35 by default on `eas build -p android` — no extra config needed.
+- **Signing**: Play App Signing recommended; EAS manages keystore via `eas credentials`.
+- **Data safety form**: must reflect actual data collection (phone number for OTP, financial data user-entered, no analytics PII).
+- **Account deletion**: in-app account deletion URL is REQUIRED for apps with account creation.
+- **Permissions**: only those used (RECORD_AUDIO, POST_NOTIFICATIONS, USE_BIOMETRIC). Don't declare USE_FINGERPRINT (deprecated).
 
-- **App Name**: KAI — Your Money OS
-- **Bundle Identifier (iOS)**: `app.kai.money`
-- **Package Name (Android)**: `app.kai.money`
-- **Primary Category**: Finance
-- **Secondary Category**: Productivity
+## Apple App Store
+- **Xcode / SDK**: Starting **April 28, 2026**, uploads to App Store Connect must be built with **Xcode 26 / iOS 26 SDK** or later.
+  - Source: https://developer.apple.com/news?id=ueeok6yw
+  - Expo SDK 54+ EAS images already use Xcode 26. SDK 58 images qualify.
+- **Privacy manifests** (`ios.privacyManifests`): required for apps using required-reason APIs.
+- **Info.plist usage strings**: every permission needs a user-facing string (mic, speech, Face ID, photo library).
+- **Account deletion**: apps with account creation MUST offer in-app account deletion (App Review Guideline 5.1.1(v)).
+- **TestFlight**: internal testing up to 100 users; external requires beta app review.
 
----
+## Both stores
+- Privacy policy URL + terms URL are required at submission time.
+- Finance apps: category `Finance`; may require additional review (e.g. lending in India = specific declaration).
+- India-specific: DPDP Act 2023 compliance for data handling, personal-data consent.
 
-## 🔒 Permission Strings (iOS Info.plist)
-
-| Key | Usage Description |
-|---|---|
-| `NSMicrophoneUsageDescription` | KAI uses the microphone to let you log expenses, record bills, and ask financial questions using your voice. |
-| `NSSpeechRecognitionUsageDescription` | KAI uses speech recognition to convert your spoken financial entries into instant transaction records. |
-| `NSFaceIDUsageDescription` | KAI uses Face ID to securely authenticate you before revealing your private financial balance and account details. |
-| `NSPhotoLibraryUsageDescription` | KAI uses photo library access to let you upload receipt photos and policy document scans to your private vault. |
-
----
-
-## 🛡️ Data Safety & App Privacy Declarations
-
-- **Financial Info**: User financial records (transactions, balances, accounts) are encrypted at rest and stored securely.
-- **Voice Transcripts**: Processed solely for transaction parsing. Transcripts and money amounts are NEVER logged to external analytics.
-- **Third-Party Data Sharing**: Zero data sold to third parties.
+## Current EAS build profile targets (to be verified at build time)
+- Android `production` → `.aab` (Play, API 35)
+- Android `production-apk` → `.apk` (sideload / internal QA)
+- iOS `production` → `.ipa` (TestFlight / App Store, Xcode 26 image)

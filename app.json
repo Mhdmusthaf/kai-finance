@@ -7,14 +7,6 @@
     "icon": "./assets/icon.png",
     "scheme": "kai",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0B3D2E"
-    },
-    "assetBundlePatterns": [
-      "assets/*"
-    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "app.kai.money",
@@ -35,11 +27,26 @@
         "RECORD_AUDIO",
         "INTERNET",
         "USE_BIOMETRIC",
-        "USE_FINGERPRINT"
+        "POST_NOTIFICATIONS"
       ]
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#0B3D2E"
+        }
+      ],
+      "expo-secure-store",
+      "expo-sharing",
+      "expo-audio",
+      "@sentry/react-native",
+      "expo-speech-recognition",
+      "expo-asset"
     ],
     "web": {
       "favicon": "./assets/favicon.png"

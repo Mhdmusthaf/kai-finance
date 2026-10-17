@@ -1,4 +1,4 @@
-import { VoiceParseResult } from '../../../shared/types';
+import { VoiceParseResult } from '../types';
 
 export const SYSTEM_PROMPT_VOICE_PARSER = `
 You are KAI's money parser. Convert the user's words into JSON matching VoiceParseResult. Output JSON only.

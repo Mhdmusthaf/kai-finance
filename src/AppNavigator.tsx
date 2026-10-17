@@ -26,6 +26,8 @@ const AppContent: React.FC = () => {
     addTransaction,
     toastMessage,
     hideToast,
+    loading,
+    syncError,
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<TabKey>('home');
@@ -121,10 +123,21 @@ const AppContent: React.FC = () => {
     }
   };
 
+  const showLoadOverlay = loading || !!syncError;
+
   return (
     <View style={styles.container}>
       {/* Active Tab Screen */}
       {renderActiveScreen()}
+
+      {/* Data Loading / Sync Error Banner */}
+      {showLoadOverlay && (
+        <View style={styles.syncBanner} pointerEvents="none">
+          <Text style={styles.syncBannerText}>
+            {loading ? 'Loading your money…' : 'Connection issue — showing last loaded data'}
+          </Text>
+        </View>
+      )}
 
       {/* Voice FAB Button - Floats above tabs */}
       <VoiceButton onPress={() => setShowVoiceModal(true)} />
@@ -164,7 +177,7 @@ const AppContent: React.FC = () => {
 
           {/* Preset Voice Prompts */}
           <View style={styles.presetRow}>
-            <Text style={{ fontFamily: fonts.caption, color: colors.gray, marginBottom: 8 }}>
+            <Text style={{ fontFamily: fonts.ui, color: colors.gray, marginBottom: 8 }}>
               Try tapping a voice prompt:
             </Text>
             {[
@@ -207,6 +220,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.offWhite,
+  },
+  syncBanner: {
+    position: 'absolute',
+    top: 12,
+    left: 20,
+    right: 20,
+    backgroundColor: colors.forest,
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    zIndex: 998,
+  },
+  syncBannerText: {
+    fontFamily: fonts.uiBold,
+    fontSize: 12,
+    color: colors.cream,
+    textAlign: 'center',
   },
   toastContainer: {
     position: 'absolute',

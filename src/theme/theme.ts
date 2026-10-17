@@ -70,10 +70,10 @@ export const type = {
   label:     { fontFamily: fonts.uiHeavy, fontSize: 12, lineHeight: 16, letterSpacing: 0.8, textTransform: 'uppercase' as const },
   button:    { fontFamily: fonts.uiHeavy, fontSize: 16, lineHeight: 20 },
   tab:       { fontFamily: fonts.uiBold, fontSize: 11, lineHeight: 14 },
-  amount:    { fontFamily: fonts.uiBold, fontSize: 15, lineHeight: 20, fontVariant: ['tabular-nums'] as const },
-  amountLg:  { fontFamily: fonts.uiHeavy, fontSize: 32, lineHeight: 38, letterSpacing: -0.6, fontVariant: ['tabular-nums'] as const },
-  amountXl:  { fontFamily: fonts.uiHeavy, fontSize: 44, lineHeight: 50, letterSpacing: -0.9, fontVariant: ['tabular-nums'] as const },
-} as const;
+  amount:    { fontFamily: fonts.uiBold, fontSize: 15, lineHeight: 20, fontVariant: ['tabular-nums'] },
+  amountLg:  { fontFamily: fonts.uiHeavy, fontSize: 32, lineHeight: 38, letterSpacing: -0.6, fontVariant: ['tabular-nums'] },
+  amountXl:  { fontFamily: fonts.uiHeavy, fontSize: 44, lineHeight: 50, letterSpacing: -0.9, fontVariant: ['tabular-nums'] },
+};
 
 export const space = { xxs: 4, xs: 8, sm: 12, md: 16, lg: 20, xl: 24, xxl: 32, screenX: 20, sectionGap: 18 } as const;
 export const radius = { sm: 12, md: 16, lg: 20, xl: 22, card: 22, hero: 26, sheet: 28, pill: 999 } as const;

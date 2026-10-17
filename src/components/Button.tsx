@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
 }) => {
   const getContainerStyle = (): ViewStyle => {
-    let baseHeight = size.buttonLg;
+    let baseHeight: number = size.buttonLg;
     if (buttonSize === 'md') baseHeight = size.buttonMd;
     if (buttonSize === 'sm') baseHeight = size.buttonSm;
 

@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   iconLabel: {
-    fontFamily: fonts.caption,
+    fontFamily: fonts.uiSemi,
     fontSize: 10,
     color: colors.gray,
     textAlign: 'center',

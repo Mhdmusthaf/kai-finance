@@ -83,7 +83,7 @@ export const InsightsScreen: React.FC = () => {
               <Text style={{ fontFamily: fonts.ui, fontSize: 13, color: colors.gray, marginTop: 4 }}>
                 You spent ₹4,800 on dining this month across 6 visits.
               </Text>
-              <Text style={{ fontFamily: fonts.caption, color: colors.deepMint, marginTop: 8 }}>
+              <Text style={{ fontFamily: fonts.uiSemi, color: colors.deepMint, marginTop: 8 }}>
                 Basis: From your live data
               </Text>
             </View>

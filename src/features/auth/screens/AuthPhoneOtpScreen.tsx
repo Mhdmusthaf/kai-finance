@@ -239,13 +239,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.line,
   },
   orText: {
-    fontFamily: fonts.label,
+    fontFamily: fonts.uiHeavy,
     fontSize: 11,
     color: colors.muted,
     marginHorizontal: 12,
   },
-  socialRow: {
-    flexDirection: 'row',
+  socialRow: {    flexDirection: 'row',
     gap: 12,
   },
   socialBtn: {

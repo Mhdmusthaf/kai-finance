@@ -29,7 +29,7 @@ export interface TxEffectInput {
   amount: number;
   fromType?: 'account' | 'card' | null;
   fromId?: string | null;
-  toType?: 'account' | null;
+  toType?: 'account' | 'card' | null;
   toId?: string | null;
   debtId?: string | null;
 }

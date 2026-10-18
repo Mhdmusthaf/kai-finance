@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { z } from 'zod';
 import { Db } from '../db/client';
-import { transactions, loans, schedules } from '../db/schema';
+import { transactions, loans } from '../db/schema';
 import { eq, and, desc, lt, gt, isNull, sql } from 'drizzle-orm';
 import { AuthedRequest, errorShape } from './auth';
 import { applyTransactionEffect, reverseTransactionEffect, LoadedTxRow, validateAmount } from '../services/txEffect';
@@ -77,7 +77,7 @@ export const transactionsRouter = (db: Db) => {
 
     // Map type → effect source/destination
     let fromType: 'account' | 'card' | null = data.fromType ?? null;
-    let toType: 'account' | null = null;
+    let toType: 'account' | 'card' | null = null;
     if (data.type === 'income') toType = 'account';
     if (data.type === 'transfer') { fromType = 'account'; toType = 'account'; }
     if (data.type === 'card_payment') { fromType = 'account'; toType = 'card'; }

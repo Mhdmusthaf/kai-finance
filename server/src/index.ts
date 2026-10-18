@@ -1,221 +1,96 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
-import { db, initDatabase } from './db';
-import { seedDatabase } from './seed';
-import {
-  calculateTotalBalance,
-  calculateNetWorth,
-  calculateCanIAfford,
-} from '../../packages/shared/finance';
-import { parseAndValidateVoiceResult } from '../../packages/shared/voice';
+import rateLimit from 'express-rate-limit';
+import pino from 'pino';
+import { randomUUID } from 'crypto';
+import { createDb } from './db/client';
+import { loadEnv } from './env';
+import { authRouter, requireAuth, AuthedRequest } from './routes/auth';
+import { meRouter } from './routes/me';
+import { accountsRouter, cardsRouter, goalsRouter, debtsRouter } from './routes/objects';
+import { transactionsRouter } from './routes/transactions';
+import { dashboardRouter } from './routes/dashboard';
+
+const env = loadEnv();
+const log = pino({ level: process.env.LOG_LEVEL || 'info', redact: ['req.headers.authorization', 'req.body.code', 'req.body.refreshToken'] });
+
+const { pool, db } = env.DATABASE_URL.startsWith('pglite')
+  ? ({} as any) // PGlite path is only used by the test harness, never by `npm start`
+  : createDb(env.DATABASE_URL);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.set('trust proxy', 1);
+app.use(helmet());
+app.use(express.json({ limit: '1mb' }));
 
-app.use(cors());
-app.use(express.json());
+// strict CORS allow-list
+const origins = env.CORS_ORIGINS.split(',').map((s) => s.trim()).filter(Boolean);
+app.use(cors({ origin: origins.length ? origins : false, credentials: false }));
 
-// Initialize Database & Auto-seed
-initDatabase();
-seedDatabase();
-
-// Root Welcome Route
-app.get('/', (req: Request, res: Response) => {
-  res.json({
-    status: 'ok',
-    app: 'KAI — Your Money OS (Server API v1)',
-    documentation: 'https://github.com/kai-money/kai',
-    endpoints: {
-      health: '/health',
-      seed: '/v1/seed',
-      dashboardSummary: '/v1/dashboard/summary',
-      userProfile: '/v1/me',
-      accounts: '/v1/accounts',
-      creditCards: '/v1/cards',
-      transactions: '/v1/transactions',
-      upcomingEvents: '/v1/upcoming',
-      entitlements: '/v1/me/entitlements',
-    },
-  });
+// request id + logging
+app.use((req: Request, res: Response, next: NextFunction) => {
+  (req as any).id = randomUUID();
+  res.setHeader('X-Request-Id', (req as any).id);
+  next();
 });
+app.use(pinoHttpLite(log));
 
-// Seed Endpoint
-app.get('/v1/seed', (req: Request, res: Response) => {
-  seedDatabase();
-  res.json({ success: true, message: 'Database seeded clean from sample-data.json' });
-});
+// rate limits
+const globalLimiter = rateLimit({ windowMs: 60_000, max: 300, standardHeaders: true });
+const authLimiter = rateLimit({ windowMs: 60_000, max: 10, standardHeaders: true });
+app.use('/v1/auth', authLimiter);
+app.use(globalLimiter);
 
-// Health Check
-app.get('/health', (req: Request, res: Response) => {
-  res.json({ status: 'ok', app: 'KAI Money OS Server', time: new Date().toISOString() });
-});
-
-// Auth OTP Request & Verify Stubs
-app.post('/v1/auth/otp/request', (req: Request, res: Response) => {
-  const { phone } = req.body;
-  console.log(`[AUTH] OTP sent to ${phone}: 123456`);
-  res.json({ success: true, message: 'OTP sent successfully (console logged in dev)' });
-});
-
-app.post('/v1/auth/otp/verify', (req: Request, res: Response) => {
-  const { phone, code } = req.body;
-  const user = db.prepare('SELECT * FROM users LIMIT 1').get();
-  res.json({
-    success: true,
-    token: 'jwt_mock_token_kai_aditi_123',
-    user,
-  });
-});
-
-// User Profile & Settings
-app.get('/v1/me', (req: Request, res: Response) => {
-  const user = db.prepare('SELECT * FROM users LIMIT 1').get();
-  res.json(user);
-});
-
-app.get('/v1/me/entitlements', (req: Request, res: Response) => {
-  res.json({
-    plan: 'free',
-    isPro: false,
-    entitlements: {
-      maxGoals: 3,
-      maxVaultDocuments: 5,
-      askMyMoney: false,
-      cashFlowForecast: false,
-    },
-  });
-});
-
-// Dashboard Summary (Single Request Load for Performance)
-app.get('/v1/dashboard/summary', (req: Request, res: Response) => {
-  const accounts: any = db.prepare('SELECT * FROM accounts WHERE archived = 0').all();
-  const cards: any = db.prepare('SELECT * FROM credit_cards WHERE archived = 0').all();
-  const txs: any = db.prepare('SELECT * FROM transactions WHERE deleted_at IS NULL ORDER BY happened_at DESC LIMIT 10').all();
-  const upcoming: any = db.prepare('SELECT * FROM upcoming_events WHERE status = "upcoming" ORDER BY due_date ASC LIMIT 5').all();
-  const goals: any = db.prepare('SELECT * FROM goals WHERE status = "active" LIMIT 3').all();
-
-  const totalBalance = calculateTotalBalance(accounts);
-  const cardOutstanding = cards.reduce((sum: number, c: any) => sum + c.outstanding, 0);
-
-  res.json({
-    totalBalance,
-    cardOutstanding,
-    accounts,
-    cards,
-    recentTransactions: txs,
-    upcoming,
-    goals,
-  });
-});
-
-// Objects APIs
-app.get('/v1/accounts', (req: Request, res: Response) => {
-  const accounts = db.prepare('SELECT * FROM accounts WHERE archived = 0').all();
-  res.json(accounts);
-});
-
-app.get('/v1/cards', (req: Request, res: Response) => {
-  const cards = db.prepare('SELECT * FROM credit_cards WHERE archived = 0').all();
-  res.json(cards);
-});
-
-// Transactions API (Single DB transaction for balance updates)
-app.get('/v1/transactions', (req: Request, res: Response) => {
-  const txs = db.prepare('SELECT * FROM transactions WHERE deleted_at IS NULL ORDER BY happened_at DESC').all();
-  res.json(txs);
-});
-
-app.post('/v1/transactions', (req: Request, res: Response) => {
-  const tx = req.body;
-  const id = tx.id || `tx_${Date.now()}`;
-  const userId = 'u_aditi';
-  const happenedAt = tx.happenedAt || new Date().toISOString();
-  const recordedAt = new Date().toISOString();
-
-  const stmt = db.prepare(`
-    INSERT INTO transactions (id, user_id, type, amount, category, description, happened_at, recorded_at, from_type, from_id, to_type, to_id, source, voice_transcript)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
-
-  stmt.run(
-    id,
-    userId,
-    tx.type,
-    tx.amount,
-    tx.category || null,
-    tx.description || null,
-    happenedAt,
-    recordedAt,
-    tx.fromAccount?.type || null,
-    tx.fromAccount?.id || null,
-    tx.toAccount?.type || null,
-    tx.toAccount?.id || null,
-    tx.source || 'manual',
-    tx.voiceTranscript || null
-  );
-
-  // Apply Balance Effect inside DB
-  if (tx.type === 'expense' && tx.fromAccount?.id) {
-    db.prepare('UPDATE accounts SET balance = balance - ? WHERE id = ?').run(tx.amount, tx.fromAccount.id);
-  } else if (tx.type === 'income' && tx.toAccount?.id) {
-    db.prepare('UPDATE accounts SET balance = balance + ? WHERE id = ?').run(tx.amount, tx.toAccount.id);
+// health (no auth)
+app.get('/health', (_req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+app.get('/ready', async (_req, res) => {
+  try {
+    await pool.query('SELECT 1');
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(503).json({ ok: false });
   }
-
-  const createdTx = db.prepare('SELECT * FROM transactions WHERE id = ?').get(id);
-  res.status(201).json(createdTx);
 });
 
-app.delete('/v1/transactions/:id', (req: Request, res: Response) => {
-  const { id } = req.params;
-  db.prepare('UPDATE transactions SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?').run(id);
-  res.json({ success: true, id });
+// versioned API
+const v1 = express.Router();
+v1.use('/auth', authRouter(db));
+v1.use(requireAuth(db)); // everything below requires a valid access token
+v1.use('/me', meRouter(db));
+v1.use('/accounts', accountsRouter(db));
+v1.use('/cards', cardsRouter(db));
+v1.use('/goals', goalsRouter(db));
+v1.use('/debts', debtsRouter(db));
+v1.use('/transactions', transactionsRouter(db));
+v1.use('/dashboard', dashboardRouter(db));
+app.use('/v1', v1);
+
+// central error handler — never leak stacks
+app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
+  const reqId = (req as any).id;
+  log.error({ err: err?.message, reqId }, 'unhandled_error');
+  if (res.headersSent) return;
+  res.status(500).json({ error: { code: 'internal_error', message: 'Something went wrong', reqId } });
 });
 
-// Voice Parser Endpoint
-app.post('/v1/voice/parse', (req: Request, res: Response) => {
-  const { transcript } = req.body;
-
-  // Mock Gemini API LLM parsing result according to contract
-  const parsed = parseAndValidateVoiceResult({
-    transcript,
-    intent: 'create_transaction',
-    transaction: {
-      type: 'expense',
-      amount: 50000,
-      category: 'food_dining',
-      description: 'Dinner',
-      happenedAt: new Date().toISOString(),
-      confidence: 0.95,
-    },
-    missing: [],
-  });
-
-  res.json(parsed);
+const server = app.listen(env.PORT, () => {
+  log.info({ port: env.PORT, env: env.NODE_ENV }, 'kai-api-started');
 });
 
-// Ask My Money (Tool-Calling Endpoint)
-app.post('/v1/ai/query', (req: Request, res: Response) => {
-  const { question } = req.body;
+// graceful shutdown
+const shutdown = () => {
+  server.close(() => pool?.end?.());
+};
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
 
-  const accounts: any = db.prepare('SELECT * FROM accounts').all();
-  const totalBalance = calculateTotalBalance(accounts);
-
-  if (question.toLowerCase().includes('afford')) {
-    const affordRes = calculateCanIAfford(totalBalance, 2500000, 4000000, 1500000);
-    return res.json({
-      answer: affordRes.explanation,
-      basis: 'calculation',
-      data: affordRes,
+function pinoHttpLite(logger: pino.Logger) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const start = Date.now();
+    res.on('finish', () => {
+      logger.info({ method: req.method, url: req.url, status: res.statusCode, ms: Date.now() - start, reqId: (req as any).id }, 'http');
     });
-  }
-
-  res.json({
-    answer: `You have ₹${Math.round(totalBalance / 100).toLocaleString('en-IN')} in non-archived savings accounts across HDFC and SBI.`,
-    basis: 'data',
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Database seeded successfully from sample-data.json!`);
-  console.log(`KAI Server v1 running at http://localhost:${PORT}`);
-});
+    next();
+  };
+}
